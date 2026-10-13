@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The October Incident</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100d13;color:#f8eee7;font-family:Georgia,serif;text-align:center}
+main{max-width:760px;margin:auto;padding:24px 18px 60px}
+.tag{color:#d87842;letter-spacing:5px;font:12px Arial,sans-serif}
+h1{font-size:clamp(42px,9vw,76px);line-height:1;margin:22px 0;color:#e98b50;text-shadow:0 0 24px #842f28}
+p{line-height:1.7}
+.hero{padding:65px 15px;background:radial-gradient(ellipse at center,#48252e,#17111b 65%,#100d13);border:1px solid #65404b;border-radius:16px}
+button{background:#a94e37;color:white;border:1px solid #e49a6d;border-radius:7px;padding:15px 22px;font-size:15px;cursor:pointer;margin:10px 4px}
+button:hover{background:#d06c47}
+.panel{background:#1d1722;border:1px solid #483443;border-radius:12px;padding:22px;margin-top:22px}
+.hidden{display:none}
+label{display:block;text-align:left;margin:13px 0 6px}
+input,select,textarea{width:100%;padding:12px;background:#100d13;color:white;border:1px solid #65404b;border-radius:6px}
+small{color:#c9b8c5}
+.ghost{font-size:42px;animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-9px)}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<div class="ghost">👻 🎃 🦇</div>
+<div class="tag">YOU HAVE BEEN SUMMONED</div>
+<h1>THE OCTOBER<br>INCIDENT</h1>
+<p>One night. Questionable decisions.<br>A suspicious number of little monsters.</p>
+<button onclick="document.getElementById('invite').classList.remove('hidden');document.getElementById('invite').scrollIntoView({behavior:'smooth'})">ENTER IF YOU DARE</button>
+<p><small>Proceed at your own risk.</small></p>
+</section>
+<section id="invite" class="panel hidden">
+<div class="tag">OFFICIAL NOTICE FROM THE UNDERWORLD</div>
+<h2>You're invited.</h2>
+<p>Costumes encouraged. Kids welcome. Adults, please behave responsibly. No promises about the ghosts.</p>
+<h3>📍 THE HAUNTED LOCATION</h3>
+<p>Date: <span id="date">Coming soon</span><br>Time: <span id="time">Coming soon</span><br>Address: <span id="address">Details coming soon</span></p>
+<p>Food, spooky fun, costumes, and a grown-up beverage or two.</p>
+<button onclick="document.getElementById('rsvp').classList.remove('hidden');document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">I'M COMING... PROBABLY</button>
+</section>
+<section id="rsvp" class="panel hidden">
+<h2>Declare your fate</h2>
+<p>Let the host know if you're coming.</p>
+<form id="rsvpForm">
+<label>Your name</label><input name="name" required>
+<label>Are you joining us?</label>
+<select name="attendance" required><option value="">Choose your fate</option><option>I'm coming</option><option>Can't make it</option><option>Still deciding</option></select>
+<label>How many people, including you?</label>
+<select name="guests"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6 or more</option></select>
+<label>What are you bringing? (optional)</label><input name="bringing" placeholder="Snacks, drinks, treats...">
+<button type="submit">SEND MY RESPONSE</button>
+</form>
+<p id="message" aria-live="polite"></p>
+<small>This demo form does not send your RSVP to the host yet. We'll connect it in the next step.</small>
+</section>
+<p class="tag" style="margin-top:30px">OCTOBER • AFTER DARK • ENTER AT YOUR OWN RISK</p>
+</main>
+<script>
+document.getElementById('rsvpForm').addEventListener('submit',function(e){
+e.preventDefault();
+document.getElementById('message').textContent='Your form looks good! The host connection still needs to be set up before your RSVP is sent.';
+});
+</script>
+</body>
+</html></escape>
