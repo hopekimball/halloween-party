@@ -2,556 +2,621 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#100810">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Night Among Sinners Bash</title>
 
 <style>
-* { box-sizing: border-box; }
-
 :root {
---black: #100810;
---purple: #28152f;
---red: #d73549;
---green: #a7ff83;
---white: #f8edf8;
+--red: #a30019;
+--green: #9cff57;
+--purple: #291039;
+--black: #050406;
 }
 
-html { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
 
 body {
 margin: 0;
-overflow-x: hidden;
 background: var(--black);
-color: var(--white);
-font-family: Georgia, serif;
-text-align: center;
+color: #e8e0e9;
+font-family: Georgia, "Times New Roman", serif;
+overflow-x: hidden;
 }
 
 body::before,
 body::after {
 content: "";
 position: fixed;
-inset: -35%;
-z-index: 5;
+inset: -50%;
 pointer-events: none;
+z-index: 5;
+opacity: .17;
 background:
-radial-gradient(ellipse at 20% 80%,
-rgba(132, 63, 166, .28), transparent 38%),
-radial-gradient(ellipse at 80% 75%,
-rgba(85, 200, 110, .20), transparent 35%),
-radial-gradient(ellipse at 50% 95%,
-rgba(225, 220, 240, .18), transparent 40%);
+radial-gradient(ellipse at 20% 50%, #a7a7a7 0%, transparent 35%),
+radial-gradient(ellipse at 70% 60%, #6b6b6b 0%, transparent 30%),
+radial-gradient(ellipse at 40% 20%, #343434 0%, transparent 35%);
 filter: blur(35px);
-animation: fogMove 12s ease-in-out infinite alternate;
+animation: fog 35s linear infinite alternate;
 }
 
 body::after {
-opacity: .65;
-filter: blur(55px);
-animation: fogMove 19s ease-in-out infinite alternate-reverse;
+opacity: .11;
+animation-duration: 50s;
+animation-direction: alternate-reverse;
 }
 
-@keyframes fogMove {
-0% { transform: translate(-8%, 3%) scale(1); }
-50% { transform: translate(3%, -2%) scale(1.08); }
-100% { transform: translate(8%, 2%) scale(1.14); }
+@keyframes fog {
+from { transform: translate(-8%, -3%) rotate(0deg); }
+to { transform: translate(8%, 5%) rotate(12deg); }
 }
 
-main, footer { position: relative; z-index: 1; }
-
-main {
-max-width: 850px;
-margin: auto;
-padding: 22px 16px 55px;
+body, button, input, select, textarea {
+font-family: Georgia, "Times New Roman", serif;
 }
 
-.tag {
-color: var(--green);
-font: 11px Arial, sans-serif;
-letter-spacing: 4px;
-line-height: 1.8;
+button, a, input, select, textarea {
+position: relative;
+z-index: 10;
+}
+
+button {
+cursor: pointer;
 }
 
 .hero {
-position: relative;
-overflow: hidden;
-padding: 65px 18px;
-border: 1px solid #70405f;
-border-radius: 18px;
+min-height: 92vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 70px 20px;
 background:
-radial-gradient(ellipse at 50% 100%,
-rgba(104, 29, 57, .55), transparent 65%),
-linear-gradient(145deg, #24152b, #100810 70%);
-box-shadow: 0 0 45px rgba(105, 25, 90, .16);
+radial-gradient(ellipse at center, #260c24 0%, #100812 45%, #050406 78%);
+border-bottom: 1px solid #45121f;
+position: relative;
 }
 
-.moon {
-position: absolute;
-top: 24px;
-right: 24px;
-font-size: 48px;
-opacity: .8;
-filter: drop-shadow(0 0 18px #a33e72);
-}
-
-.ghost {
-font-size: 42px;
-animation: floatGhost 3s ease-in-out infinite;
-}
-
-@keyframes floatGhost {
-50% { transform: translateY(-10px) rotate(3deg); }
+.eyebrow {
+color: var(--green);
+letter-spacing: 5px;
+text-transform: uppercase;
+font-size: 11px;
 }
 
 h1 {
-margin: 24px 0;
-color: #f1d9f1;
-font-size: clamp(37px, 9vw, 72px);
-line-height: 1.05;
-text-shadow: 0 0 15px #8b255f, 0 0 35px #57205d;
+color: #e6dbe5;
+font-size: clamp(40px, 8vw, 86px);
+line-height: .98;
+letter-spacing: 2px;
+text-transform: uppercase;
+max-width: 950px;
+margin: 25px 0;
+text-shadow: 0 0 18px #65001b, 0 0 45px #37001d;
 }
 
-h1 span { color: var(--red); }
+.subtitle {
+font-size: clamp(15px, 2vw, 20px);
+color: #c0b1c3;
+font-style: italic;
+}
 
-h2 { color: #f1c6ec; }
-h3 { color: var(--green); }
-
-p { line-height: 1.75; }
+.warning {
+margin-top: 35px;
+color: #e54b5e;
+font-size: 12px;
+letter-spacing: 3px;
+text-transform: uppercase;
+}
 
 button, .button {
-display: inline-block;
-margin: 8px 4px;
-padding: 14px 19px;
-border: 1px solid #c96d89;
-border-radius: 7px;
-background: #5c203f;
-color: white;
-font-size: 14px;
-font-weight: bold;
-cursor: pointer;
-text-decoration: none;
+background: #170d19;
+color: #d9ffbd;
+border: 1px solid #71934c;
+padding: 13px 20px;
+margin: 7px;
+text-transform: uppercase;
+letter-spacing: 1px;
+font-size: 11px;
 transition: .2s;
 }
 
 button:hover, .button:hover {
-background: #8c3157;
-box-shadow: 0 0 18px #85385b;
-transform: translateY(-2px);
-}
-
-button:focus-visible, a:focus-visible,
-input:focus-visible, select:focus-visible {
-outline: 2px solid var(--green);
-outline-offset: 4px;
-}
-
-.green-button {
-background: #263d2c;
-border-color: #a7ff83;
-}
-
-.panel {
-margin-top: 24px;
-padding: 26px 20px;
-border: 1px solid #553451;
-border-radius: 14px;
-background: rgba(27, 16, 31, .92);
-box-shadow: 0 0 25px rgba(89, 35, 86, .12);
-}
-
-.hidden { display: none !important; }
-
-.warning {
-color: #ff9b9b;
-font-size: 13px;
-}
-
-.door-grid {
-display: grid;
-grid-template-columns: repeat(2, minmax(0, 1fr));
-gap: 12px;
-margin-top: 22px;
-}
-
-.door {
-min-height: 150px;
-padding: 18px 8px;
-border: 1px solid #674265;
-border-radius: 10px;
-background: linear-gradient(160deg, #321b38, #120d17);
-}
-
-.door .emoji {
-display: block;
-margin-bottom: 10px;
-font-size: 35px;
-}
-
-.door strong { display: block; color: var(--green); }
-.door small { color: #cbb7ce; }
-
-label {
-display: block;
-margin: 15px 0 6px;
-text-align: left;
-}
-
-input, select, textarea {
-width: 100%;
-padding: 12px;
-border: 1px solid #684761;
-border-radius: 6px;
-background: #100810;
+background: #38203b;
+border-color: #ff354f;
 color: white;
-font: inherit;
+box-shadow: 0 0 18px #8d002a66;
 }
 
-small { color: #cbb9cc; line-height: 1.7; }
-
-.secret {
-margin: 18px 0;
-padding: 20px;
-border: 1px dashed #8a4e80;
-background: #170e1c;
-color: var(--green);
-animation: secretGlow 2s ease-in-out infinite alternate;
+main {
+max-width: 1000px;
+margin: auto;
+padding: 40px 20px 80px;
 }
 
-@keyframes secretGlow {
-to { box-shadow: 0 0 18px rgba(167,255,131,.18); }
+section {
+margin: 65px 0;
+padding: 30px;
+background: linear-gradient(145deg, #100b12, #09070a);
+border: 1px solid #332033;
+box-shadow: 0 15px 45px #0008;
 }
 
-#scareOverlay {
-position: fixed;
-inset: 0;
-z-index: 20;
-display: grid;
-place-content: center;
-padding: 20px;
-background: #090509;
-color: #ff304f;
-}
-
-#scareOverlay .face {
-font-size: clamp(90px, 25vw, 180px);
-animation: scarePop .35s ease-out;
-}
-
-@keyframes scarePop {
-from { transform: scale(.2); }
-to { transform: scale(1); }
-}
-
-footer {
-padding: 15px 10px 35px;
-color: #c5a9c8;
-font: 10px Arial, sans-serif;
+h2 {
+color: #c5ff92;
+font-size: 25px;
+font-weight: normal;
+text-transform: uppercase;
 letter-spacing: 3px;
 }
 
-@media (max-width: 450px) {
-.hero { padding: 55px 12px; }
-.panel { padding: 22px 14px; }
-.door-grid { gap: 8px; }
-.door { min-height: 135px; }
+h3 {
+color: #e6d6e5;
+font-weight: normal;
 }
 
-@media (prefers-reduced-motion: reduce) {
-*, *::before, *::after {
-animation-duration: .01ms !important;
-animation-iteration-count: 1 !important;
-scroll-behavior: auto !important;
-transition: none !important;
+p {
+line-height: 1.8;
+color: #c7bdca;
 }
+
+.details {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 15px;
+}
+
+.detail {
+border-left: 2px solid #a30019;
+padding: 12px 15px;
+background: #ffffff05;
+}
+
+.detail strong {
+display: block;
+color: #a7f47b;
+margin-bottom: 8px;
+text-transform: uppercase;
+font-size: 11px;
+letter-spacing: 2px;
+}
+
+.doors {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 15px;
+margin-top: 25px;
+}
+
+.door {
+min-height: 180px;
+background:
+linear-gradient(180deg, #180d1a, #070608);
+border: 1px solid #4b263c;
+padding: 20px 12px;
+color: #d9d0da;
+font-size: 13px;
+letter-spacing: 2px;
+}
+
+.door:hover {
+background: #240c18;
+box-shadow: inset 0 0 30px #7d001c55;
+}
+
+.door .number {
+display: block;
+font-size: 35px;
+color: #a30019;
+margin-bottom: 15px;
+}
+
+.hidden {
+display: none !important;
+}
+
+.reveal {
+margin-top: 20px;
+padding: 20px;
+border: 1px dashed #a30019;
+background: #160811;
+}
+
+input, select, textarea {
+display: block;
+width: 100%;
+margin: 12px 0;
+padding: 13px;
+background: #0a080c;
+color: white;
+border: 1px solid #493248;
+font-size: 15px;
+}
+
+label {
+display: block;
+margin-top: 15px;
+color: #c5ff92;
+font-size: 13px;
+}
+
+.small {
+font-size: 12px;
+color: #958a98;
+}
+
+footer {
+text-align: center;
+padding: 45px 20px;
+color: #716574;
+font-size: 12px;
+letter-spacing: 2px;
+border-top: 1px solid #321523;
+}
+
+#scare {
+position: fixed;
+inset: 0;
+z-index: 100;
+background: #030203;
+display: none;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 20px;
+}
+
+#scare.show {
+display: flex;
+animation: flash .12s alternate 5;
+}
+
+.scare-face {
+font-size: clamp(60px, 18vw, 170px);
+color: #d00024;
+text-shadow: 0 0 35px red;
+}
+
+.scare-text {
+font-size: 20px;
+color: white;
+letter-spacing: 4px;
+}
+
+@keyframes flash {
+from { background: #050305; }
+to { background: #32000b; }
+}
+
+audio { display: none; }
+
+@media (max-width: 600px) {
+section { padding: 20px; }
+.hero { min-height: 80vh; }
 }
 </style>
 </head>
 
 <body>
-<main>
-<section class="hero">
-<div class="moon" aria-hidden="true">🌑</div>
-<div class="ghost" aria-hidden="true">👻 🦇 🎃</div>
-<div class="tag">YOU HAVE BEEN SUMMONED</div>
 
-<h1>A NIGHT AMONG<br><span>SINNERS BASH</span></h1>
+<header class="hero">
+<div class="eyebrow">October 31, 2026 · 5:00 PM</div>
+<h1>A Night Among Sinners Bash</h1>
+<p class="subtitle">One night. Questionable decisions. A suspicious number of monsters.</p>
+<div class="warning">You were invited. You were not promised safety.</div>
+<div style="margin-top:25px">
+<button id="soundButton" type="button">Start Haunted Audio</button>
+<button type="button" onclick="document.getElementById('invitation').scrollIntoView({behavior:'smooth'})">Enter If You Dare</button>
+</div>
+<p class="small">Sound is optional. Headphones recommended.</p>
+</header>
 
+<main id="invitation">
+
+<section>
+<h2>The Invitation</h2>
 <p>
-One night. Questionable decisions.<br>
-A suspicious number of monsters.
+The night is calling. The lights are low. Something is waiting in the dark.
+Come dressed for Halloween and join us for a night of food, drinks, and questionable company.
 </p>
 
-<p style="color:#a7ff83">
-OCTOBER 31 · 5:00 PM · THE FLERB HOME
-</p>
+<div class="details">
+<div class="detail">
+<strong>Date</strong>
+Saturday, October 31, 2026
+</div>
+<div class="detail">
+<strong>Time</strong>
+5:00 PM
+</div>
+<div class="detail">
+<strong>Location</strong>
+The Flerb Home
+</div>
+<div class="detail">
+<strong>Food</strong>
+Potluck — bring something to share
+</div>
+</div>
 
-<button onclick="enterHouse()">ENTER IF YOU DARE</button>
-<button class="green-button" onclick="toggleMusic()" id="musicButton">
-♫ PLAY SPOOKY SOUNDS
-</button>
-
-<p><small>Proceed at your own risk. You've been warned.</small></p>
+<p>Family-friendly Halloween fun. Alcoholic drinks will be available for adults only. Please drink responsibly.</p>
 </section>
 
-<section id="welcome" class="panel hidden">
-<div class="tag">WELCOME, LITTLE SINNER</div>
-<h2>You've crossed the threshold.</h2>
-<p>
-The house is open. The night is young.
-Whatever you hear upstairs is absolutely none of your business.
-</p>
-<button onclick="showSection('invite')">READ YOUR SUMMONS</button>
-<button onclick="showSection('rooms')">EXPLORE THE HOUSE</button>
-</section>
+<section>
+<h2>Choose Your Door</h2>
+<p>Every door leads somewhere. Not every destination is worth finding.</p>
 
-<section id="invite" class="panel hidden">
-<div class="tag">OFFICIAL NOTICE FROM THE UNDERWORLD</div>
-<h2>You're invited.</h2>
-
-<p>
-Join us for Halloween night at the Flerb Home.
-Costumes, creepy surprises, food, drinks, and questionable decisions
-are encouraged.
-</p>
-
-<h3>📍 YOUR DESTINATION</h3>
-<p>
-<strong>Event:</strong> A Night Among Sinners Bash<br>
-<strong>Date:</strong> October 31, 2026<br>
-<strong>Time:</strong> 5:00 PM<br>
-<strong>Location:</strong> The Flerb Home
-</p>
-
-<h3>🍽️ THE POTLUCK PROPHECY</h3>
-<p>
-Bring a dish, snack, dessert, or something to share.
-Please let the host know what you're bringing so we can avoid
-summoning seventeen bags of chips and absolutely no dinner.
-</p>
-
-<h3>🍹 A NOTE FOR THE GROWN-UP SINNERS</h3>
-<p>
-Family-friendly fun for all ages, with alcoholic drinks available
-for adults. Please drink responsibly and arrange a safe ride home.
-Keep alcoholic drinks away from children.
-</p>
-
-<button onclick="showSection('rsvp')">DECLARE YOUR FATE</button>
-<button class="green-button" onclick="showSection('rooms')">EXPLORE THE ROOMS</button>
-</section>
-
-<section id="rooms" class="panel hidden">
-<div class="tag">CHOOSE YOUR DOOM</div>
-<h2>Which door will you open?</h2>
-<p>Every house has secrets. This one has several.</p>
-
-<div class="door-grid">
-<button class="door" onclick="openDoor('kitchen')">
-<span class="emoji">🍽️</span>
-<strong>The Witch's Kitchen</strong>
-<small>Something's cooking...</small>
+<div class="doors">
+<button class="door" onclick="openDoor(1)">
+<span class="number">01</span>
+THE BASEMENT
 </button>
-
-<button class="door" onclick="openDoor('basement')">
-<span class="emoji">🕯️</span>
-<strong>The Basement</strong>
-<small>You heard that too?</small>
+<button class="door" onclick="openDoor(2)">
+<span class="number">02</span>
+THE RED ROOM
 </button>
-
-<button class="door" onclick="openDoor('lounge')">
-<span class="emoji">🍷</span>
-<strong>The Sinners' Lounge</strong>
-<small>Adults, behave. Or don't.</small>
+<button class="door" onclick="openDoor(3)">
+<span class="number">03</span>
+THE EMPTY HOUSE
 </button>
-
-<button class="door" onclick="openDoor('secret')">
-<span class="emoji">🔒</span>
-<strong>The Forbidden Door</strong>
-<small>Definitely not suspicious.</small>
+<button class="door" onclick="openDoor(4)">
+<span class="number">04</span>
+DO NOT ENTER
 </button>
 </div>
 
-<div id="roomMessage" class="secret hidden" aria-live="polite"></div>
-
-<button onclick="showSection('invite')">BACK TO THE SUMMONS</button>
-<button onclick="showSection('rsvp')">RSVP, IF YOU DARE</button>
+<div id="doorReveal" class="reveal hidden" aria-live="polite"></div>
 </section>
 
-<section id="rsvp" class="panel hidden">
-<div class="tag">YOUR FATE AWAITS</div>
-<h2>Declare your fate</h2>
-<p>Tell the host if you're joining the festivities.</p>
+<section>
+<h2>Something Is Watching</h2>
+<p>
+Most people see only what they are looking for.
+The rest is hidden in plain sight.
+</p>
+<button type="button" onclick="revealSecret()">Reveal the Secret</button>
+<div id="secret" class="reveal hidden">
+You found it. Now look over your shoulder.
+<br><br>
+Some invitations should never have been opened.
+</div>
+</section>
+
+<section>
+<h2>Test Your Luck</h2>
+<p>The following button is not for the easily startled.</p>
+<button type="button" onclick="jumpScare()">DO NOT PRESS</button>
+<p class="small">Optional visual scare. No sudden sound is used for the jump scare.</p>
+</section>
+
+<section>
+<h2>Confirm Your Arrival</h2>
+<p>Tell us how many souls will be joining you.</p>
 
 <form id="rsvpForm">
-<label for="guestName">Your name, mortal</label>
-<input id="guestName" name="name" autocomplete="name" required>
+<label for="guestName">Your name</label>
+<input id="guestName" name="guestName" placeholder="Enter your name" required>
 
-<label for="attendance">Will you join the sinners?</label>
-<select id="attendance" name="attendance" required>
-<option value="">Choose your fate</option>
-<option>I'm coming</option>
-<option>Can't make it</option>
-<option>Still deciding</option>
+<label for="guestCount">How many souls will be joining you?</label>
+<select id="guestCount" name="guestCount" required>
+<option value="1">1 soul</option>
+<option value="2">2 souls</option>
+<option value="3">3 souls</option>
+<option value="4">4 souls</option>
+<option value="5">5 souls</option>
+<option value="6+">6 or more souls</option>
 </select>
 
-<label for="souls">Number of souls, including you</label>
-<select id="souls" name="souls">
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
-<option>6 or more</option>
-</select>
+<label for="bringing">What are you bringing to the potluck?</label>
+<input id="bringing" name="bringing" placeholder="Food, snacks, drinks, or nothing">
 
-<label for="bringing">What will you bring to the potluck?</label>
-<input id="bringing" name="bringing"
-placeholder="Food, snacks, dessert, drinks...">
-
-<label for="notes">Any other messages for the host? (optional)</label>
-<textarea id="notes" name="notes" rows="3"
-placeholder="Tell us your plans..."></textarea>
-
-<button type="submit">SEND MY RSVP</button>
+<button type="submit">Submit Your Soul</button>
 </form>
 
-<p id="rsvpMessage" aria-live="polite"></p>
-
-<p class="warning">
-The RSVP form is not connected to the host yet.
-Your response will not be delivered until a form destination is configured.
+<p class="small" id="rsvpMessage">
+Note: This demo does not send your RSVP to the host yet. A connected form is needed to collect responses.
 </p>
 </section>
 
-<section class="panel">
-<div class="tag">A MESSAGE FROM THE SHADOWS</div>
-<h2>Think you've seen everything?</h2>
-<p>Some secrets only reveal themselves to the curious.</p>
-<button onclick="revealSecret()">UNLEASH A SECRET</button>
-<div id="secretMessage" class="secret hidden" aria-live="polite"></div>
-<button class="green-button" onclick="triggerScare()">DO NOT PRESS THIS</button>
-</section>
-
-<footer>
-OCTOBER 31 · AFTER DARK · ENTER AT YOUR OWN RISK
-<p>THE FLERB HOME · ALL LITTLE MONSTERS WELCOME</p>
-</footer>
 </main>
 
-<div id="scareOverlay" class="hidden" role="dialog"
-aria-modal="true" aria-label="Spooky surprise">
-<div class="face" aria-hidden="true">👹</div>
-<h2 style="color:#ff304f">YOU HAVE BEEN WARNED.</h2>
-<p>Even the demons think you need to calm down.</p>
-<button onclick="closeScare()">LET ME OUT</button>
+<div id="scare" role="dialog" aria-modal="true" aria-label="Jump scare">
+<div>
+<div class="scare-face">◉</div>
+<p class="scare-text">YOU SHOULD NOT HAVE COME HERE.</p>
+<button type="button" onclick="closeScare()">GET ME OUT</button>
+</div>
 </div>
 
+<footer>
+A NIGHT AMONG SINNERS BASH
+<p>Come for the party. Leave before midnight.</p>
+</footer>
+
 <script>
-function showSection(id) {
-const section = document.getElementById(id);
-section.classList.remove('hidden');
-section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+"use strict";
 
-function enterHouse() {
-showSection('welcome');
-}
-
-const roomMessages = {
-kitchen: "🍲 The Witch says: bring something for the potluck. Her specialty is suspiciously good dip.",
-basement: "🕯️ You hear a whisper: 'The RSVP form is calling your name...' Probably just the wind.",
-lounge: "🍷 Welcome to the Sinners' Lounge. Adults only for alcohol. Hydrate, arrange a safe ride, and don't let the vampires drive.",
-secret: "🔓 SECRET UNLOCKED: The real monsters are the people who show up empty-handed to a potluck. Just kidding. Mostly."
-};
-
-function openDoor(room) {
-const box = document.getElementById('roomMessage');
-box.textContent = roomMessages[room];
-box.classList.remove('hidden');
-}
-
-const secrets = [
-"👁️ The house has been expecting you. It told us you were bringing dessert.",
-"🦇 A little bird told us the snacks disappear faster after dark.",
-"🕸️ Rumor says the best costume wins absolutely nothing except eternal glory.",
-"💀 The spirits have one request: please RSVP so the host knows how many souls to feed.",
-"🎃 You have unlocked the ancient prophecy: October 31 will be spooky."
-];
-
-let secretIndex = 0;
-
-function revealSecret() {
-const box = document.getElementById('secretMessage');
-box.textContent = secrets[secretIndex % secrets.length];
-secretIndex++;
-box.classList.remove('hidden');
-}
-
-function triggerScare() {
-document.getElementById('scareOverlay').classList.remove('hidden');
-}
-
-function closeScare() {
-document.getElementById('scareOverlay').classList.add('hidden');
-}
-
-/* Generated spooky ambient tones; no audio download required. */
 let audioContext = null;
+let masterGain = null;
+let soundTimer = null;
+let soundOn = false;
 let oscillators = [];
-let musicPlaying = false;
+let noiseSource = null;
+let noiseGain = null;
 
-function toggleMusic() {
-const button = document.getElementById('musicButton');
+const soundButton = document.getElementById("soundButton");
 
-if (musicPlaying) {
-oscillators.forEach(osc => {
-try { osc.stop(); } catch (e) {}
-});
-oscillators = [];
-musicPlaying = false;
-button.textContent = '♫ PLAY SPOOKY SOUNDS';
+async function startHauntedAudio() {
+const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+if (!AudioContextClass) {
+alert("Your browser does not support generated audio. Try opening the website in Chrome or Safari.");
 return;
 }
 
 try {
-const AudioCtx = window.AudioContext || window.webkitAudioContext;
-if (!AudioCtx) {
-button.textContent = 'Audio is not supported on this device';
+if (!audioContext) {
+audioContext = new AudioContextClass();
+}
+
+await audioContext.resume();
+
+if (audioContext.state !== "running") {
+alert("Audio is blocked by your browser. Try opening the site directly in Chrome or Safari and clicking the sound button again.");
 return;
 }
 
-audioContext = audioContext || new AudioCtx();
-audioContext.resume();
+masterGain = audioContext.createGain();
+masterGain.gain.value = 0.22;
+masterGain.connect(audioContext.destination);
 
-[55, 82.4, 110].forEach((frequency, i) => {
-const oscillator = audioContext.createOscillator();
+// Deep, eerie background drone.
+[55, 55.8, 82.4].forEach((frequency, index) => {
+const osc = audioContext.createOscillator();
 const gain = audioContext.createGain();
 
-oscillator.type = i === 1 ? 'triangle' : 'sine';
-oscillator.frequency.value = frequency;
-gain.gain.value = i === 0 ? 0.045 : 0.018;
+osc.type = index === 1 ? "triangle" : "sine";
+osc.frequency.value = frequency;
+gain.gain.value = index === 2 ? 0.10 : 0.18;
 
-oscillator.connect(gain);
-gain.connect(audioContext.destination);
-oscillator.start();
-oscillators.push(oscillator);
+osc.connect(gain);
+gain.connect(masterGain);
+osc.start();
+
+oscillators.push(osc);
 });
 
-musicPlaying = true;
-button.textContent = '♫ STOP SPOOKY SOUNDS';
-} catch (e) {
-button.textContent = 'Could not start audio';
+// Create a low-volume layer of wind-like noise.
+const bufferSize = audioContext.sampleRate * 3;
+const noiseBuffer = audioContext.createBuffer(
+1, bufferSize, audioContext.sampleRate
+);
+const channel = noiseBuffer.getChannelData(0);
+
+for (let i = 0; i < bufferSize; i++) {
+channel[i] = (Math.random() * 2 - 1) * 0.35;
+}
+
+noiseSource = audioContext.createBufferSource();
+noiseSource.buffer = noiseBuffer;
+noiseSource.loop = true;
+
+const filter = audioContext.createBiquadFilter();
+filter.type = "lowpass";
+filter.frequency.value = 180;
+
+noiseGain = audioContext.createGain();
+noiseGain.gain.value = 0.17;
+
+noiseSource.connect(filter);
+filter.connect(noiseGain);
+noiseGain.connect(masterGain);
+noiseSource.start();
+
+soundOn = true;
+soundButton.textContent = "Stop Haunted Audio";
+
+// Occasionally play a distant, high eerie note.
+soundTimer = setInterval(() => {
+if (!audioContext || audioContext.state !== "running" || !masterGain) return;
+
+const note = audioContext.createOscillator();
+const noteGain = audioContext.createGain();
+const now = audioContext.currentTime;
+
+note.type = "sine";
+note.frequency.setValueAtTime(
+[174.61, 196, 207.65, 233.08][Math.floor(Math.random() * 4)],
+now
+);
+
+noteGain.gain.setValueAtTime(0.0001, now);
+noteGain.gain.exponentialRampToValueAtTime(0.09, now + 0.5);
+noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 3.5);
+
+note.connect(noteGain);
+noteGain.connect(masterGain);
+
+note.start(now);
+note.stop(now + 3.6);
+}, 5000);
+
+} catch (error) {
+console.error("Audio could not start:", error);
+alert("The browser couldn't start the audio. Try refreshing the page and clicking Start Haunted Audio again.");
+stopHauntedAudio();
 }
 }
 
-/* This demo form does not transmit or store personal information. */
-document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-e.preventDefault();
+function stopHauntedAudio() {
+if (soundTimer) {
+clearInterval(soundTimer);
+soundTimer = null;
+}
 
-document.getElementById('rsvpMessage').textContent =
-'Your RSVP has not been sent yet. The host connection still needs to be configured. Please contact the host directly for now.';
+oscillators.forEach(osc => {
+try { osc.stop(); } catch (error) {}
+});
+oscillators = [];
+
+if (noiseSource) {
+try { noiseSource.stop(); } catch (error) {}
+noiseSource = null;
+}
+
+if (masterGain && audioContext) {
+try {
+masterGain.gain.setTargetAtTime(0, audioContext.currentTime, 0.08);
+} catch (error) {}
+}
+
+masterGain = null;
+noiseGain = null;
+soundOn = false;
+soundButton.textContent = "Start Haunted Audio";
+}
+
+soundButton.addEventListener("click", () => {
+if (soundOn) {
+stopHauntedAudio();
+} else {
+startHauntedAudio();
+}
+});
+
+function openDoor(number) {
+const messages = {
+1: "You hear something moving beneath your feet. The basement door locks behind you.",
+2: "The walls are stained red. A voice whispers your name, although nobody here knows it.",
+3: "Every room is empty. Every mirror shows someone standing behind you.",
+4: "You were warned. Something on the other side has been waiting for you."
+};
+
+const reveal = document.getElementById("doorReveal");
+reveal.textContent = messages[number];
+reveal.classList.remove("hidden");
+}
+
+function revealSecret() {
+document.getElementById("secret").classList.toggle("hidden");
+}
+
+function jumpScare() {
+const scare = document.getElementById("scare");
+scare.classList.add("show");
+}
+
+function closeScare() {
+document.getElementById("scare").classList.remove("show");
+}
+
+document.getElementById("rsvpForm").addEventListener("submit", function(event) {
+event.preventDefault();
+
+document.getElementById("rsvpMessage").textContent =
+"Your details are filled in, but this demo does not send them to the host. Connect a real RSVP form before using this for your invitations.";
 });
 </script>
+
 </body>
 </html>
