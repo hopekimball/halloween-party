@@ -1,113 +1,557 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A NIGHT AMONG SINNERS BASH</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100810">
+<title>A Night Among Sinners Bash</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#100d13;color:#f8eee7;font-family:Georgia,serif;text-align:center}
-main{max-width:760px;margin:auto;padding:24px 18px 60px}
-.tag{color:#d87842;letter-spacing:5px;font:12px Arial,sans-serif}
-h1{font-size:clamp(42px,9vw,76px);line-height:1;margin:22px 0;color:#e98b50;text-shadow:0 0 24px #842f28}
-p{line-height:1.7}
-.hero{padding:65px 15px;background:radial-gradient(ellipse at center,#48252e,#17111b 65%,#100d13);border:1px solid #65404b;border-radius:16px}
-button{background:#a94e37;color:white;border:1px solid #e49a6d;border-radius:7px;padding:15px 22px;font-size:15px;cursor:pointer;margin:10px 4px}
-button:hover{background:#d06c47}
-.panel{background:#1d1722;border:1px solid #483443;border-radius:12px;padding:22px;margin-top:22px}
-.hidden{display:none}
-label{display:block;text-align:left;margin:13px 0 6px}
-input,select,textarea{width:100%;padding:12px;background:#100d13;color:white;border:1px solid #65404b;border-radius:6px}
-small{color:#c9b8c5}
-.ghost{font-size:42px;animation:float 3s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-9px)}}
-/* Visible drifting haunted fog */
+* { box-sizing: border-box; }
+
+:root {
+--black: #100810;
+--purple: #28152f;
+--red: #d73549;
+--green: #a7ff83;
+--white: #f8edf8;
+}
+
+html { scroll-behavior: smooth; }
+
 body {
-position: relative;
-isolation: isolate;
+margin: 0;
 overflow-x: hidden;
+background: var(--black);
+color: var(--white);
+font-family: Georgia, serif;
+text-align: center;
 }
 
 body::before,
 body::after {
 content: "";
 position: fixed;
-inset: 0;
+inset: -35%;
+z-index: 5;
 pointer-events: none;
-z-index: 999;
-background-size: 200% 100%;
-animation: sinnerFog 3s linear infinite alternate;
-}
-
-body::before {
 background:
-radial-gradient(ellipse at 15% 85%, rgba(115, 65, 160, 0.42), transparent 48%),
-radial-gradient(ellipse at 85% 90%, rgba(55, 160, 90, 0.30), transparent 42%),
-radial-gradient(ellipse at 50% 100%, rgba(210, 205, 225, 0.25), transparent 48%);
-filter: blur(24px);
+radial-gradient(ellipse at 20% 80%,
+rgba(132, 63, 166, .28), transparent 38%),
+radial-gradient(ellipse at 80% 75%,
+rgba(85, 200, 110, .20), transparent 35%),
+radial-gradient(ellipse at 50% 95%,
+rgba(225, 220, 240, .18), transparent 40%);
+filter: blur(35px);
+animation: fogMove 12s ease-in-out infinite alternate;
 }
 
 body::after {
-background:
-radial-gradient(ellipse at 75% 100%, rgba(100, 65, 145, 0.36), transparent 45%),
-radial-gradient(ellipse at 25% 95%, rgba(80, 160, 95, 0.24), transparent 42%);
-filter: blur(38px);
-animation-duration: 21s;
-}
-@keyframes sinnerFog {
-0% {
-transform: translate3d(-12%, 3%, 0) scale(1);
-}
-50% {
-transform: translate3d(5%, -2%, 0) scale(1.12);
-}
-100% {
-transform: translate3d(12%, 2%, 0) scale(1.05);
-}
+opacity: .65;
+filter: blur(55px);
+animation: fogMove 19s ease-in-out infinite alternate-reverse;
 }
 
+@keyframes fogMove {
+0% { transform: translate(-8%, 3%) scale(1); }
+50% { transform: translate(3%, -2%) scale(1.08); }
+100% { transform: translate(8%, 2%) scale(1.14); }
+}
+
+main, footer { position: relative; z-index: 1; }
+
+main {
+max-width: 850px;
+margin: auto;
+padding: 22px 16px 55px;
+}
+
+.tag {
+color: var(--green);
+font: 11px Arial, sans-serif;
+letter-spacing: 4px;
+line-height: 1.8;
+}
+
+.hero {
+position: relative;
+overflow: hidden;
+padding: 65px 18px;
+border: 1px solid #70405f;
+border-radius: 18px;
+background:
+radial-gradient(ellipse at 50% 100%,
+rgba(104, 29, 57, .55), transparent 65%),
+linear-gradient(145deg, #24152b, #100810 70%);
+box-shadow: 0 0 45px rgba(105, 25, 90, .16);
+}
+
+.moon {
+position: absolute;
+top: 24px;
+right: 24px;
+font-size: 48px;
+opacity: .8;
+filter: drop-shadow(0 0 18px #a33e72);
+}
+
+.ghost {
+font-size: 42px;
+animation: floatGhost 3s ease-in-out infinite;
+}
+
+@keyframes floatGhost {
+50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+h1 {
+margin: 24px 0;
+color: #f1d9f1;
+font-size: clamp(37px, 9vw, 72px);
+line-height: 1.05;
+text-shadow: 0 0 15px #8b255f, 0 0 35px #57205d;
+}
+
+h1 span { color: var(--red); }
+
+h2 { color: #f1c6ec; }
+h3 { color: var(--green); }
+
+p { line-height: 1.75; }
+
+button, .button {
+display: inline-block;
+margin: 8px 4px;
+padding: 14px 19px;
+border: 1px solid #c96d89;
+border-radius: 7px;
+background: #5c203f;
+color: white;
+font-size: 14px;
+font-weight: bold;
+cursor: pointer;
+text-decoration: none;
+transition: .2s;
+}
+
+button:hover, .button:hover {
+background: #8c3157;
+box-shadow: 0 0 18px #85385b;
+transform: translateY(-2px);
+}
+
+button:focus-visible, a:focus-visible,
+input:focus-visible, select:focus-visible {
+outline: 2px solid var(--green);
+outline-offset: 4px;
+}
+
+.green-button {
+background: #263d2c;
+border-color: #a7ff83;
+}
+
+.panel {
+margin-top: 24px;
+padding: 26px 20px;
+border: 1px solid #553451;
+border-radius: 14px;
+background: rgba(27, 16, 31, .92);
+box-shadow: 0 0 25px rgba(89, 35, 86, .12);
+}
+
+.hidden { display: none !important; }
+
+.warning {
+color: #ff9b9b;
+font-size: 13px;
+}
+
+.door-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 12px;
+margin-top: 22px;
+}
+
+.door {
+min-height: 150px;
+padding: 18px 8px;
+border: 1px solid #674265;
+border-radius: 10px;
+background: linear-gradient(160deg, #321b38, #120d17);
+}
+
+.door .emoji {
+display: block;
+margin-bottom: 10px;
+font-size: 35px;
+}
+
+.door strong { display: block; color: var(--green); }
+.door small { color: #cbb7ce; }
+
+label {
+display: block;
+margin: 15px 0 6px;
+text-align: left;
+}
+
+input, select, textarea {
+width: 100%;
+padding: 12px;
+border: 1px solid #684761;
+border-radius: 6px;
+background: #100810;
+color: white;
+font: inherit;
+}
+
+small { color: #cbb9cc; line-height: 1.7; }
+
+.secret {
+margin: 18px 0;
+padding: 20px;
+border: 1px dashed #8a4e80;
+background: #170e1c;
+color: var(--green);
+animation: secretGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes secretGlow {
+to { box-shadow: 0 0 18px rgba(167,255,131,.18); }
+}
+
+#scareOverlay {
+position: fixed;
+inset: 0;
+z-index: 20;
+display: grid;
+place-content: center;
+padding: 20px;
+background: #090509;
+color: #ff304f;
+}
+
+#scareOverlay .face {
+font-size: clamp(90px, 25vw, 180px);
+animation: scarePop .35s ease-out;
+}
+
+@keyframes scarePop {
+from { transform: scale(.2); }
+to { transform: scale(1); }
+}
+
+footer {
+padding: 15px 10px 35px;
+color: #c5a9c8;
+font: 10px Arial, sans-serif;
+letter-spacing: 3px;
+}
+
+@media (max-width: 450px) {
+.hero { padding: 55px 12px; }
+.panel { padding: 22px 14px; }
+.door-grid { gap: 8px; }
+.door { min-height: 135px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+*, *::before, *::after {
+animation-duration: .01ms !important;
+animation-iteration-count: 1 !important;
+scroll-behavior: auto !important;
+transition: none !important;
+}
+}
 </style>
 </head>
+
 <body>
 <main>
 <section class="hero">
-<div class="ghost">👻 🎃 🦇</div>
+<div class="moon" aria-hidden="true">🌑</div>
+<div class="ghost" aria-hidden="true">👻 🦇 🎃</div>
 <div class="tag">YOU HAVE BEEN SUMMONED</div>
-<h1>A NIGHT <br>AMONG SINNERS</h1>
-<p>One night. Questionable decisions.<br>A suspicious number of monsters.</p>
-<button onclick="document.getElementById('invite').classList.remove('hidden');document.getElementById('invite').scrollIntoView({behavior:'smooth'})">ENTER IF YOU DARE</button>
-<p><small>Proceed at your own risk.</small></p>
+
+<h1>A NIGHT AMONG<br><span>SINNERS BASH</span></h1>
+
+<p>
+One night. Questionable decisions.<br>
+A suspicious number of monsters.
+</p>
+
+<p style="color:#a7ff83">
+OCTOBER 31 · 5:00 PM · THE FLERB HOME
+</p>
+
+<button onclick="enterHouse()">ENTER IF YOU DARE</button>
+<button class="green-button" onclick="toggleMusic()" id="musicButton">
+♫ PLAY SPOOKY SOUNDS
+</button>
+
+<p><small>Proceed at your own risk. You've been warned.</small></p>
 </section>
+
+<section id="welcome" class="panel hidden">
+<div class="tag">WELCOME, LITTLE SINNER</div>
+<h2>You've crossed the threshold.</h2>
+<p>
+The house is open. The night is young.
+Whatever you hear upstairs is absolutely none of your business.
+</p>
+<button onclick="showSection('invite')">READ YOUR SUMMONS</button>
+<button onclick="showSection('rooms')">EXPLORE THE HOUSE</button>
+</section>
+
 <section id="invite" class="panel hidden">
 <div class="tag">OFFICIAL NOTICE FROM THE UNDERWORLD</div>
 <h2>You're invited.</h2>
-<p>Costumes encouraged. Kids welcome. Adults, please behave responsibly. No promises about the ghosts.</p>
-<h3>📍 THE HAUNTED LOCATION</h3>
-<p>Date: <span id="date">Coming soon</span><br>Time: <span id="time">Coming soon</span><br>Address: <span id="address">Details coming soon</span></p>
-<p>Food, spooky fun, costumes, and a grown-up beverage or two.</p>
-<button onclick="document.getElementById('rsvp').classList.remove('hidden');document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">I'M COMING... PROBABLY</button>
+
+<p>
+Join us for Halloween night at the Flerb Home.
+Costumes, creepy surprises, food, drinks, and questionable decisions
+are encouraged.
+</p>
+
+<h3>📍 YOUR DESTINATION</h3>
+<p>
+<strong>Event:</strong> A Night Among Sinners Bash<br>
+<strong>Date:</strong> October 31, 2026<br>
+<strong>Time:</strong> 5:00 PM<br>
+<strong>Location:</strong> The Flerb Home
+</p>
+
+<h3>🍽️ THE POTLUCK PROPHECY</h3>
+<p>
+Bring a dish, snack, dessert, or something to share.
+Please let the host know what you're bringing so we can avoid
+summoning seventeen bags of chips and absolutely no dinner.
+</p>
+
+<h3>🍹 A NOTE FOR THE GROWN-UP SINNERS</h3>
+<p>
+Family-friendly fun for all ages, with alcoholic drinks available
+for adults. Please drink responsibly and arrange a safe ride home.
+Keep alcoholic drinks away from children.
+</p>
+
+<button onclick="showSection('rsvp')">DECLARE YOUR FATE</button>
+<button class="green-button" onclick="showSection('rooms')">EXPLORE THE ROOMS</button>
 </section>
+
+<section id="rooms" class="panel hidden">
+<div class="tag">CHOOSE YOUR DOOM</div>
+<h2>Which door will you open?</h2>
+<p>Every house has secrets. This one has several.</p>
+
+<div class="door-grid">
+<button class="door" onclick="openDoor('kitchen')">
+<span class="emoji">🍽️</span>
+<strong>The Witch's Kitchen</strong>
+<small>Something's cooking...</small>
+</button>
+
+<button class="door" onclick="openDoor('basement')">
+<span class="emoji">🕯️</span>
+<strong>The Basement</strong>
+<small>You heard that too?</small>
+</button>
+
+<button class="door" onclick="openDoor('lounge')">
+<span class="emoji">🍷</span>
+<strong>The Sinners' Lounge</strong>
+<small>Adults, behave. Or don't.</small>
+</button>
+
+<button class="door" onclick="openDoor('secret')">
+<span class="emoji">🔒</span>
+<strong>The Forbidden Door</strong>
+<small>Definitely not suspicious.</small>
+</button>
+</div>
+
+<div id="roomMessage" class="secret hidden" aria-live="polite"></div>
+
+<button onclick="showSection('invite')">BACK TO THE SUMMONS</button>
+<button onclick="showSection('rsvp')">RSVP, IF YOU DARE</button>
+</section>
+
 <section id="rsvp" class="panel hidden">
+<div class="tag">YOUR FATE AWAITS</div>
 <h2>Declare your fate</h2>
-<p>Let the host know if you're coming.</p>
+<p>Tell the host if you're joining the festivities.</p>
+
 <form id="rsvpForm">
-<label>Your name</label><input name="name" required>
-<label>Are you joining us?</label>
-<select name="attendance" required><option value="">Choose your fate</option><option>I'm coming</option><option>Can't make it</option><option>Still deciding</option></select>
-<label>How many Souls, including yours?</label>
-<select name="guests"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6 or more</option></select>
-<label>What are you bringing? (optional)</label><input name="bringing" placeholder="Snacks, drinks, treats...">
-<button type="submit">SEND MY RESPONSE</button>
+<label for="guestName">Your name, mortal</label>
+<input id="guestName" name="name" autocomplete="name" required>
+
+<label for="attendance">Will you join the sinners?</label>
+<select id="attendance" name="attendance" required>
+<option value="">Choose your fate</option>
+<option>I'm coming</option>
+<option>Can't make it</option>
+<option>Still deciding</option>
+</select>
+
+<label for="souls">Number of souls, including you</label>
+<select id="souls" name="souls">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6 or more</option>
+</select>
+
+<label for="bringing">What will you bring to the potluck?</label>
+<input id="bringing" name="bringing"
+placeholder="Food, snacks, dessert, drinks...">
+
+<label for="notes">Any other messages for the host? (optional)</label>
+<textarea id="notes" name="notes" rows="3"
+placeholder="Tell us your plans..."></textarea>
+
+<button type="submit">SEND MY RSVP</button>
 </form>
-<p id="message" aria-live="polite"></p>
-<small>This demo form does not send your RSVP to the host yet. We'll connect it in the next step.</small>
+
+<p id="rsvpMessage" aria-live="polite"></p>
+
+<p class="warning">
+The RSVP form is not connected to the host yet.
+Your response will not be delivered until a form destination is configured.
+</p>
 </section>
-<p class="tag" style="margin-top:30px">OCTOBER • AFTER DARK • ENTER AT YOUR OWN RISK</p>
+
+<section class="panel">
+<div class="tag">A MESSAGE FROM THE SHADOWS</div>
+<h2>Think you've seen everything?</h2>
+<p>Some secrets only reveal themselves to the curious.</p>
+<button onclick="revealSecret()">UNLEASH A SECRET</button>
+<div id="secretMessage" class="secret hidden" aria-live="polite"></div>
+<button class="green-button" onclick="triggerScare()">DO NOT PRESS THIS</button>
+</section>
+
+<footer>
+OCTOBER 31 · AFTER DARK · ENTER AT YOUR OWN RISK
+<p>THE FLERB HOME · ALL LITTLE MONSTERS WELCOME</p>
+</footer>
 </main>
+
+<div id="scareOverlay" class="hidden" role="dialog"
+aria-modal="true" aria-label="Spooky surprise">
+<div class="face" aria-hidden="true">👹</div>
+<h2 style="color:#ff304f">YOU HAVE BEEN WARNED.</h2>
+<p>Even the demons think you need to calm down.</p>
+<button onclick="closeScare()">LET ME OUT</button>
+</div>
+
 <script>
-document.getElementById('rsvpForm').addEventListener('submit',function(e){
+function showSection(id) {
+const section = document.getElementById(id);
+section.classList.remove('hidden');
+section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function enterHouse() {
+showSection('welcome');
+}
+
+const roomMessages = {
+kitchen: "🍲 The Witch says: bring something for the potluck. Her specialty is suspiciously good dip.",
+basement: "🕯️ You hear a whisper: 'The RSVP form is calling your name...' Probably just the wind.",
+lounge: "🍷 Welcome to the Sinners' Lounge. Adults only for alcohol. Hydrate, arrange a safe ride, and don't let the vampires drive.",
+secret: "🔓 SECRET UNLOCKED: The real monsters are the people who show up empty-handed to a potluck. Just kidding. Mostly."
+};
+
+function openDoor(room) {
+const box = document.getElementById('roomMessage');
+box.textContent = roomMessages[room];
+box.classList.remove('hidden');
+}
+
+const secrets = [
+"👁️ The house has been expecting you. It told us you were bringing dessert.",
+"🦇 A little bird told us the snacks disappear faster after dark.",
+"🕸️ Rumor says the best costume wins absolutely nothing except eternal glory.",
+"💀 The spirits have one request: please RSVP so the host knows how many souls to feed.",
+"🎃 You have unlocked the ancient prophecy: October 31 will be spooky."
+];
+
+let secretIndex = 0;
+
+function revealSecret() {
+const box = document.getElementById('secretMessage');
+box.textContent = secrets[secretIndex % secrets.length];
+secretIndex++;
+box.classList.remove('hidden');
+}
+
+function triggerScare() {
+document.getElementById('scareOverlay').classList.remove('hidden');
+}
+
+function closeScare() {
+document.getElementById('scareOverlay').classList.add('hidden');
+}
+
+/* Generated spooky ambient tones; no audio download required. */
+let audioContext = null;
+let oscillators = [];
+let musicPlaying = false;
+
+function toggleMusic() {
+const button = document.getElementById('musicButton');
+
+if (musicPlaying) {
+oscillators.forEach(osc => {
+try { osc.stop(); } catch (e) {}
+});
+oscillators = [];
+musicPlaying = false;
+button.textContent = '♫ PLAY SPOOKY SOUNDS';
+return;
+}
+
+try {
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+if (!AudioCtx) {
+button.textContent = 'Audio is not supported on this device';
+return;
+}
+
+audioContext = audioContext || new AudioCtx();
+audioContext.resume();
+
+[55, 82.4, 110].forEach((frequency, i) => {
+const oscillator = audioContext.createOscillator();
+const gain = audioContext.createGain();
+
+oscillator.type = i === 1 ? 'triangle' : 'sine';
+oscillator.frequency.value = frequency;
+gain.gain.value = i === 0 ? 0.045 : 0.018;
+
+oscillator.connect(gain);
+gain.connect(audioContext.destination);
+oscillator.start();
+oscillators.push(oscillator);
+});
+
+musicPlaying = true;
+button.textContent = '♫ STOP SPOOKY SOUNDS';
+} catch (e) {
+button.textContent = 'Could not start audio';
+}
+}
+
+/* This demo form does not transmit or store personal information. */
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
 e.preventDefault();
-document.getElementById('message').textContent='Your form looks good! The host connection still needs to be set up before your RSVP is sent.';
+
+document.getElementById('rsvpMessage').textContent =
+'Your RSVP has not been sent yet. The host connection still needs to be configured. Please contact the host directly for now.';
 });
 </script>
 </body>
-</html></escape>
+</html>
