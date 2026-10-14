@@ -86,17 +86,17 @@ input::placeholder,textarea::placeholder{color:#75666a}
 .rule-detail{display:none;text-align:left;padding:15px;margin-top:12px;border-left:2px solid #8d3039;background:#170d0f;color:#c7b6aa;font-size:12px;line-height:1.8}
 .rule-detail.show{display:block}
 
-/* CURSED BAR */
+/* THE HOUSE IS WATCHING — DRINKING POPUP */
 .cursed-bar{margin-top:28px;padding:32px 22px;border:1px solid #71313a;background:radial-gradient(ellipse at top right,#55101b 0%,transparent 60%),radial-gradient(ellipse at bottom left,#34200b 0%,transparent 65%),#0c0909;text-align:center;box-shadow:inset 0 0 45px #920b201f,0 0 20px #5d071522;position:relative;overflow:hidden}
-.cursed-bar::before{content:"21+";position:absolute;top:12px;right:13px;color:#ff626b;border:1px solid #79303a;padding:5px 7px;font-size:9px;letter-spacing:1px;transform:rotate(5deg)}
+.cursed-bar::before{content:"ADULTS ONLY AFTER DARK";position:absolute;top:12px;right:13px;color:#ff9aa1;border:1px solid #8d303a;padding:5px 7px;font-size:9px;letter-spacing:1px;transform:rotate(5deg)}
 .bar-intro{color:#c2b1a5;font-size:13px;line-height:1.9;max-width:640px;margin:0 auto 22px}
 .bar-banner{padding:18px 12px;margin:20px 0;border-top:1px solid #69303a;border-bottom:1px solid #69303a;color:#d4c3b5;font-size:12px;line-height:2;letter-spacing:1px}
 .bar-banner strong{color:#ff5965;font-weight:normal;font-size:14px}
-.bar-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:20px 0;text-align:left}
-.bar-card{padding:18px 14px;border:1px solid #543039;background:linear-gradient(145deg,#251216,#100b0c);min-height:150px}
-.bar-number{color:#ff5965;font-size:10px;letter-spacing:1px;margin-bottom:12px}
-.bar-card h3{font-family:'Creepster',Impact,fantasy;font-size:24px;font-weight:normal;color:#eee0d4;margin:0 0 9px}
-.bar-card p{color:#b8a79b;font-size:11px;line-height:1.8;margin:0}
+ .prophecy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0}
+.prophecy-tile{padding:19px 14px;min-height:125px;border:1px solid #543039;background:linear-gradient(145deg,#251216,#100b0c);color:#eee0d4;text-align:center}
+.prophecy-icon{font-size:25px;color:#ff626b;margin-bottom:9px}
+.prophecy-tile h3{font-family:'Creepster',Impact,fantasy;font-size:25px;font-weight:normal;color:#eee0d4;margin:0 0 9px}
+.prophecy-tile p{color:#b8a79b;font-size:11px;line-height:1.8;margin:0}
 .bar-note{color:#a28c84;font-size:11px;line-height:1.9;margin:20px 0}
 .portal-button{width:100%;max-width:480px;padding:22px 16px;color:#f3ded3;border:1px solid #b33240;background:radial-gradient(ellipse at center,#781521 0%,#31090f 55%,#100809 100%);font-family:'Creepster',Impact,fantasy;font-size:clamp(26px,6vw,39px);letter-spacing:2px;box-shadow:0 0 22px #9b142433,inset 0 0 22px #b41b2522;transition:.25s;animation:portalPulse 3s ease-in-out infinite}
 .portal-button:hover{transform:scale(1.025);border-color:#ef6974;box-shadow:0 0 32px #c20c2d66,inset 0 0 25px #b41b2544}
@@ -104,9 +104,9 @@ input::placeholder,textarea::placeholder{color:#75666a}
 .bar-whisper{color:#ff626b;font-size:10px;letter-spacing:2px;margin-top:16px;animation:flicker 3s ease-in-out infinite}
 @keyframes flicker{0%,90%,100%{opacity:1}92%,96%{opacity:.3}}
 
-/* CURSED BAR PORTAL */
-#barPortal,#gamePortal{position:fixed;inset:0;z-index:150;display:none;align-items:center;justify-content:center;padding:18px;background:radial-gradient(ellipse at center,#27070d 0%,#090405 72%);overflow-y:auto}
-#barPortal.show,#gamePortal.show{display:flex}
+/* HAUNTED DRINKING POPUP */
+#barPortal{position:fixed;inset:0;z-index:150;display:none;align-items:center;justify-content:center;padding:18px;background:radial-gradient(ellipse at center,#27070d 0%,#090405 72%);overflow-y:auto}
+#barPortal.show{display:flex}
 .portal-screen{position:relative;width:min(650px,100%);max-height:94vh;overflow-y:auto;padding:35px 22px 28px;text-align:center;border:1px solid #a32d3a;background:radial-gradient(ellipse at top,#54101b 0%,transparent 58%),linear-gradient(180deg,#17090d,#070506);box-shadow:0 0 55px #b10b2844,inset 0 0 35px #7b111b22;animation:portalAppear .35s ease-out}
 .portal-screen::before,.portal-screen::after{content:"✦";position:absolute;top:13px;color:#a94852;font-size:20px}
 .portal-screen::before{left:15px}.portal-screen::after{right:15px}
@@ -121,16 +121,11 @@ input::placeholder,textarea::placeholder{color:#75666a}
 .portal-choice:hover,.portal-choice:focus-visible{border-color:#c34452;background:linear-gradient(120deg,#42131d,#17090d);outline:none}
 .portal-choice strong{display:block;color:#d8c5b9;font-family:'Creepster',Impact,fantasy;font-size:25px;font-weight:normal;margin-bottom:5px}
 .portal-choice span{display:block;color:#b4a097;font-size:11px;line-height:1.7}
-#portalResult,#gameResult{min-height:52px;margin:20px 0;padding:15px;border-left:2px solid #9d3540;background:#10080b;color:var(--green);font-size:12px;line-height:1.9;text-align:left}
+#portalResult{min-height:52px;margin:20px 0;padding:15px;border-left:2px solid #9d3540;background:#10080b;color:var(--green);font-size:12px;line-height:1.9;text-align:left}
 .portal-close{position:absolute;top:10px;right:10px;border:1px solid #74404a;background:#14080c;color:#d9c6bc;padding:8px 11px;font-size:10px;letter-spacing:1px;z-index:2}
 .portal-close:hover{background:#42101a}
 .portal-exit{margin-top:5px}
 
-/* GAME BUTTON */
-.party-game{margin-top:34px;padding:28px 20px;text-align:center;border:1px dashed #7c303b;background:radial-gradient(ellipse at top,#301017,transparent 75%),#0c0909}
-.party-game p{color:#b6a79c;font-size:12px;line-height:1.9;max-width:600px;margin:0 auto 20px}
-.game-button{border:1px solid #a83240;background:#230a0f;color:#f1dcd0;padding:16px 22px;font-family:'Creepster',Impact,fantasy;font-size:clamp(25px,5vw,34px);letter-spacing:1px;box-shadow:0 0 18px #9b142422;transition:.2s}
-.game-button:hover{background:#5c101a;transform:translateY(-2px)}
 .footer{text-align:center;color:#625454;font-size:10px;letter-spacing:2px;margin-top:36px;line-height:2}
 
 /* GHOSTS, POPUPS AND SCARE */
@@ -152,8 +147,8 @@ input::placeholder,textarea::placeholder{color:#75666a}
 #scare p{font-size:12px;font-family:'Special Elite',monospace;line-height:1.8}
 @keyframes flash{0%,100%{background:#a90014}50%{background:#f0d7c8}}
 body.lights-out{filter:brightness(.63)}
-body.lights-out #popup,body.lights-out #scare,body.lights-out #barPortal,body.lights-out #gamePortal{filter:brightness(1.6)}
-@media(max-width:560px){.page{width:90%;padding-top:20px}.hero{padding-top:52px}.doors{grid-template-columns:1fr}.door{min-height:130px}.topline{font-size:9px}.rsvp{padding:19px}.summons{padding:28px 18px}.rule-buttons,.bar-cards{grid-template-columns:1fr}.portal-screen{padding:40px 15px 22px}.portal-close{top:8px;right:8px}}
+body.lights-out #popup,body.lights-out #scare,body.lights-out #barPortal{filter:brightness(1.6)}
+@media(max-width:560px){.page{width:90%;padding-top:20px}.hero{padding-top:52px}.doors{grid-template-columns:1fr}.door{min-height:130px}.topline{font-size:9px}.rsvp{padding:19px}.summons{padding:28px 18px}.rule-buttons,.prophecy-grid{grid-template-columns:1fr}.portal-screen{padding:40px 15px 22px}.portal-close{top:8px;right:8px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -252,30 +247,19 @@ body.lights-out #popup,body.lights-out #scare,body.lights-out #barPortal,body.li
 <div class="rule-detail" id="ruleDetail" aria-live="polite">Choose a rule. The house is waiting.</div>
 </section>
 
-<!-- UPDATED CURSED BAR -->
+<!-- THE HOUSE IS WATCHING: SCARY DRINKING POPUP -->
 <section class="cursed-bar">
-<div class="section-label">The adults have entered the chat</div>
-<h2>The Cursed Bar.</h2>
-<p class="bar-intro">The costumes are questionable, the drinks are calling, and somebody's about to become a legendary story told at every future family gathering. This is where the grown-up ghouls gather to get festive, get ridiculous, and create memories that may require a group-chat investigation tomorrow.</p>
-<div class="bar-banner"><strong>BRING YOUR OWN POTION. BRING YOUR BEST CHAOS.</strong><br>No fancy drink menu. No boring energy. Just your favorite people, your favorite drinks, and one very haunted Halloween night.</div>
-<div class="bar-cards">
-<div class="bar-card"><div class="bar-number">01 / THE ASSIGNMENT</div><h3>Unholy Amounts of Fun</h3><p>Come dressed to impress the dead. Bring your drinks, bring your personality, and bring the version of yourself that actually says yes to having a good time.</p></div>
-<div class="bar-card"><div class="bar-number">02 / THE WARNING</div><h3>Act Right-ish</h3><p>Be the reason people say, “That party was INSANE,” not the reason the host changes the locks. Keep the chaos iconic and the drama somewhere far away from the snacks.</p></div>
-<div class="bar-card"><div class="bar-number">03 / THE PROPHECY</div><h3>Tomorrow's Lore</h3><p>Someone will take 47 photos. Someone will lose their cup. Someone will insist they're the funniest person alive. The spirits have seen it all. They are already laughing.</p></div>
+<div class="section-label">A little something for the grown-up ghouls</div>
+<h2>The House Is Watching.</h2>
+<p class="bar-intro">The lights are low. The drinks are poured. Something in the corner just turned its head. Open the house's tab and let fate pick your next move. The spirits are nosy, petty, and absolutely judging your drink choice.</p>
+<div class="bar-banner"><strong>ONE HOUSE. MANY BAD OMENS.</strong><br>Spooky predictions and rowdy party prompts for adults 21+. Kids can enjoy the creepy fortunes and mocktail cheers.</div>
+<div class="prophecy-grid">
+<div class="prophecy-tile"><div class="prophecy-icon">☠</div><h3>Draw Your Doom</h3><p>Get a random, sassy Halloween prediction. The house knows things you haven't admitted.</p></div>
+<div class="prophecy-tile"><div class="prophecy-icon">🥃</div><h3>Drink If You Dare</h3><p>Open a random grown-up drinking prompt. No boring questions. Just haunted-house energy.</p></div>
 </div>
-<div class="bar-banner"><strong>THE UNOFFICIAL DRINK LIST</strong><br>Witch's Brew · Vampire's Kiss · The Last Nerve · Haunted Apple · Poisoned Punch · The Midnight Mist<br><span style="font-size:10px">Names for whatever drinks your guests choose to bring. Alcohol is for adults of legal drinking age only.</span></div>
-<p class="bar-note">The house has been waiting for this night. Something is watching. Something knows what you're planning. And it has a message for you...</p>
-<button class="portal-button" id="openBarPortal">REVEAL MY HALLOWEEN FATE</button>
-<div class="bar-whisper">⚠ THE SPIRITS INSIST YOU PRESS IT ⚠</div>
-</section>
-
-<!-- BOTTOM PARTY GAME -->
-<section class="party-game">
-<div class="section-label">One last thing before you leave...</div>
-<h2>The Midnight Mischief Game.</h2>
-<p>Think you can survive a round with the spirits? Tap below for a random Halloween prompt. Play for laughs, tell a story, take on a silly challenge, or just pass. No pressure, no points, no judgment from the dead.</p>
-<button class="game-button" id="openGame">UNLEASH THE GAME</button>
-<p style="margin-top:14px;font-size:10px;color:#82716d">A little chaos never hurt the party. Keep it fun and look after each other.</p>
+<p class="bar-note">Alcohol challenges are for adults 21+ only. Keep it voluntary, know your limits, and arrange a sober ride. The house remembers everything.</p>
+<button class="portal-button" id="openBarPortal">OPEN THE HOUSE'S TAB</button>
+<div class="bar-whisper">⚠ YOU HEARD THAT, RIGHT? ⚠</div>
 </section>
 
 <footer class="footer">A NIGHT AMONG SINNERS BASH · OCTOBER 31, 2026<br>DON'T BE LATE. THE GHOSTS HAVE NO PATIENCE.</footer>
@@ -291,38 +275,20 @@ body.lights-out #popup,body.lights-out #scare,body.lights-out #barPortal,body.li
 </div>
 </div>
 
-<!-- CURSED BAR PORTAL -->
+<!-- SCARY DRINKING POPUP -->
 <div id="barPortal" role="dialog" aria-modal="true" aria-labelledby="portalTitle">
 <div class="portal-screen">
-<button class="portal-close" id="closeBarPortal" aria-label="Close cursed bar">✕ CLOSE PORTAL</button>
-<div class="portal-eyebrow">YOU HAVE CROSSED THE THRESHOLD</div>
-<h2 id="portalTitle">The Spirits Have a Message.</h2>
-<p class="portal-copy">The lights are low. The vibes are questionable. Somewhere, a plastic cup has just appeared out of thin air. Welcome to the Cursed Bar, where tomorrow's group chat is already writing itself.</p>
-<div class="portal-warning"><strong>THE CURSE HAS TERMS AND CONDITIONS.</strong><br>Alcohol is for adults of legal drinking age only. Nobody has to drink to join the fun. Keep an eye on your drink, have food and water, and arrange a safe ride before drinking. Never drive impaired.</div>
-<div class="portal-eyebrow">CHOOSE YOUR FATE</div>
+<button class="portal-close" id="closeBarPortal" aria-label="Close popup">✕ CLOSE IF YOU DARE</button>
+<div class="portal-eyebrow">SOMEONE'S WATCHING FROM THE DARK</div>
+<h2 id="portalTitle">The House Has Chosen.</h2>
+<p class="portal-copy">Pick your poison: a prediction from beyond or a drinking prompt from the house's deeply questionable host.</p>
+<div class="portal-warning"><strong>THE HOUSE RULE:</strong><br>Drinking prompts are for adults 21+ only. They're invitations, not orders. Don't drive after drinking.</div>
 <div class="portal-choices">
-<button class="portal-choice" data-portal-choice="sip"><strong>The Sip of the Damned</strong><span>For the grown-up ghoul who wants a drink and a spooky little story.</span></button>
-<button class="portal-choice" data-portal-choice="water"><strong>The Hydration Hex</strong><span>Activate your ancient powers: water, snacks, and staying mysterious all night.</span></button>
-<button class="portal-choice" data-portal-choice="chaos"><strong>The Chaos Coven</strong><span>You're here for the laughs, the costumes, and the questionable dance moves.</span></button>
-<button class="portal-choice" data-portal-choice="prophecy"><strong>The Blackout Prophecy</strong><span>Reveal what the spirits predict about your party night. It's not actual fortune-telling. Probably.</span></button>
-<button class="portal-choice" data-portal-choice="exit"><strong>The Escape Plan</strong><span>Make sure you have a safe way home before the night gets going.</span></button>
+<button class="portal-choice" data-prophecy-action="fortune"><strong>✦ Draw Your Doom</strong><span>Reveal a creepy, sassy, suspiciously specific prediction.</span></button>
+<button class="portal-choice" data-prophecy-action="challenge"><strong>☠ Drink If You Dare</strong><span>Pull a random grown-up drinking challenge.</span></button>
 </div>
-<div id="portalResult" aria-live="polite">Choose your fate above. The spirits are waiting.</div>
-<button class="action secondary portal-exit" id="leaveBarPortal">Return to the Land of the Living</button>
-</div>
-</div>
-
-<!-- HALLOWEEN PARTY GAME -->
-<div id="gamePortal" role="dialog" aria-modal="true" aria-labelledby="gameTitle">
-<div class="portal-screen">
-<button class="portal-close" id="closeGame" aria-label="Close game">✕ CLOSE GAME</button>
-<div class="portal-eyebrow">THE DEAD HAVE CHOSEN YOU</div>
-<h2 id="gameTitle">Midnight Mischief.</h2>
-<p class="portal-copy">Gather your fellow creatures. Tap the button to receive a random Halloween prompt. Do it, tell a story, choose a harmless alternative, or pass. The spirits aren't your boss.</p>
-<div id="gameResult" aria-live="polite">The deck is shuffled. Are you brave enough?</div>
-<button class="game-button" id="drawGameCard">DRAW A CURSED CARD</button>
-<p style="font-size:10px;color:#a28c84;line-height:1.8">Optional sips are for adults of legal drinking age only. No chugging, drinking contests, or pressure to drink. Water, snacks, and silly challenges count too.</p>
-<button class="action secondary portal-exit" id="leaveGame">Escape the Game</button>
+<div id="portalResult" aria-live="polite">The deck is shuffled. The house is listening.</div>
+<button class="action secondary portal-exit" id="leaveBarPortal">GET ME OUT OF THIS HOUSE</button>
 </div>
 </div>
 
@@ -341,9 +307,7 @@ const popupTitle = document.getElementById('popupTitle');
 const popupText = document.getElementById('popupText');
 const scare = document.getElementById('scare');
 const barPortal = document.getElementById('barPortal');
-const gamePortal = document.getElementById('gamePortal');
 const portalResult = document.getElementById('portalResult');
-const gameResult = document.getElementById('gameResult');
 
 function showPopup(title, text) {
 popupTitle.textContent = title;
@@ -360,7 +324,7 @@ red: {title:"WELCOME TO THE RED ROOM",text:"Congratulations, you've entered the 
 guest: {title:"THE LAST GUEST",text:"A mysterious figure is still here. They say they're waiting for one more person. They pointed at you. Honestly, that's a little rude. Grab a snack and pretend you didn't hear that."},
 mirror: {title:"THE MIRROR KNOWS",text:"It sees your outfit. It sees your choices. It remembers every costume you almost bought and every time you said, 'I'll figure it out later.' The mirror has one question: ARE WE WEARING THAT?"},
 basement: {title:"THE BASEMENT",text:"Something just moved downstairs. Could be a ghost. Could be the house settling. Could be the person who said they'd help set up and then disappeared. Either way, you're not getting a refund."},
-potluck: {title:"THE SACRED POTLUCK",text:"Bring a dish, a snack, or a dessert. Store-bought is welcome; we are not running a cooking competition. But showing up empty-handed, eating three plates, and leaving with leftovers? Bold. The ghosts are taking notes."},
+potluck: {title:"THE SACRED POTLUCK",text:"Bring a dish, snack, or dessert. Store-bought is welcome; this is a potluck, not a televised cooking competition. Showing up empty-handed, eating three plates, and asking for leftovers? Bold. The ghosts are taking notes—and one of them is judging your dip."},
 secret: {title:"YOU FOUND THE DOOR",text:"Look at you, opening mysterious doors like you pay the mortgage here. Your prize is absolutely nothing. No treasure, no secret passage, no free food. Just this message and a new reason to question your decisions."}
 };
 document.querySelectorAll('[data-door]').forEach(button => {
@@ -373,18 +337,26 @@ showPopup(item.title, item.text);
 /* RANDOM FORTUNES */
 const fortunes = [
 "The spirits say you'll have a great night. They also say somebody will ask where the bathroom is at least nine times.",
-"Your future is dark, mysterious, and full of snacks you didn't bring.",
-"A stranger will compliment your costume. It will be your cousin. Accept the compliment anyway.",
-"Beware the person who says, 'I don't need a plate.' They will absolutely need a plate.",
-"The stars predict laughter, chaos, and someone losing their phone while holding it.",
-"You will encounter a terrifying creature tonight. It will be a toddler with a sugar rush.",
+"Your future is dark, mysterious, and full of snacks you absolutely did not bring.",
+"A stranger will compliment your costume. It will be your cousin. Accept the compliment; the dead are watching.",
+"Beware the person who says, 'I don't need a plate.' They will absolutely need a plate. The spirits hate a liar.",
+"The stars predict laughter, chaos, and someone losing their phone while holding it. A classic haunting.",
+"You will encounter a terrifying creature tonight. It will be a toddler with a sugar rush. Godspeed.",
 "Your lucky number is 31. Your unlucky number is the number of trips you'll make to the car.",
-"The spirits have reviewed your aura. They say bring ice. Nobody ever brings enough ice.",
-"A dark secret will be revealed tonight: someone here has already eaten before arriving.",
-"Your fate is sealed. You are now in charge of taking a group photo where everyone looks normal.",
-"The dead have spoken. They said, 'Who brought the good dip?'",
-"A mysterious force will guide you toward the food table. Trust it. It's probably just hunger."
-];
+"The spirits have reviewed your aura. They say bring ice. Nobody ever brings enough ice. This is how curses begin.",
+"A dark secret will be revealed tonight: someone here has already eaten before arriving. Their betrayal will not be forgiven.",
+"Your fate is sealed. You are now in charge of taking a group photo where everyone looks normal. Impossible task.",
+"The dead have spoken. They said, 'Who brought the good dip?' Answer carefully.",
+"A mysterious force will guide you toward the food table. Trust it. It's probably hunger. Probably.",
+"Someone in this house is giving main-character energy. It is not necessarily you. Be brave.",
+"The house predicts one dramatic entrance, two suspicious noises, and a person saying 'I'm not scared' while visibly scared.",
+"Your costume is serving. Your survival instincts? Under review.",
+"At 9:17 PM, someone will tell a story that should have ended four minutes earlier. You must survive politely.",
+"The spirits advise you to avoid the dark hallway. The snacks are in the other direction anyway.",
+"You will leave with a new inside joke and at least one photo you will deny remembering.",
+"A shadow follows you. Relax. It is probably just your own bad decision catching up.",
+"The final prophecy: have fun, be kind, and do not start beef with the person controlling the playlist. They have power."
+]
 document.getElementById('fateButton').addEventListener('click', () => {
 document.getElementById('fateResult').textContent = fortunes[Math.floor(Math.random() * fortunes.length)];
 });
@@ -413,7 +385,7 @@ event.currentTarget.textContent = document.body.classList.contains('lights-out')
 /* HOUSE RULES */
 const houseRules = {
 kids:"The little monsters are welcome, but their grown-ups are responsible for keeping an eye on them. Tiny humans are adorable; tiny humans running into traffic is not the Halloween vibe.",
-drinks:"The Cursed Bar is for grown-up ghouls of legal drinking age. Keep alcohol away from little hands. Nobody has to drink alcohol to have fun. Have water and snacks, arrange a sober ride before drinking, and never drive impaired.",
+drinks:"Any alcohol is for grown-up ghouls of legal drinking age. Keep alcohol away from little hands. Nobody has to drink alcohol to have fun. Have water and snacks, arrange a sober ride before drinking, and never drive impaired.",
 respect:"Be respectful, be considerate, and keep the drama at home. We're here for spooky fun, not a live reunion episode of everybody's family problems.",
 cleanup:"Fake blood, cups, plates, wrappers, and other evidence go in the proper bins. The host is not accepting applications for unpaid crime-scene cleanup."
 };
@@ -472,64 +444,48 @@ document.getElementById('rsvpResult').textContent = copied ? 'Copied! Now paste 
 }
 });
 
-/* CURSED BAR PORTAL */
+/* MIDNIGHT PROPHECY */
 function openBarPortal() { barPortal.classList.add('show'); document.body.style.overflow = 'hidden'; }
 function closeBarPortal() { barPortal.classList.remove('show'); document.body.style.overflow = ''; }
 document.getElementById('openBarPortal').addEventListener('click', () => {
 openBarPortal();
-const prophecies = [
-["THE NIGHT BELONGS TO YOU.","The spirits predict loud laughter, questionable dance moves, suspiciously confident karaoke, and somebody saying, 'I'M FINE!' with unnecessary enthusiasm. Make it a legendary night. Iconic behavior only."],
-["THE GROUP CHAT FORETELLS ALL.","Tomorrow, the photos will surface. Someone will type, 'WHO TOOK THIS?!' and someone else will reply with 37 crying emojis. Make memories worth laughing about—not explaining to the group chat for six months."],
-["YOU HAVE BEEN WARNED.","A dark force approaches. It smells like Halloween snacks, hears the music from three streets away, and has already claimed the best seat. Look incredible, laugh too loud, and keep your nonsense entertaining."],
-["THE HOST HAS SEEN THE FUTURE.","There will be a dramatic entrance. There will be a suspiciously long goodbye. Someone will say they're leaving and stay another two hours. Be fun, be memorable, and act like you have some home training."],
-["THE CURSE IS ACTIVATED.","You are now obligated by absolutely nobody to have a ridiculously good Halloween. Bring the energy, dance like the floor owes you money, and leave the real-life horror stories for another day."]
-];
-const p = prophecies[Math.floor(Math.random() * prophecies.length)];
-document.getElementById('portalTitle').textContent = p[0];
-portalResult.textContent = p[1];
+portalResult.textContent = 'Choose your fate. The house is listening.';
 });
 document.getElementById('closeBarPortal').addEventListener('click', closeBarPortal);
 document.getElementById('leaveBarPortal').addEventListener('click', closeBarPortal);
 barPortal.addEventListener('click', e => { if (e.target === barPortal) closeBarPortal(); });
 
-const portalMessages = {
-sip:"THE SPIRITS HAVE SPOKEN: If you're an adult of legal drinking age and choose to have a drink, take it at your own pace. Eat something, sip water too, and remember: the goal is a fun night, not a competition. Nobody needs to get drunk to belong here.",
-water:"THE HYDRATION HEX IS ACTIVATED. Water acquired. Snacks secured. Your mortal body thanks you. You can dance, laugh, haunt the snack table, and have a legendary night without alcohol. Powerful behavior.",
-chaos:"THE COVEN APPROVES. Your assignment is to enjoy the party, admire the costumes, laugh too loudly, and make memories you can actually remember. Drinks are optional; being a menace on the dance floor is a personal choice.",
-prophecy:"THE BLACKOUT PROPHECY: The spirits foresee a missing cup, a suspiciously blurry group photo, and one person retelling the same story three times. Stay legendary, stay with your people, and let tomorrow's stories be funny ones.",
-exit:"THE WISEST CURSE OF ALL: Decide how you're getting home before you start drinking. Choose a sober driver, taxi, rideshare, or somewhere safe to stay. Don't drive after drinking or get in a car with an impaired driver."
-};
-document.querySelectorAll('[data-portal-choice]').forEach(button => {
-button.addEventListener('click', () => { portalResult.textContent = portalMessages[button.dataset.portalChoice]; });
-});
-
-/* MIDNIGHT MISCHIEF GAME */
-const gameCards = [
-"CONFESSION OF THE DAMNED: Tell the funniest embarrassing story you're comfortable sharing. Passing is allowed.",
-"COSTUME CURSE: Give the person across from you a dramatic Halloween villain name.",
-"THE HAUNTED IMPRESSION: Do your best ghost, witch, vampire, or zombie impression.",
-"PROPHECY: Predict who will take the most photos tonight. Explain your evidence.",
-"SPOOKY HOT TAKE: Name a Halloween movie you think is overrated. Defend your opinion.",
-"THE EVIL LAUGH: Everyone who wants to plays their most dramatic villain laugh.",
-"TWO TRUTHS AND A LIE: Tell two true Halloween stories and one made-up one. Let everyone guess.",
-"DANCE OF THE DAMNED: Do your best 5-second monster dance, or appoint someone else to do it.",
-"THE CURSED COMPLIMENT: Give somebody a compliment in the voice of an ancient ghost.",
-"SNACK OR SPELL: Name the one snack you would save if the haunted house were on fire.",
-"THE MYSTERIOUS OBJECT: Pick an ordinary object nearby and invent its creepy backstory.",
-"THE GROUP CHAT PROPHECY: Predict the funniest harmless message someone will send tomorrow.",
-"THE SPOOKY SIP: Adults who choose to may take a small sip of their drink—or choose water, a snack, or simply pass.",
-"THE FINAL BOSS: Everyone who wants to shares their favorite costume they've ever worn."
+const prophecyFortunes = [
+"THE HOUSE HAS CHOSEN YOU: Someone will compliment your costume, then immediately ask who you're supposed to be. Smile. They have already lost.",
+"THE SHADOW KNOWS: You will hear a noise from another room. You will investigate exactly zero percent. Correct decision.",
+"YOUR FUTURE IS A LITTLE MESSY: A snack will disappear, a cup will be misplaced, and one person will claim they 'barely ate anything.' The evidence says otherwise.",
+"THE FINAL GUEST: Someone will announce they're leaving and remain for another two hours. The spirits have seen this crime before.",
+"BAD OMEN, GREAT OUTFIT: You look incredible. Your sense of direction will fail you near the snack table.",
+"THE GROUP CHAT PROPHECY: Tomorrow, someone will post a photo and write 'delete this.' It will already have been saved by six people.",
+"THE HOUSE APPROVES: You are destined for a night of laughs, dramatic poses, and one suspiciously loud floorboard. Don't let it go to your head.",
+"A WARNING FROM BEYOND: Avoid saying 'what could possibly go wrong?' The house considers that a formal invitation.",
+"THE SPIRITS ARE PETTY: Your secret talent will be revealed tonight. Unfortunately, it is remembering every embarrassing thing someone has ever said.",
+"THE LAST LAUGH: You will scare someone by accident, then apologize while laughing. The spirits award you one tiny crown."
 ];
-document.getElementById('openGame').addEventListener('click', () => {
-gamePortal.classList.add('show');
-document.body.style.overflow = 'hidden';
+const prophecyChallenges = [
+"THE WELCOME RITUAL: Adults 21+ may start the night with a shot if they choose. Not drinking? Make a dramatic entrance and raise your favorite drink like the final survivor.",
+"THE BEER BOND: Choose somebody for a beer toast. Clink cans, take a drink together, and make a solemn promise to survive the night.",
+"THE DEVIL'S TOAST: Pick another adult and invent a ridiculous toast to your questionable friendship. Everyone raises a drink; the best toast wins eternal bragging rights.",
+"THE HOUSE RULE: The next adult who says 'I'm not scared' has to deliver a dramatic toast to the room. The house is taking notes.",
+"THE LAST CALL: Choose a friend to join you for a drink and tell the most suspiciously believable ghost story you know.",
+"THE BLOOD MOON: Pick a red drink, mocktail, soda, or juice and give it a sinister name before taking a celebratory sip.",
+"THE CULPRIT: Point to the person most likely to start a dance floor incident. They must defend themselves with a toast.",
+"THE FINAL SURVIVOR: Choose someone to clink glasses with and make a prediction about who will still be partying at midnight.",
+"THE HAUNTED REFILL: If you want another drink, make it a deliberate choice. If not, raise your water or soda and announce that you're too powerful for the curse.",
+"THE CURSED CONFESSION: Tell the group your most chaotic party habit. Keep it funny, keep it kind, and let the spirits judge silently.",
+"THE WATCHER'S WARNING: Choose someone to toast. Look them directly in the eye and say, 'If I disappear tonight, delete my search history.'",
+"THE EVIL LAUGH: Deliver your best villain laugh while raising your drink. Extra points for making at least one person uncomfortable in a funny way."
+];
+document.querySelectorAll('[data-prophecy-action]').forEach(button => {
+button.addEventListener('click', () => {
+const deck = button.dataset.prophecyAction === 'fortune' ? prophecyFortunes : prophecyChallenges;
+portalResult.textContent = deck[Math.floor(Math.random() * deck.length)];
 });
-function closeGame() { gamePortal.classList.remove('show'); document.body.style.overflow = ''; }
-document.getElementById('closeGame').addEventListener('click', closeGame);
-document.getElementById('leaveGame').addEventListener('click', closeGame);
-gamePortal.addEventListener('click', e => { if (e.target === gamePortal) closeGame(); });
-document.getElementById('drawGameCard').addEventListener('click', () => {
-gameResult.textContent = gameCards[Math.floor(Math.random() * gameCards.length)];
 });
 
 /* ESCAPE KEY CLOSES OVERLAYS */
@@ -538,11 +494,10 @@ if (event.key === 'Escape') {
 closePopup();
 scare.classList.remove('show');
 closeBarPortal();
-closeGame();
 }
 });
 
-/* ORIGINAL, GENERATED HAUNTED-HOUSE SOUNDSCAPE
+/* ORIGINAL, GENERATED RETRO PARANOID-HORROR SYNTH SOUNDSCAPE
 All audio is generated in the browser. No audio file is downloaded.
 Sound starts only after a visitor presses the sound button.
 */
@@ -580,20 +535,25 @@ try { osc.disconnect(); filter.disconnect(); gain.disconnect(); } catch (e) {}
 function playMusicBoxPhrase() {
 if (!soundOn || !audioContext) return;
 const now = audioContext.currentTime;
-/* Uneasy, music-box-like minor notes */
-const notes = [
-[659.25,0],[523.25,.65],[392,.1 + 1.3],[466.16,2.05],
-[349.23,2.85],[392,3.65],[261.63,4.45],[311.13,5.25]
-];
-notes.forEach(([freq, offset], index) => {
-const t = now + offset;
-playTone(freq, t, index % 3 === 0 ? 2.1 : 1.5, 0.018, 'triangle');
-if (index === 1 || index === 5) playTone(freq * 2, t + .03, 1.1, 0.006, 'sine');
-});
-/* A low, eerie note underneath the melody */
-playTone(55, now, 6.5, 0.012, 'sine');
+/* Original retro paranoid synth-funk motif: pulsing bass, clipped synth stabs,
+   and a high, watchful two-note signal. This is newly generated audio, not a song sample. */
+const beat = 60 / 104;
+const bass = [55,55,73.42,65.41,55,82.41,73.42,65.41];
+for (let i = 0; i < bass.length; i++) {
+  const t = now + i * beat / 2;
+  playTone(bass[i], t, beat * 0.38, 0.035, 'sawtooth');
+  if (i % 2 === 1) playTone(bass[i] * 2, t + 0.025, beat * 0.16, 0.008, 'square');
 }
-
+/* Off-beat minor-key stabs give it a cheeky 80s thriller groove. */
+const stabs = [[311.13,beat*.5],[369.99,beat*1.5],[466.16,beat*2.5],[369.99,beat*3.5]];
+stabs.forEach(([freq, offset]) => {
+  playTone(freq, now + offset, beat * 0.22, 0.009, 'square');
+  playTone(freq * 1.5, now + offset + 0.015, beat * 0.18, 0.0035, 'triangle');
+});
+/* A little high two-note 'someone's there' signal, kept original and subtle. */
+playTone(880, now + beat * 1.8, beat * 0.14, 0.005, 'sine');
+playTone(783.99, now + beat * 3.7, beat * 0.16, 0.004, 'sine');
+}
 function startWind() {
 const length = audioContext.sampleRate * 3;
 const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
@@ -636,7 +596,7 @@ osc.connect(gain); gain.connect(masterGain);
 osc.start(now); osc.stop(now + 3.8);
 osc.onended = () => { try { osc.disconnect(); gain.disconnect(); } catch (e) {} };
 }
-}, 8500);
+}, 2300);
 }
 
 function stopHauntedSoundscape() {
@@ -678,7 +638,7 @@ masterGain.gain.cancelScheduledValues(audioContext.currentTime);
 masterGain.gain.setTargetAtTime(0.72, audioContext.currentTime, 0.8);
 startHauntedSoundscape();
 button.textContent = 'Silence the Spirits';
-status.textContent = 'The haunted house is awake. Adjust your volume if needed.';
+status.textContent = 'The house is watching. Retro horror groove activated; adjust your volume if needed.';
 } catch (error) {
 soundOn = false;
 button.textContent = 'Awaken the Haunted House';
