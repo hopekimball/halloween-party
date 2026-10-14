@@ -12,6 +12,15 @@
 html{scroll-behavior:smooth}
 body{margin:0;color:var(--paper);background:radial-gradient(ellipse at 50% 0%,#301014 0%,transparent 42%),radial-gradient(ellipse at 0% 55%,#1b1112 0%,transparent 45%),#080707;font-family:'Special Elite','Courier New',monospace;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+/* SLOW CREEPING FOG, VHS FLICKER, AND HAUNTED HOUSE DETAILS */
+body::after{content:"";position:fixed;inset:auto -15% -8%;height:34vh;z-index:0;pointer-events:none;opacity:.25;background:radial-gradient(ellipse at 18% 100%,#55752d66 0%,transparent 58%),radial-gradient(ellipse at 62% 100%,#8b162b44 0%,transparent 52%),radial-gradient(ellipse at 90% 100%,#526d3c55 0%,transparent 56%);filter:blur(22px);animation:fogCreep 18s ease-in-out infinite alternate}
+@keyframes fogCreep{0%{transform:translateX(-4%) scaleX(1);opacity:.16}50%{transform:translateX(3%) scaleX(1.08);opacity:.3}100%{transform:translateX(-1%) scaleX(1.15);opacity:.2}}
+body.vhs-glitch h1{animation:vhsTitle .18s steps(2,end) 3}
+@keyframes vhsTitle{0%,100%{transform:rotate(-1deg) translateX(0);filter:none}25%{transform:rotate(-1deg) translateX(2px);filter:drop-shadow(-3px 0 #47ff86)}50%{transform:rotate(-1deg) translateX(-2px);filter:drop-shadow(3px 0 #ed0027)}}
+.whisper{position:fixed;z-index:30;bottom:18px;left:50%;transform:translateX(-50%);width:max-content;max-width:90vw;padding:12px 16px;border:1px solid #6c2730;background:#090506ed;color:#e4c5c5;text-align:center;font-size:11px;letter-spacing:1px;box-shadow:0 0 22px #a0001b55;opacity:0;pointer-events:none;transition:opacity .6s}
+.whisper.show{opacity:1}
+.ghost.peek{opacity:.32!important;animation:ghostPeek 1.7s ease-in-out!important}
+@keyframes ghostPeek{0%{opacity:0;translate:-30px 0}18%{opacity:.42;translate:0 0}70%{opacity:.38;translate:4px -5px}100%{opacity:0;translate:-25px 0}}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .page{width:min(900px,92%);margin:auto;padding:30px 0 70px;position:relative}
@@ -22,23 +31,28 @@ button{cursor:pointer}
 .eyebrow{color:#b5a49a;letter-spacing:4px;font-size:11px;text-transform:uppercase;margin-bottom:18px}
 h1{font-family:'Creepster',Impact,fantasy;font-size:clamp(48px,10vw,96px);line-height:.88;font-weight:normal;letter-spacing:1px;color:#d8c5b6;margin:0;text-transform:uppercase;text-shadow:2px 2px 0 #5e0710,4px 5px 0 #31050a,0 0 28px #7a071433;transform:rotate(-1deg)}
 .title-red{color:#a51b25;display:inline-block;position:relative;margin-top:9px;text-shadow:1px 2px 0 #43050a,3px 4px 0 #220307,0 0 20px #8b061844}
-.title-red::after{content:"";position:absolute;left:8%;right:4%;bottom:-17px;height:27px;background:#a51b25;clip-path:polygon(0 0,100% 0,100% 12%,88% 12%,86% 75%,82% 75%,80% 12%,64% 12%,62% 95%,58% 95%,56% 12%,43% 12%,42% 55%,38% 55%,36% 12%,20% 12%,19% 85%,15% 85%,14% 12%,0 12%);filter:drop-shadow(0 3px 1px #240206)}
+.title-red::after{content:"";position:absolute;left:8%;right:4%;bottom:-17px;height:27px;background:#a51b25;clip-path:polygon(0 0,100% 0,100% 12%,88% 12%,86% 75%,82% 75%,80% 12%,64% 12%,62% 95%,58% 95%,56% 12%,43% 12%,42% 55%,38% 55%,36% 12%,20% 12%,19% 85%,15% 85%,14% 12%,0 12%);filter:drop-shadow(0 3px 1px #240206);animation:bloodSag 2.2s ease-in-out infinite alternate;transform-origin:top center}
+@keyframes bloodSag{0%{transform:scaleY(.82);filter:drop-shadow(0 2px 1px #240206)}100%{transform:scaleY(1.18);filter:drop-shadow(0 6px 3px #390006)}}
+.title-red{animation:titlePulse 5s steps(1,end) infinite}
+@keyframes titlePulse{0%,91%,94%,100%{text-shadow:1px 2px 0 #43050a,3px 4px 0 #220307,0 0 20px #8b061844;transform:translate(0,0)}92%{text-shadow:-2px 0 #45ff8b,3px 0 #e00020,0 0 24px #c00;transform:translate(1px,-1px)}93%{text-shadow:2px 0 #45ff8b,-3px 0 #e00020;transform:translate(-1px,1px)}}
 .subtitle{margin:35px auto 0;max-width:650px;color:#c7b8ae;font-size:clamp(13px,2.8vw,16px);line-height:1.7}
 .subtitle em{color:#e6d5c6;font-style:normal}
 .date-wrap{margin:35px auto 0;display:inline-block;position:relative;padding:10px 18px 27px}
 .date{color:#c8d6a9;font-size:clamp(17px,4vw,23px);letter-spacing:2px;text-shadow:0 0 12px #8dff3633;position:relative;z-index:2}
 .date strong{color:var(--green);font-weight:normal}
-.slime{position:absolute;height:36px;left:2%;right:2%;bottom:-1px;pointer-events:none;z-index:1;filter:drop-shadow(0 3px 1px #233b08)}
-.slime::before{content:"";position:absolute;top:0;left:3%;right:3%;height:12px;background:linear-gradient(180deg,#caff8b,#a4ff52 30%,#76e522);border-radius:48% 40% 25% 30%;box-shadow:inset 0 2px 0 #d8ffb5;animation:slimeWobble 3s ease-in-out infinite}
-.slime::after{content:"";position:absolute;top:3px;left:9%;width:12%;height:5px;border-radius:50%;background:#e4ffbf;opacity:.9;transform:rotate(-8deg)}
-.slime i{position:absolute;top:5px;display:block;background:linear-gradient(90deg,#65d719,#9eff43 45%,#80ed27);border-radius:0 0 10px 10px;box-shadow:inset 2px 0 0 #c1ff82}
-.slime i:nth-child(1){left:15%;width:11px;height:18px;animation:drip 3.4s ease-in-out infinite}
-.slime i:nth-child(2){left:37%;width:13px;height:27px;animation:drip 4.1s ease-in-out infinite reverse}
-.slime i:nth-child(3){left:61%;width:9px;height:15px;animation:drip 3.7s ease-in-out infinite}
-.slime i:nth-child(4){left:81%;width:12px;height:23px;animation:drip 4.4s ease-in-out infinite reverse}
-.slime i:nth-child(5){left:93%;width:7px;height:12px;animation:drip 3.2s ease-in-out infinite}
-@keyframes slimeWobble{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.025) translateY(2px)}}
-@keyframes drip{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.4)}}
+/* THICK, SHINY, FAST-MOVING RADIOACTIVE SLIME */
+.slime{position:absolute;height:48px;left:2%;right:2%;bottom:-1px;pointer-events:none;z-index:1;filter:drop-shadow(0 4px 5px #233b08)}
+.slime::before{content:"";position:absolute;top:0;left:1%;right:1%;height:15px;background:linear-gradient(180deg,#edffc8 0%,#caff83 12%,#9cff38 38%,#64d719 72%,#347b0d 100%);border-radius:48% 40% 25% 30%;box-shadow:inset 0 3px 4px #efffd5,inset 0 -5px 7px #326d0c88,0 0 13px #8dff3688;animation:slimeWobble 1.05s ease-in-out infinite}
+.slime::after{content:"";position:absolute;top:3px;left:9%;width:15%;height:5px;border-radius:50%;background:#f2ffd7;opacity:.9;transform:rotate(-8deg);filter:blur(.6px);animation:slimeShine 1.2s ease-in-out infinite alternate}
+.slime i{position:absolute;top:7px;display:block;background:linear-gradient(90deg,#3d9710 0%,#7ee927 28%,#c6ff80 50%,#81e722 72%,#347b0d 100%);border-radius:45% 45% 50% 50% / 10% 10% 35% 35%;box-shadow:inset 2px 0 3px #e0ffb4aa,inset -3px 0 4px #285b0c77,0 3px 5px #2d650c66;transform-origin:top center}
+.slime i:nth-child(1){left:15%;width:11px;height:24px;animation:drip 1.05s ease-in-out infinite}
+.slime i:nth-child(2){left:37%;width:15px;height:35px;animation:drip 1.55s ease-in-out infinite -.7s}
+.slime i:nth-child(3){left:61%;width:9px;height:20px;animation:drip .9s ease-in-out infinite -.25s}
+.slime i:nth-child(4){left:81%;width:13px;height:31px;animation:drip 1.2s ease-in-out infinite -.5s}
+.slime i:nth-child(5){left:93%;width:8px;height:17px;animation:drip .95s ease-in-out infinite -.15s}
+@keyframes slimeWobble{0%,100%{transform:scaleX(1) translateY(0)}30%{transform:scaleX(1.035) translateY(2px) skewX(-1deg)}65%{transform:scaleX(.97) translateY(-1px) skewX(1deg)}}
+@keyframes drip{0%,100%{transform:scaleY(1) scaleX(1)}35%{transform:scaleY(1.45) scaleX(.9)}60%{transform:scaleY(.85) scaleX(1.12)}82%{transform:scaleY(1.18) scaleX(.96)}}
+@keyframes slimeShine{from{opacity:.35;transform:translateX(-4px) scaleX(.75)}to{opacity:1;transform:translateX(12px) scaleX(1.2)}}
 .location{margin-top:22px;color:#9e8f88;font-size:12px;letter-spacing:1px}
 .location b{color:#ded0c3;font-weight:normal}
 .rule{width:100%;height:1px;margin:37px 0;background:linear-gradient(90deg,transparent,#67323a,transparent)}
@@ -149,7 +163,7 @@ input::placeholder,textarea::placeholder{color:#75666a}
 body.lights-out{filter:brightness(.63)}
 body.lights-out #popup,body.lights-out #scare,body.lights-out #barPortal{filter:brightness(1.6)}
 @media(max-width:560px){.page{width:90%;padding-top:20px}.hero{padding-top:52px}.doors{grid-template-columns:1fr}.door{min-height:130px}.topline{font-size:9px}.rsvp{padding:19px}.summons{padding:28px 18px}.rule-buttons,.prophecy-grid{grid-template-columns:1fr}.portal-screen{padding:40px 15px 22px}.portal-close{top:8px;right:8px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}body::after{display:none}.whisper{display:none}}
 </style>
 </head>
 <body>
@@ -162,7 +176,7 @@ body.lights-out #popup,body.lights-out #scare,body.lights-out #barPortal{filter:
 <button class="action secondary" id="lightsButton">Dim the Lights</button>
 <button class="action secondary" id="soundButton">Awaken the Haunted House</button>
 </div>
-<div class="sound-status" id="soundStatus">Sound is off. The house is listening.</div>
+<div class="sound-status" id="soundStatus">Sound is off. The house is breathing.</div>
 
 <header class="hero">
 <div class="eyebrow">You were warned. You came anyway.</div>
@@ -306,6 +320,34 @@ const popup = document.getElementById('popup');
 const popupTitle = document.getElementById('popupTitle');
 const popupText = document.getElementById('popupText');
 const scare = document.getElementById('scare');
+// Occasional low-key haunting: title glitches and whispers, without changing the layout.
+const whisperLines = ["YOU'RE STILL HERE. INTERESTING.", "DON'T LOOK AT THE WINDOW.", "SOMETHING FOLLOWED YOU HERE. IT SAYS HELLO.", "THE HOUSE REMEMBERS YOUR FACE.", "DID THAT SHADOW JUST MOVE?"];
+const whisper = document.createElement('div');
+whisper.className = 'whisper'; whisper.setAttribute('aria-live','polite');
+whisper.textContent = '';
+document.body.appendChild(whisper);
+let whisperTimer = null;
+function showWhisper() {
+ if (document.hidden || document.body.classList.contains('lights-out') === false && Math.random() < .25) return;
+ whisper.textContent = whisperLines[Math.floor(Math.random()*whisperLines.length)];
+ whisper.classList.add('show');
+ setTimeout(() => whisper.classList.remove('show'), 3600);
+}
+setTimeout(() => { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { showWhisper(); whisperTimer = setInterval(showWhisper, 42000 + Math.random()*18000); } }, 18000);
+setInterval(() => {
+ if (document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ document.body.classList.add('vhs-glitch');
+ setTimeout(() => document.body.classList.remove('vhs-glitch'), 650);
+}, 26000 + Math.random()*12000);
+setInterval(() => {
+ if (document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ const ghosts = document.querySelectorAll('.ghost');
+ const ghost = ghosts[Math.floor(Math.random()*ghosts.length)];
+ if (!ghost) return;
+ ghost.classList.add('peek');
+ setTimeout(() => ghost.classList.remove('peek'), 1800);
+}, 19000 + Math.random()*14000);
+
 const barPortal = document.getElementById('barPortal');
 const portalResult = document.getElementById('portalResult');
 
@@ -535,27 +577,41 @@ try { osc.disconnect(); filter.disconnect(); gain.disconnect(); } catch (e) {}
 function playMusicBoxPhrase() {
 if (!soundOn || !audioContext) return;
 const now = audioContext.currentTime;
-/* Original retro paranoid synth-funk motif: pulsing bass, clipped synth stabs,
-   and a high, watchful two-note signal. This is newly generated audio, not a song sample. */
-const beat = 60 / 104;
-const bass = [55,55,73.42,65.41,55,82.41,73.42,65.41];
-for (let i = 0; i < bass.length; i++) {
-  const t = now + i * beat / 2;
-  playTone(bass[i], t, beat * 0.38, 0.035, 'sawtooth');
-  if (i % 2 === 1) playTone(bass[i] * 2, t + 0.025, beat * 0.16, 0.008, 'square');
+/* Less robotic, original haunted ambience: irregular distant bell notes and soft low drones. */
+const bellNotes = [196, 233.08, 174.61, 261.63, 207.65, 164.81, 220];
+const note = bellNotes[Math.floor(Math.random() * bellNotes.length)];
+const delay = 0.25 + Math.random() * 1.7;
+const t = now + delay;
+const osc = audioContext.createOscillator();
+const overtone = audioContext.createOscillator();
+const gain = audioContext.createGain();
+const filter = audioContext.createBiquadFilter();
+osc.type = 'sine'; overtone.type = 'triangle';
+osc.frequency.setValueAtTime(note, t);
+overtone.frequency.setValueAtTime(note * (2.01 + Math.random() * .025), t);
+filter.type = 'lowpass'; filter.frequency.setValueAtTime(1100 + Math.random() * 900, t);
+gain.gain.setValueAtTime(.0001, t);
+gain.gain.linearRampToValueAtTime(.012 + Math.random() * .008, t + .08);
+gain.gain.exponentialRampToValueAtTime(.0001, t + 2.2 + Math.random() * 1.7);
+osc.connect(filter); overtone.connect(filter); filter.connect(gain); gain.connect(masterGain);
+osc.start(t); overtone.start(t); osc.stop(t + 4.2); overtone.stop(t + 4.2);
+osc.onended = () => { try { osc.disconnect(); overtone.disconnect(); filter.disconnect(); gain.disconnect(); } catch(e){} };
+/* Occasional breathy creak, pitch-bent like an old house settling. */
+if (Math.random() > .42) {
+ const creak = audioContext.createOscillator();
+ const cg = audioContext.createGain();
+ const cf = audioContext.createBiquadFilter();
+ const ct = now + Math.random() * 1.4;
+ creak.type = 'sawtooth'; cf.type = 'lowpass'; cf.frequency.value = 430;
+ creak.frequency.setValueAtTime(125 + Math.random()*70, ct);
+ creak.frequency.exponentialRampToValueAtTime(48 + Math.random()*18, ct + 1.3);
+ cg.gain.setValueAtTime(.0001, ct); cg.gain.linearRampToValueAtTime(.009, ct + .25); cg.gain.exponentialRampToValueAtTime(.0001, ct + 1.5);
+ creak.connect(cf); cf.connect(cg); cg.connect(masterGain); creak.start(ct); creak.stop(ct + 1.6);
+ creak.onended=()=>{try{creak.disconnect();cf.disconnect();cg.disconnect()}catch(e){}};
 }
-/* Off-beat minor-key stabs give it a cheeky 80s thriller groove. */
-const stabs = [[311.13,beat*.5],[369.99,beat*1.5],[466.16,beat*2.5],[369.99,beat*3.5]];
-stabs.forEach(([freq, offset]) => {
-  playTone(freq, now + offset, beat * 0.22, 0.009, 'square');
-  playTone(freq * 1.5, now + offset + 0.015, beat * 0.18, 0.0035, 'triangle');
-});
-/* A little high two-note 'someone's there' signal, kept original and subtle. */
-playTone(880, now + beat * 1.8, beat * 0.14, 0.005, 'sine');
-playTone(783.99, now + beat * 3.7, beat * 0.16, 0.004, 'sine');
 }
 function startWind() {
-const length = audioContext.sampleRate * 3;
+const length = audioContext.sampleRate * 5;
 const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
 const channel = buffer.getChannelData(0);
 for (let i = 0; i < length; i++) channel[i] = Math.random() * 2 - 1;
@@ -564,9 +620,10 @@ source.buffer = buffer;
 source.loop = true;
 const filter = audioContext.createBiquadFilter();
 filter.type = 'lowpass';
-filter.frequency.value = 280;
+filter.frequency.value = 420;
+filter.Q.value = 0.7;
 const gain = audioContext.createGain();
-gain.gain.value = 0.025;
+gain.gain.value = 0.018;
 source.connect(filter);
 filter.connect(gain);
 gain.connect(masterGain);
@@ -596,7 +653,7 @@ osc.connect(gain); gain.connect(masterGain);
 osc.start(now); osc.stop(now + 3.8);
 osc.onended = () => { try { osc.disconnect(); gain.disconnect(); } catch (e) {} };
 }
-}, 2300);
+}, 3100);
 }
 
 function stopHauntedSoundscape() {
@@ -616,7 +673,7 @@ try { node.disconnect(); } catch (e) {}
 });
 }, 350);
 document.getElementById('soundButton').textContent = 'Awaken the Haunted House';
-document.getElementById('soundStatus').textContent = 'Sound off. The house is listening.';
+document.getElementById('soundStatus').textContent = 'Sound off. The house is breathing.';
 }
 
 document.getElementById('soundButton').addEventListener('click', async () => {
@@ -638,7 +695,7 @@ masterGain.gain.cancelScheduledValues(audioContext.currentTime);
 masterGain.gain.setTargetAtTime(0.72, audioContext.currentTime, 0.8);
 startHauntedSoundscape();
 button.textContent = 'Silence the Spirits';
-status.textContent = 'The house is watching. Retro horror groove activated; adjust your volume if needed.';
+status.textContent = 'The house is breathing. Haunted ambience activated; adjust your volume if needed.';
 } catch (error) {
 soundOn = false;
 button.textContent = 'Awaken the Haunted House';
