@@ -2,493 +2,1529 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Night Among Sinners Bash</title>
-<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
-:root{--red:#bd1729;--dark:#100608;--paper:#eadac7;--green:#9bbd80}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at top,#390910,transparent 55%),#090708;color:var(--paper);font-family:"Special Elite",monospace;text-align:center}
-h1,h2,h3{font-family:"Creepster",cursive;font-weight:normal;letter-spacing:2px}
-h1{font-size:clamp(3rem,10vw,6rem);color:#ed293e;text-shadow:0 0 22px #9f071b;margin:15px 0}
-h2{font-size:clamp(2.2rem,7vw,3.5rem);color:#e32a3e}
-h3{font-size:1.8rem;color:#dfbd91}
-p{line-height:1.7}
-button{background:#31080e;color:var(--paper);border:1px solid #a52a3a;padding:12px 17px;margin:5px;font:inherit;cursor:pointer;max-width:100%}
-button:hover{background:#801324;box-shadow:0 0 15px #a51c2c}
-input,select,textarea{display:block;width:100%;max-width:540px;margin:10px auto;padding:12px;background:#100a0b;color:white;border:1px solid #77303a;font:inherit}
-header{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:45px 18px}
-header p,.intro{max-width:720px}
-.eyebrow{letter-spacing:4px;color:var(--green);font-size:.85rem}
-.skull{font-size:3rem}
-.gold{color:#e7bd88}
-.red{color:#f17b88}
-nav{position:sticky;top:0;z-index:5;display:flex;justify-content:center;flex-wrap:wrap;gap:5px;padding:12px;background:#0b0808ed;border-block:1px solid #4b1720}
-nav a{color:#eadac7;text-decoration:none;font-size:.85rem;padding:6px}
-nav a:hover{color:#ff5265}
-section{max-width:1000px;margin:auto;padding:65px 18px}
-.intro{margin:0 auto 25px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card,.panel{background:linear-gradient(145deg,#26090e,#0d090a);border:1px solid #64202a;padding:22px}
-.card{display:flex;flex-direction:column;align-items:center;min-height:215px}
-.card button{margin-top:auto}
-.symbol{font-size:2.5rem}
-.result{display:none;max-width:700px;margin:20px auto;padding:20px;background:#14080a;border:1px dashed #a52a3a;line-height:1.8}
-.result.show{display:block}
-.divider{color:#a22b3c;letter-spacing:8px;margin:15px}
-.rules{text-align:left;max-width:700px;margin:25px auto;line-height:2}
-.bar{position:relative;overflow:hidden;border:1px solid #812332;background:radial-gradient(ellipse at top,#38101a,#0b0708 75%);padding:clamp(22px,5vw,45px)}
-.bar-stamp{display:inline-block;border:1px solid #b35b4a;padding:7px 12px;color:#eac397;letter-spacing:2px;font-size:.8rem}
-.bar h2{font-size:clamp(2.8rem,8vw,4.8rem);margin:20px 0}
-.bar-warning{border-block:1px dashed #7b2731;color:#ff9b9b;padding:12px;margin:20px auto;max-width:650px}
-.bar-result{display:none;max-width:680px;text-align:left;margin:25px auto;padding:20px;background:#080506;border-left:3px solid #b51c31;line-height:1.8}
-.bar-result.show{display:block}
-.game{max-width:720px;margin:20px auto;padding:25px;background:#1b0b10;border:1px solid #8a4439}
-.game-prompt{font-size:clamp(1.2rem,4vw,1.7rem);line-height:1.5}
-.small{font-size:.82rem;color:#b9aa9d}
-footer{padding:45px 18px;border-top:1px solid #4b1720}
-.modal{display:none;position:fixed;z-index:20;inset:0;background:#000e;align-items:center;justify-content:center;padding:20px}
-.modal.show{display:flex}
-.modal-box{max-width:540px;width:100%;padding:25px;background:#16070b;border:1px solid #d1253b;box-shadow:0 0 35px #951023}
-#scare{display:none;position:fixed;inset:0;z-index:30;background:#050303;align-items:center;justify-content:center;flex-direction:column;padding:20px}
-#scare.show{display:flex}
-.scare-face{font-size:clamp(7rem,28vw,14rem);color:#e21c32;text-shadow:0 0 35px red}
-#toast{display:none;position:fixed;z-index:40;bottom:15px;left:50%;transform:translateX(-50%);background:#26080e;border:1px solid #b51c31;padding:12px;max-width:90vw}
-#toast.show{display:block}
-body.dark{filter:brightness(.5)}
-body.dark .modal,body.dark #scare{filter:brightness(2)}
-@media(max-width:600px){nav{position:relative}section{padding:48px 14px}.grid{grid-template-columns:1fr}}
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap');
+
+:root {
+--red: #a20d18;
+--blood: #650810;
+--green: #8dff36;
+--paper: #e6dfd0;
+--black: #080707;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+margin: 0;
+color: var(--paper);
+background:
+radial-gradient(ellipse at 50% 0%, #301014 0%, transparent 42%),
+radial-gradient(ellipse at 0% 55%, #1b1112 0%, transparent 45%),
+#080707;
+font-family: 'Special Elite', 'Courier New', monospace;
+overflow-x: hidden;
+}
+
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 10;
+opacity: .12;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.page {
+width: min(900px, 92%);
+margin: auto;
+padding: 30px 0 70px;
+position: relative;
+}
+
+.topline {
+display: flex;
+justify-content: space-between;
+gap: 12px;
+flex-wrap: wrap;
+color: #9b8d86;
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+border-bottom: 1px solid #493033;
+padding-bottom: 13px;
+}
+
+.top-controls {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex-wrap: wrap;
+margin: 18px 0 0;
+}
+
+.sound-status {
+color: #8d817a;
+font-size: 10px;
+margin-top: 9px;
+min-height: 14px;
+text-align: center;
+}
+
+.hero {
+text-align: center;
+padding: 64px 0 30px;
+position: relative;
+}
+
+.eyebrow {
+color: #b5a49a;
+letter-spacing: 4px;
+font-size: 11px;
+text-transform: uppercase;
+margin-bottom: 18px;
+}
+
+h1 {
+font-family: 'Creepster', Impact, fantasy;
+font-size: clamp(48px, 10vw, 96px);
+line-height: .88;
+font-weight: normal;
+letter-spacing: 1px;
+color: #d8c5b6;
+margin: 0;
+text-transform: uppercase;
+text-shadow: 2px 2px 0 #5e0710, 4px 5px 0 #31050a, 0 0 28px #7a071433;
+transform: rotate(-1deg);
+}
+
+.title-red {
+color: #a51b25;
+display: inline-block;
+position: relative;
+margin-top: 9px;
+text-shadow: 1px 2px 0 #43050a, 3px 4px 0 #220307, 0 0 20px #8b061844;
+}
+
+.title-red::after {
+content: "";
+position: absolute;
+left: 8%;
+right: 4%;
+bottom: -17px;
+height: 27px;
+background: #a51b25;
+clip-path: polygon(0 0,100% 0,100% 12%,88% 12%,86% 75%,82% 75%,80% 12%,64% 12%,62% 95%,58% 95%,56% 12%,43% 12%,42% 55%,38% 55%,36% 12%,20% 12%,19% 85%,15% 85%,14% 12%,0 12%);
+filter: drop-shadow(0 3px 1px #240206);
+}
+
+.subtitle {
+margin: 35px auto 0;
+max-width: 650px;
+color: #c7b8ae;
+font-size: clamp(13px, 2.8vw, 16px);
+line-height: 1.7;
+}
+.subtitle em { color: #e6d5c6; font-style: normal; }
+
+.date-wrap {
+margin: 35px auto 0;
+display: inline-block;
+position: relative;
+padding: 10px 18px 27px;
+}
+.date {
+color: #c8d6a9;
+font-size: clamp(17px, 4vw, 23px);
+letter-spacing: 2px;
+text-shadow: 0 0 12px #8dff3633;
+position: relative;
+z-index: 2;
+}
+.date strong { color: var(--green); font-weight: normal; }
+
+.slime {
+position: absolute;
+height: 36px;
+left: 2%;
+right: 2%;
+bottom: -1px;
+pointer-events: none;
+z-index: 1;
+filter: drop-shadow(0 3px 1px #233b08);
+}
+.slime::before {
+content: "";
+position: absolute;
+top: 0;
+left: 3%;
+right: 3%;
+height: 12px;
+background: linear-gradient(180deg, #caff8b 0%, #a4ff52 30%, #76e522 100%);
+border-radius: 48% 40% 25% 30%;
+box-shadow: inset 0 2px 0 #d8ffb5;
+animation: slimeWobble 3s ease-in-out infinite;
+}
+.slime::after {
+content: "";
+position: absolute;
+top: 3px;
+left: 9%;
+width: 12%;
+height: 5px;
+border-radius: 50%;
+background: #e4ffbf;
+opacity: .9;
+transform: rotate(-8deg);
+animation: slimeShine 3s ease-in-out infinite;
+}
+.slime i {
+position: absolute;
+top: 5px;
+display: block;
+background: linear-gradient(90deg, #65d719 0%, #9eff43 45%, #80ed27 100%);
+border-radius: 0 0 10px 10px;
+box-shadow: inset 2px 0 0 #c1ff82;
+transform-origin: top center;
+}
+.slime i:nth-child(1) { left: 15%; width: 11px; height: 18px; animation: dripOne 3.4s ease-in-out infinite; }
+.slime i:nth-child(2) { left: 37%; width: 13px; height: 27px; animation: dripTwo 4.1s ease-in-out infinite; }
+.slime i:nth-child(3) { left: 61%; width: 9px; height: 15px; animation: dripThree 3.7s ease-in-out infinite; }
+.slime i:nth-child(4) { left: 81%; width: 12px; height: 23px; animation: dripFour 4.4s ease-in-out infinite; }
+.slime i:nth-child(5) { left: 93%; width: 7px; height: 12px; animation: dripFive 3.2s ease-in-out infinite; }
+
+@keyframes slimeWobble {
+0%,100% { transform: scaleX(1) translateY(0); }
+50% { transform: scaleX(1.025) translateY(2px); }
+}
+@keyframes slimeShine {
+0%,100% { opacity: .8; transform: translateX(0) rotate(-8deg); }
+50% { opacity: 1; transform: translateX(5px) rotate(-4deg); }
+}
+@keyframes dripOne {
+0%,100% { height: 18px; transform: rotate(0); }
+45% { height: 26px; transform: rotate(-3deg); }
+60% { height: 21px; }
+}
+@keyframes dripTwo {
+0%,100% { height: 27px; transform: scaleY(1); }
+35% { height: 35px; transform: scaleY(1.06); }
+55% { height: 23px; transform: scaleY(.95); }
+}
+@keyframes dripThree {
+0%,100% { height: 15px; transform: rotate(0); }
+50% { height: 23px; transform: rotate(4deg); }
+}
+@keyframes dripFour {
+0%,100% { height: 23px; transform: rotate(0); }
+40% { height: 32px; transform: rotate(3deg); }
+65% { height: 19px; }
+}
+@keyframes dripFive {
+0%,100% { height: 12px; }
+50% { height: 20px; }
+}
+
+.location {
+margin-top: 22px;
+color: #9e8f88;
+font-size: 12px;
+letter-spacing: 1px;
+}
+.location b { color: #ded0c3; font-weight: normal; }
+
+.rule {
+width: 100%;
+height: 1px;
+margin: 37px 0;
+background: linear-gradient(90deg, transparent, #67323a, transparent);
+}
+
+.section-label {
+color: #a99a90;
+font-size: 10px;
+letter-spacing: 4px;
+text-transform: uppercase;
+margin-bottom: 12px;
+}
+
+h2 {
+font-family: 'Creepster', Impact, fantasy;
+color: #d8c9bc;
+font-size: clamp(29px, 6vw, 43px);
+font-weight: normal;
+letter-spacing: 1px;
+margin: 0 0 13px;
+}
+
+.intro {
+color: #b6a79c;
+font-size: 13px;
+line-height: 1.8;
+max-width: 620px;
+}
+
+.doors {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 13px;
+margin-top: 23px;
+}
+.door {
+text-align: left;
+min-height: 150px;
+border: 1px solid #4a282b;
+color: var(--paper);
+background: linear-gradient(145deg, #211415, #100d0d 72%);
+padding: 20px;
+position: relative;
+overflow: hidden;
+transition: transform .2s, border-color .2s, background .2s;
+}
+.door:hover {
+transform: translateY(-3px);
+border-color: #a13b43;
+background: linear-gradient(145deg, #301619, #100d0d 72%);
+}
+.door::after {
+content: "";
+position: absolute;
+right: -20px;
+bottom: -35px;
+width: 100px;
+height: 100px;
+border: 1px solid #6a2b30;
+border-radius: 50%;
+opacity: .28;
+}
+.door-number { color: #9a343b; font-size: 10px; letter-spacing: 2px; margin-bottom: 14px; }
+.door h3 {
+font-family: 'Creepster', Impact, fantasy;
+font-size: 27px;
+font-weight: normal;
+margin: 0 0 9px;
+color: #eee0d4;
+}
+.door p { color: #b5a59b; font-size: 12px; line-height: 1.65; margin: 0; }
+.door .open-label {
+display: inline-block;
+color: var(--green);
+font-size: 10px;
+letter-spacing: 1px;
+margin-top: 15px;
+text-transform: uppercase;
+}
+
+.summons {
+position: relative;
+margin-top: 42px;
+padding: 30px 24px;
+text-align: center;
+border: 1px solid #714047;
+outline: 1px solid #2e191c;
+outline-offset: 5px;
+background: radial-gradient(ellipse at top, #39171b 0%, transparent 70%), linear-gradient(145deg, #1d1012, #0c0909);
+box-shadow: inset 0 0 35px #5d12171a;
+}
+.summons::before, .summons::after {
+content: "✦";
+position: absolute;
+color: #a34b52;
+font-size: 20px;
+top: 12px;
+}
+.summons::before { left: 14px; }
+.summons::after { right: 14px; }
+.summons .section-label { color: #bd7b7d; letter-spacing: 3px; }
+.summons h2 { font-size: clamp(32px, 7vw, 43px); margin-bottom: 16px; }
+.summons p { color: #c1b2a6; font-size: 13px; line-height: 1.9; margin: 0; }
+.summons .summons-details {
+display: inline-block;
+margin: 20px auto;
+padding: 13px 20px;
+border-top: 1px solid #704047;
+border-bottom: 1px solid #704047;
+color: var(--green);
+font-size: 12px;
+letter-spacing: 1px;
+line-height: 2;
+}
+.summons .fine-print { color: #8e8178; font-size: 11px; margin-top: 10px; }
+
+.fate-box {
+text-align: center;
+border: 1px dashed #633038;
+padding: 28px 18px;
+background: #100b0c;
+margin-top: 24px;
+}
+.fate-box p { color: #a99a91; font-size: 12px; line-height: 1.8; }
+
+.action {
+border: 1px solid #8c3039;
+background: #65111b;
+color: #f1e4d7;
+padding: 12px 18px;
+text-transform: uppercase;
+font-size: 11px;
+letter-spacing: 1.5px;
+transition: .2s;
+}
+.action:hover { background: #8c1724; box-shadow: 0 0 18px #9d172633; }
+.action.secondary { background: transparent; border-color: #514044; }
+#fateResult { min-height: 32px; margin-top: 18px; color: var(--green); font-size: 13px; line-height: 1.7; }
+
+.rsvp {
+margin-top: 24px;
+padding: 25px;
+border: 1px solid #4d292d;
+background: linear-gradient(135deg, #1c1112, #0c0909);
+}
+.rsvp p { color: #b4a59a; font-size: 12px; line-height: 1.8; }
+form { display: grid; gap: 15px; margin-top: 20px; }
+label { display: block; color: #c9b8ac; font-size: 11px; letter-spacing: 1px; margin-bottom: 7px; }
+input, select, textarea {
+width: 100%;
+border: 1px solid #493034;
+background: #090707;
+color: #eee0d4;
+padding: 12px;
+outline: none;
+border-radius: 0;
+}
+input:focus, select:focus, textarea:focus { border-color: #9b3a42; }
+input::placeholder, textarea::placeholder { color: #75666a; }
+.form-note { color: #81736e !important; font-size: 10px !important; }
+#rsvpResult { color: var(--green); line-height: 1.8; font-size: 12px; overflow-wrap: anywhere; }
+
+.house-rules {
+margin-top: 30px;
+padding: 25px 20px;
+border: 1px solid #4b292d;
+background: radial-gradient(ellipse at top, #241012, transparent 75%), #0c0909;
+text-align: center;
+}
+.house-rules > p { color: #a99a91; font-size: 12px; line-height: 1.8; }
+.rule-buttons {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 10px;
+margin-top: 20px;
+}
+.rule-button {
+border: 1px solid #573037;
+background: #140d0e;
+color: #d5c3b6;
+padding: 14px 10px;
+text-align: left;
+transition: .2s;
+}
+.rule-button:hover, .rule-button.open { border-color: #9b3540; background: #281014; }
+.rule-button span { display: block; color: var(--green); font-size: 10px; letter-spacing: 1px; margin-bottom: 8px; }
+.rule-button strong { font-family: 'Creepster', Impact, fantasy; font-size: 21px; font-weight: normal; }
+.rule-detail {
+display: none;
+text-align: left;
+padding: 15px;
+margin-top: 12px;
+border-left: 2px solid #8d3039;
+background: #170d0f;
+color: #c7b6aa;
+font-size: 12px;
+line-height: 1.8;
+}
+.rule-detail.show { display: block; }
+
+/* THE CURSED BAR */
+.cursed-bar {
+margin-top: 28px;
+padding: 32px 22px;
+border: 1px solid #71313a;
+background:
+radial-gradient(ellipse at top right, #43141d 0%, transparent 65%),
+radial-gradient(ellipse at bottom left, #211b0b 0%, transparent 65%),
+#0c0909;
+text-align: center;
+box-shadow: inset 0 0 35px #620b1518;
+position: relative;
+overflow: hidden;
+}
+.cursed-bar::before {
+content: "21+";
+position: absolute;
+top: 12px;
+right: 13px;
+color: #b94c53;
+border: 1px solid #79303a;
+padding: 5px 7px;
+font-size: 9px;
+letter-spacing: 1px;
+transform: rotate(5deg);
+}
+.cursed-bar .bar-intro {
+color: #c2b1a5;
+font-size: 13px;
+line-height: 1.9;
+max-width: 640px;
+margin: 0 auto 22px;
+}
+.bar-banner {
+padding: 15px 12px;
+margin: 18px 0 24px;
+border-top: 1px solid #69303a;
+border-bottom: 1px solid #69303a;
+color: #d4c3b5;
+font-size: 11px;
+line-height: 2;
+letter-spacing: 1px;
+}
+.bar-banner strong { color: var(--green); font-weight: normal; }
+
+.portal-button {
+width: 100%;
+max-width: 480px;
+padding: 22px 16px;
+color: #f3ded3;
+border: 1px solid #b33240;
+background:
+radial-gradient(ellipse at center, #781521 0%, #31090f 55%, #100809 100%);
+font-family: 'Creepster', Impact, fantasy;
+font-size: clamp(26px, 6vw, 39px);
+letter-spacing: 2px;
+box-shadow: 0 0 22px #9b142433, inset 0 0 22px #b41b2522;
+transition: .25s;
+animation: portalPulse 3s ease-in-out infinite;
+}
+.portal-button:hover {
+transform: scale(1.025);
+border-color: #ef6974;
+box-shadow: 0 0 32px #c20c2d66, inset 0 0 25px #b41b2544;
+}
+@keyframes portalPulse {
+0%,100% { box-shadow: 0 0 15px #9b142422, inset 0 0 20px #b41b2522; }
+50% { box-shadow: 0 0 28px #c20c2d55, inset 0 0 28px #b41b2533; }
+}
+.bar-note {
+color: #918078;
+font-size: 10px;
+line-height: 1.9;
+margin: 20px 0 0;
+}
+
+/* CURSED BAR INTERACTIVE SCREEN */
+#barPortal {
+position: fixed;
+inset: 0;
+z-index: 150;
+display: none;
+align-items: center;
+justify-content: center;
+padding: 18px;
+background:
+radial-gradient(ellipse at center, #27070d 0%, #090405 72%);
+overflow-y: auto;
+}
+#barPortal.show { display: flex; }
+.portal-screen {
+position: relative;
+width: min(650px, 100%);
+max-height: 94vh;
+overflow-y: auto;
+padding: 32px 22px;
+text-align: center;
+border: 1px solid #a32d3a;
+background:
+radial-gradient(ellipse at top, #54101b 0%, transparent 58%),
+linear-gradient(180deg, #17090d, #070506);
+box-shadow: 0 0 55px #b10b2844, inset 0 0 35px #7b111b22;
+animation: portalAppear .35s ease-out;
+}
+.portal-screen::before,
+.portal-screen::after {
+content: "✦";
+position: absolute;
+top: 13px;
+color: #a94852;
+font-size: 20px;
+}
+.portal-screen::before { left: 15px; }
+.portal-screen::after { right: 15px; }
+@keyframes portalAppear {
+from { opacity: 0; transform: scale(.92) translateY(10px); }
+to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.portal-eyebrow {
+color: #c05b64;
+font-size: 10px;
+letter-spacing: 4px;
+margin-bottom: 14px;
+}
+.portal-screen h2 {
+color: #d8bdb2;
+font-size: clamp(36px, 8vw, 58px);
+line-height: 1;
+margin-bottom: 16px;
+text-shadow: 0 0 18px #b90e2a44;
+}
+.portal-copy {
+max-width: 510px;
+margin: 0 auto 22px;
+color: #c7b4aa;
+font-size: 12px;
+line-height: 1.9;
+}
+.portal-warning {
+margin: 20px 0;
+padding: 13px;
+border-top: 1px solid #6b2731;
+border-bottom: 1px solid #6b2731;
+color: #d5c1b5;
+font-size: 10px;
+line-height: 1.9;
+}
+.portal-warning strong { color: var(--green); font-weight: normal; }
+.portal-choices {
+display: grid;
+grid-template-columns: 1fr;
+gap: 10px;
+margin-top: 20px;
+}
+.portal-choice {
+padding: 16px 14px;
+text-align: left;
+border: 1px solid #5a2730;
+background: linear-gradient(120deg, #291016, #10090b);
+color: #e5d3c8;
+transition: .2s;
+}
+.portal-choice:hover,
+.portal-choice:focus-visible {
+border-color: #c34452;
+background: linear-gradient(120deg, #42131d, #17090d);
+outline: none;
+}
+.portal-choice strong {
+display: block;
+color: #d8c5b9;
+font-family: 'Creepster', Impact, fantasy;
+font-size: 25px;
+font-weight: normal;
+margin-bottom: 5px;
+}
+.portal-choice span {
+display: block;
+color: #b4a097;
+font-size: 11px;
+line-height: 1.7;
+}
+#portalResult {
+min-height: 52px;
+margin: 20px 0;
+padding: 15px;
+border-left: 2px solid #9d3540;
+background: #10080b;
+color: var(--green);
+font-size: 12px;
+line-height: 1.9;
+text-align: left;
+}
+.portal-exit {
+margin-top: 5px;
+}
+.portal-close {
+position: absolute;
+top: 10px;
+right: 10px;
+border: 1px solid #74404a;
+background: #14080c;
+color: #d9c6bc;
+padding: 8px 11px;
+font-size: 10px;
+letter-spacing: 1px;
+z-index: 2;
+}
+.portal-close:hover { background: #42101a; }
+
+.footer {
+text-align: center;
+color: #625454;
+font-size: 10px;
+letter-spacing: 2px;
+margin-top: 36px;
+line-height: 2;
+}
+
+/* FLOATING GHOSTS */
+.ghost {
+position: fixed;
+width: 55px;
+height: 76px;
+z-index: 1;
+opacity: .13;
+pointer-events: none;
+background: linear-gradient(110deg, #aaa4a2, #f0e9dd 55%, #8e8586);
+border-radius: 48% 48% 8% 8%;
+filter: drop-shadow(0 0 12px #c6b9b9);
+animation: drift 11s ease-in-out infinite;
+}
+.ghost::before {
+content: "";
+position: absolute;
+top: 23px;
+left: 12px;
+width: 8px;
+height: 13px;
+border-radius: 50%;
+background: #0a0506;
+box-shadow: 21px 0 #0a0506;
+}
+.ghost::after {
+content: "";
+position: absolute;
+left: 18px;
+top: 43px;
+width: 20px;
+height: 15px;
+background: #0a0506;
+border-radius: 50%;
+box-shadow: 0 0 4px #0a0506;
+}
+.ghost.one { top: 24%; left: 3%; transform: rotate(-8deg); }
+.ghost.two { top: 58%; right: 4%; animation-delay: -5s; transform: scale(.85) rotate(9deg); }
+.ghost.three { top: 82%; left: 7%; animation-delay: -3s; transform: scale(.65) rotate(-10deg); }
+
+@keyframes drift {
+0%,100% { translate: 0 0; rotate: -6deg; }
+50% { translate: 9px -22px; rotate: 8deg; }
+}
+
+#popup {
+position: fixed;
+inset: 0;
+z-index: 100;
+display: none;
+align-items: center;
+justify-content: center;
+padding: 20px;
+background: #050303ef;
+}
+#popup.show { display: flex; }
+.popup-card {
+max-width: 470px;
+width: 100%;
+padding: 30px 24px;
+border: 1px solid #8d303a;
+background: radial-gradient(ellipse at top, #3a1419, #100909 70%);
+box-shadow: 0 0 50px #8c0c1a33;
+text-align: center;
+animation: appear .22s ease-out;
+}
+@keyframes appear {
+from { transform: scale(.92); opacity: 0; }
+to { transform: scale(1); opacity: 1; }
+}
+.popup-card h2 { font-size: 37px; color: #c7b5a8; }
+#popupText { color: #c2b2a7; font-size: 13px; line-height: 1.9; margin: 17px 0 23px; }
+
+#scare {
+position: fixed;
+inset: 0;
+display: none;
+z-index: 200;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 25px;
+background: #a90014;
+color: #080303;
+}
+#scare.show { display: flex; animation: flash .14s steps(2) 3; }
+#scare .face {
+font-family: Impact, sans-serif;
+font-size: clamp(42px, 12vw, 105px);
+line-height: .95;
+letter-spacing: -2px;
+text-transform: uppercase;
+transform: rotate(-3deg);
+text-shadow: 3px 3px #f5c8c8;
+}
+#scare p { font-size: 12px; font-family: 'Special Elite', monospace; line-height: 1.8; }
+@keyframes flash {
+0%,100% { background: #a90014; }
+50% { background: #f0d7c8; }
+}
+body.lights-out { filter: brightness(.63); }
+body.lights-out #popup,
+body.lights-out #scare,
+body.lights-out #barPortal { filter: brightness(1.6); }
+
+@media (max-width: 560px) {
+.page { width: 90%; padding-top: 20px; }
+.hero { padding-top: 52px; }
+.doors { grid-template-columns: 1fr; }
+.door { min-height: 130px; }
+.topline { font-size: 9px; }
+.rsvp { padding: 19px; }
+.summons { padding: 28px 18px; }
+.rule-buttons { grid-template-columns: 1fr; }
+.portal-screen { padding: 35px 15px 22px; }
+.portal-close { top: 8px; right: 8px; }
+}
 </style>
 </head>
 
 <body>
-<header id="top">
-<div class="skull">☠️</div>
-<div class="eyebrow">ONE NIGHT. BAD DECISIONS. GOOD STORIES.</div>
-<h1>A Night Among Sinners Bash</h1>
-<p class="intro">You're invited to one wicked Halloween night. Come dressed to haunt, ready to laugh, and prepared to explain yourself the next morning.</p>
-<p class="gold">October 31, 2026 · 5:00 PM</p>
-<p>The Flerb Home</p>
-<p class="small">Costumes encouraged. Good vibes required. Questionable decisions are your own responsibility.</p>
-<button onclick="goTo('doors')">ENTER IF YOU DARE</button>
+<div class="ghost one"></div>
+<div class="ghost two"></div>
+<div class="ghost three"></div>
+
+<main class="page">
+<div class="topline">
+<span>Officially Unofficial Invitation</span>
+<span>Enter at your own risk-ish</span>
+</div>
+
+<div class="top-controls">
+<button class="action secondary" id="lightsButton">Dim the Lights</button>
+<button class="action secondary" id="soundButton">Awaken the Haunted House</button>
+</div>
+<div class="sound-status" id="soundStatus">Sound is off. The house is listening.</div>
+
+<header class="hero">
+<div class="eyebrow">You were warned. You came anyway.</div>
+<h1>
+A Night Among
+<span class="title-red">Sinners</span>
+<br>
+Bash
+</h1>
+
+<p class="subtitle">
+Come for the chaos. Stay because something just moved in the hallway.
+</p>
+
+<div class="date-wrap">
+<div class="date"><strong>OCTOBER 31</strong> · 2026 · 5:00 PM</div>
+<div class="slime"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<div class="location">
+LOCATION: <b>The Flerb Home</b><br>
+<span style="display:inline-block;margin-top:8px">Come hungry. Leave suspicious.</span>
+</div>
 </header>
 
-<nav>
-<a href="#doors">The Doors</a>
-<a href="#fate">Your Fate</a>
-<a href="#rules">House Rules</a>
-<a href="#bar">Cursed Bar</a>
-<a href="#arrival">Midnight Mischief</a>
-<a href="#rsvp">RSVP</a>
-</nav>
+<div class="rule"></div>
 
-<section id="doors">
-<h2>Choose Your Door</h2>
-<p class="intro">Every door hides a secret. Some are harmless. Some are embarrassing. One might make you question why you came here.</p>
-<div class="grid">
-<article class="card"><div class="symbol">🩸</div><h3>The Red Room</h3><p>Something in here remembers what you did last Halloween.</p><button onclick="openDoor('red')">Open the Door</button></article>
-<article class="card"><div class="symbol">🕯️</div><h3>The Last Guest</h3><p>Someone arrived before you. Nobody remembers seeing them.</p><button onclick="openDoor('guest')">Knock Twice</button></article>
-<article class="card"><div class="symbol">🪞</div><h3>The Black Mirror</h3><p>Look carefully. It might be showing your future.</p><button onclick="openDoor('mirror')">Look Inside</button></article>
-<article class="card"><div class="symbol">🪦</div><h3>The Basement</h3><p>There's a reason nobody goes down there alone.</p><button onclick="openDoor('basement')">Go Downstairs</button></article>
-<article class="card"><div class="symbol">🍕</div><h3>The Offering</h3><p>Even sinners need snacks. Find out what the spirits want.</p><button onclick="openDoor('food')">Make an Offering</button></article>
-<article class="card"><div class="symbol">❓</div><h3>The Unmarked Door</h3><p>There is no sign. That should concern you.</p><button onclick="openDoor('unknown')">Turn the Handle</button></article>
+<section>
+<div class="section-label">Choose poorly</div>
+<h2>Pick Your Poison.</h2>
+<p class="intro">
+There are several doors. None of them lead to a better financial decision.
+Click one if you're feeling brave. Or bored. Same thing, honestly.
+</p>
+
+<div class="doors">
+<button class="door" data-door="red">
+<div class="door-number">01 / BAD IDEA</div>
+<h3>The Red Room</h3>
+<p>Absolutely nothing suspicious in here. That's what the suspicious people always say.</p>
+<span class="open-label">Open the door →</span>
+</button>
+
+<button class="door" data-door="guest">
+<div class="door-number">02 / UNINVITED ENERGY</div>
+<h3>The Last Guest</h3>
+<p>Someone's always the last to leave. Please don't make us start charging rent.</p>
+<span class="open-label">See who's here →</span>
+</button>
+
+<button class="door" data-door="mirror">
+<div class="door-number">03 / PERSONAL PROBLEMS</div>
+<h3>The Black Mirror</h3>
+<p>Look inside. It's you. Yes, you still haven't picked a costume.</p>
+<span class="open-label">Face yourself →</span>
+</button>
+
+<button class="door" data-door="basement">
+<div class="door-number">04 / DO NOT ASK</div>
+<h3>The Basement</h3>
+<p>There's a noise downstairs. We're calling it a house feature and moving on.</p>
+<span class="open-label">Go downstairs →</span>
+</button>
+
+<button class="door" data-door="potluck">
+<div class="door-number">05 / THE REAL HORROR</div>
+<h3>The Potluck</h3>
+<p>Bring something good. The ghost in charge of the menu has standards.</p>
+<span class="open-label">Inspect the menu →</span>
+</button>
+
+<button class="door" data-door="secret">
+<div class="door-number">??? / YOU DIDN'T SEE THIS</div>
+<h3>The Unmarked Door</h3>
+<p>This door wasn't here a second ago. Probably. Your memory seems unreliable.</p>
+<span class="open-label">You know you want to →</span>
+</button>
 </div>
-<div id="doorResult" class="result" aria-live="polite"></div>
+
+<div class="summons">
+<div class="section-label">You're officially invited to the madness</div>
+<h2>You Have Been Summoned.</h2>
+<p>
+Costumes encouraged. Bad decisions optional. Dramatic entrances appreciated.
+Bring your people, your appetite, and whatever questionable energy you've been saving up.
+Kids are welcome, adults can have their drinks, and everybody is expected to keep it cute,
+be respectful, and not give the host a reason to regret this whole operation.
+</p>
+<div class="summons-details">
+OCTOBER 31, 2026 · 5:00 PM<br>
+THE FLERB HOME
+</div>
+<p class="fine-print">
+The management is not responsible for fake blood on furniture, suspicious noises,
+or anyone claiming they “aren't scared” immediately before screaming.
+</p>
+</div>
 </section>
 
-<div class="divider">✦ ☠ ✦ ☠ ✦</div>
+<div class="rule"></div>
 
-<section id="fate">
-<h2>Test Your Fate</h2>
-<p class="intro">The spirits have gathered. Ask for a prophecy if you're brave enough to hear it.</p>
-<div class="panel">
-<div class="symbol">🔮</div>
-<button onclick="fortune()">Reveal My Halloween Fortune</button>
-<div id="fortuneResult" class="result" aria-live="polite"></div>
-</div>
-<div class="panel" style="margin-top:20px">
-<h3>Look Behind You</h3>
-<p>You have the strange feeling someone is standing right behind you.</p>
-<button onclick="scare()">Check Behind You</button>
-</div>
-</section>
-
-<div class="divider">✦ ☠ ✦ ☠ ✦</div>
-
-<section id="rules">
-<h2>Rules of the Damned</h2>
-<div class="panel">
-<ol class="rules">
-<li>Respect the host, the home, and everybody at the party.</li>
-<li>Costumes encouraged. Main-character energy welcome.</li>
-<li>Don't touch what isn't yours. Haunted décor is not a souvenir.</li>
-<li>Ask before posting someone else's pictures.</li>
-<li>If you drink, pace yourself, have water, and arrange a safe ride home.</li>
-<li>Nobody has to drink or participate in any dare.</li>
-<li>Clean up after yourself. The host is not your personal cleanup crew.</li>
-<li>Keep the vibes good. We're here for Halloween, not a real-life horror story.</li>
-</ol>
-</div>
-<div class="panel" style="margin-top:20px">
-<h3>Dim the Lights</h3>
-<p>Make this place feel a little more cursed.</p>
-<button onclick="toggleLights()">Toggle the Darkness</button>
+<section>
+<div class="section-label">The universe has a sense of humor</div>
+<h2>Test Your Fate.</h2>
+<p class="intro">
+Press the button. Receive your completely unnecessary prophecy.
+Blame the spirits if you don't like it.
+</p>
+<div class="fate-box">
+<button class="action" id="fateButton">Tell My Fortune</button>
+<div id="fateResult" aria-live="polite"></div>
+<button class="action secondary" id="scareButton" style="margin-top:8px">
+Look Behind You
+</button>
+<p>It's probably fine. Probably.</p>
 </div>
 </section>
 
-<div class="divider">✦ ☠ ✦ ☠ ✦</div>
+<div class="rule"></div>
 
-<section id="bar" class="bar">
-<div class="bar-stamp">ENTER AT YOUR OWN RISK</div>
-<h2>The Cursed Bar</h2>
-<p class="intro">Be ready to drink <em>if you want to</em> — we're here for Halloween, questionable stories, loud laughs, and college-party energy. No boring vibes allowed. Grab a drink, grab a mocktail, and come join the chaos.</p>
-<div class="bar-warning">☠ Don't be the reason the host changes the locks. ☠</div>
-<p class="intro">Choose your fate below. Nobody gets pressured, nobody has to drink, and nobody needs to prove anything.</p>
-<button onclick="barChoice('sip')">🍷 The First Sip</button>
-<button onclick="barChoice('water')">💧 The Responsible One</button>
-<button onclick="barChoice('chaos')">😈 Invite the Chaos</button>
-<button onclick="barChoice('escape')">🚪 Get Me Out</button>
-<div id="barResult" class="bar-result" aria-live="polite"></div>
-<p class="small">Drink if you choose to, take it at your own pace, and keep water nearby. Alcohol is never required for a good night.</p>
-</section>
+<section>
+<div class="section-label">Make your presence known</div>
+<h2>RSVP, Mortal.</h2>
+<p class="intro">
+Let us know who's coming and what you're bringing.
+“I'll bring vibes” is not a food item. We checked.
+</p>
 
-<div class="divider">✦ ☠ ✦ ☠ ✦</div>
-
-<section id="arrival">
-<h2>Midnight Mischief</h2>
-<p class="intro"><span class="gold">THE ARRIVAL DARE</span><br>Your first mission starts the moment you arrive. Pick a dare, complete it, and officially enter the chaos. No waiting until midnight — the trouble starts at the door.</p>
-<div class="game">
-<div class="gold" id="gameStep">YOUR FIRST SIN AWAITS</div>
-<p class="game-prompt" id="gamePrompt">Ready to earn your place among the sinners?</p>
-<p id="gameNote" class="small">Draw a dare when you arrive. You can pass or choose another at any time.</p>
-<button onclick="newDare()">Draw My Arrival Dare</button>
-<button onclick="newDare()">Pass / Give Me Another</button>
+<div class="rsvp">
+<p>Fill this out to prepare your RSVP message.</p>
+<form id="rsvpForm">
+<div>
+<label for="guestName">NAME</label>
+<input id="guestName" name="guestName" placeholder="Your human name... or alias" required>
 </div>
-<p class="small">Some dares have an optional sip; others are just silly. Replace any sip with water, a mocktail, or simply doing the dare. No chugging and no pressure.</p>
-</section>
-
-<div class="divider">✦ ☠ ✦ ☠ ✦</div>
-
-<section id="rsvp">
-<h2>Answer the Summons</h2>
-<p class="intro">The spirits need a head count. Let the host know whether you're coming.</p>
-<div class="panel">
-<label for="guestName">Your name</label>
-<input id="guestName" placeholder="Name of the sinner">
-<label for="attendance">Are you coming?</label>
-<select id="attendance">
-<option>I'll be there 👻</option>
-<option>Can't make it this time 🪦</option>
-<option>Still deciding 🔮</option>
+<div>
+<label for="souls"># OF SOULS JOINING YOU</label>
+<select id="souls" name="souls" required>
+<option value="">Choose your party size</option>
+<option>Just me</option>
+<option>2 souls</option>
+<option>3 souls</option>
+<option>4 souls</option>
+<option>5 souls</option>
+<option>6 souls</option>
+<option>7+ souls</option>
 </select>
-<label for="guestCount">How many people, including you?</label>
-<select id="guestCount">
-<option>Just me</option><option>2 people</option><option>3 people</option><option>4 people</option><option>5 or more</option>
-</select>
-<label for="rsvpNote">Message to the host (optional)</label>
-<textarea id="rsvpNote" placeholder="Questions or anything the host should know?"></textarea>
-<button onclick="makeRSVP()">Prepare My RSVP</button>
-<div id="rsvpResult" class="result" aria-live="polite"></div>
-<button id="copyButton" style="display:none" onclick="copyRSVP()">Copy RSVP Message</button>
 </div>
-<p class="small">This prepares a message for you to copy and send to the host. It does not automatically notify the host.</p>
+<div>
+<label for="bringing">WHAT ARE YOU BRINGING?</label>
+<input id="bringing" name="bringing" placeholder="Food, drinks, dessert, etc.">
+</div>
+<button class="action" type="submit">Prepare My RSVP</button>
+</form>
+
+<p id="rsvpResult" aria-live="polite"></p>
+<p class="form-note">
+Note: this creates a message for you to copy or send. It does not automatically submit
+your RSVP to the host.
+</p>
+<button class="action secondary" id="copyRsvp" style="display:none">
+Copy RSVP Message
+</button>
+</div>
 </section>
 
-<footer>
-<div class="skull">☠️</div>
-<h2>The Night Awaits</h2>
-<p>October 31, 2026 · 5:00 PM</p>
-<p>The Flerb Home</p>
-<p>Come for the costumes. Stay for the chaos.</p>
-<button id="musicButton" onclick="toggleMusic()">♫ Turn On Spooky Music</button>
-<button onclick="goTo('top')">Back to the Beginning</button>
-<p class="small">Sound starts only when you choose to turn it on.</p>
+<section class="house-rules">
+<div class="section-label">Read the fine print... if you dare</div>
+<h2>The House Rules.</h2>
+<p>
+Every haunted house has rules. Tap one to reveal your fate.
+Ignoring them may result in the host giving you The Look.
+</p>
+
+<div class="rule-buttons">
+<button class="rule-button" data-rule="kids">
+<span>RULE 01</span><strong>Little Monsters</strong>
+</button>
+<button class="rule-button" data-rule="drinks">
+<span>RULE 02</span><strong>Adult Potions</strong>
+</button>
+<button class="rule-button" data-rule="respect">
+<span>RULE 03</span><strong>Keep It Cute</strong>
+</button>
+<button class="rule-button" data-rule="cleanup">
+<span>RULE 04</span><strong>Evidence Removal</strong>
+</button>
+</div>
+
+<div class="rule-detail" id="ruleDetail" aria-live="polite">
+Choose a rule. The house is waiting.
+</div>
+</section>
+
+<!-- CURSED BAR: INTERACTIVE PORTAL -->
+<section class="cursed-bar">
+<div class="section-label">For the grown-up ghouls</div>
+<h2>The Cursed Bar.</h2>
+
+<p class="bar-intro">
+There's a door at the end of the hallway that only appears after dark.
+Behind it? Adult beverages, questionable conversations, and the kind of stories
+that somehow get funnier the next morning. Curious? Enter if you dare.
+</p>
+
+<div class="bar-banner">
+<strong>NO MENU. NO DARES. JUST HALLOWEEN CHAOS.</strong><br>
+Bring your own beverages, choose your own vibe, and let the spirits mind their business.
+</div>
+
+<button class="portal-button" id="openBarPortal">
+☠ ENTER THE CURSED BAR ☠
+</button>
+
+<p class="bar-note">
+Adults of legal drinking age only for alcohol. No one has to drink to join the fun.
+The portal does not provide actual beverages, transportation, or life advice.
+</p>
+</section>
+
+<footer class="footer">
+A NIGHT AMONG SINNERS BASH · OCTOBER 31, 2026<br>
+DON'T BE LATE. THE GHOSTS HAVE NO PATIENCE.
 </footer>
+</main>
 
-<div class="modal" id="popup" role="dialog" aria-modal="true">
-<div class="modal-box">
-<h2 id="popupTitle">A Message from Beyond</h2>
+<!-- EXISTING DOOR POPUP -->
+<div id="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+<div class="popup-card">
+<div class="section-label">You opened it. That's on you.</div>
+<h2 id="popupTitle">Oh, You.</h2>
 <p id="popupText"></p>
-<button onclick="closePopup()">Return to the Party</button>
+<button class="action" id="closePopup">Get Me Out of Here</button>
 </div>
 </div>
 
-<div id="scare">
-<div class="scare-face">☠</div>
-<h2 id="scareText">YOU'RE NOT ALONE.</h2>
-<button onclick="closeScare()">Okay, I'm Leaving</button>
+<!-- CURSED BAR PORTAL SCREEN -->
+<div id="barPortal" role="dialog" aria-modal="true" aria-labelledby="portalTitle">
+<div class="portal-screen">
+<button class="portal-close" id="closeBarPortal" aria-label="Close cursed bar">✕ CLOSE PORTAL</button>
+
+<div class="portal-eyebrow">YOU HAVE CROSSED THE THRESHOLD</div>
+<h2 id="portalTitle">Welcome, Sinner.</h2>
+
+<p class="portal-copy">
+The lights are low. The vibes are questionable.
+Somewhere, a plastic cup has just appeared out of thin air.
+Welcome to the Cursed Bar, where the only thing more haunted than the house
+is tomorrow's group chat.
+</p>
+
+<div class="portal-warning">
+<strong>THE CURSE HAS TERMS AND CONDITIONS.</strong><br>
+Alcohol is for adults of legal drinking age only. No pressure to drink,
+no drinking contests, and no need to get drunk to have a good time.
+Keep an eye on your drink, have food and water, and sort out a sober ride
+before drinking. Never drive impaired.
 </div>
 
-<div id="toast" role="status" aria-live="polite"></div>
+<div class="portal-eyebrow">CHOOSE YOUR FATE</div>
+
+<div class="portal-choices">
+<button class="portal-choice" data-portal-choice="sip">
+<strong>☠ The Sip of the Damned</strong>
+<span>For the grown-up ghoul who wants a drink and a spooky little story.</span>
+</button>
+
+<button class="portal-choice" data-portal-choice="water">
+<strong>🕯 The Hydration Hex</strong>
+<span>Activate your ancient powers: water, snacks, and staying mysterious all night.</span>
+</button>
+
+<button class="portal-choice" data-portal-choice="chaos">
+<strong>🦇 The Chaos Coven</strong>
+<span>You're here for the laughs, the costumes, and the questionable dance moves.</span>
+</button>
+
+<button class="portal-choice" data-portal-choice="exit">
+<strong>🚪 The Escape Plan</strong>
+<span>Make sure you have a safe way home before the night gets going.</span>
+</button>
+</div>
+
+<div id="portalResult" aria-live="polite">
+Choose your fate above. The spirits are waiting.
+</div>
+
+<button class="action secondary portal-exit" id="leaveBarPortal">
+Return to the Land of the Living
+</button>
+</div>
+</div>
+
+<!-- EXISTING SPOOKY SURPRISE -->
+<div id="scare" role="dialog" aria-modal="true" aria-label="Spooky surprise">
+<div>
+<div class="face">I SAW THAT.</div>
+<p>Relax. It was just a website.<br>Unless you heard that noise too.</p>
+<button class="action" id="closeScare" style="background:#100909;border-color:#100909">
+Nope. Absolutely Not.
+</button>
+</div>
+</div>
 
 <script>
-"use strict";
+const popup = document.getElementById('popup');
+const popupTitle = document.getElementById('popupTitle');
+const popupText = document.getElementById('popupText');
 
-function goTo(id){
-var el=document.getElementById(id);
-if(el) el.scrollIntoView({behavior:"smooth"});
+const doorMessages = {
+red: {
+title: "WELCOME TO THE RED ROOM",
+text: "Congratulations, you've entered the room with the worst lighting and the most suspicious vibes. Please keep your hands inside the room at all times. We are not insured for whatever that was."
+},
+guest: {
+title: "THE LAST GUEST",
+text: "A mysterious figure is still here. They say they're waiting for one more person. They pointed at you. Honestly, that's a little rude. Grab a snack and pretend you didn't hear that."
+},
+mirror: {
+title: "THE MIRROR KNOWS",
+text: "It sees your outfit. It sees your choices. It remembers every costume you almost bought and every time you said, 'I'll figure it out later.' The mirror has one question: ARE WE WEARING THAT?"
+},
+basement: {
+title: "THE BASEMENT",
+text: "Something just moved downstairs. Could be a ghost. Could be the house settling. Could be the person who said they'd help set up and then disappeared. Either way, you're not getting a refund."
+},
+potluck: {
+title: "THE SACRED POTLUCK",
+text: "Bring a dish, a snack, or a dessert. Store-bought is welcome; we are not running a cooking competition. But showing up empty-handed, eating three plates, and leaving with leftovers? Bold. The ghosts are taking notes."
+},
+secret: {
+title: "YOU FOUND THE DOOR",
+text: "Look at you, opening mysterious doors like you pay the mortgage here. Your prize is absolutely nothing. No treasure, no secret passage, no free food. Just this message and a new reason to question your decisions."
 }
-
-function showResult(id,text){
-var el=document.getElementById(id);
-if(!el)return;
-el.textContent=text;
-el.classList.add("show");
-}
-
-var doorMessages={
-red:[
-"The Red Room remembers every embarrassing thing you've ever done. It says tonight will be no different.",
-"A voice whispers: You may enter, but leave your dignity at the door.",
-"The room is empty. Somehow, that makes it worse."
-],
-guest:[
-"Someone knocks back from the other side. You didn't knock first.",
-"A shadow slips away. The guest list just gained one more name.",
-"The last guest says: Don't be the first to fall asleep."
-],
-mirror:[
-"Your reflection smiles a second later than you do. It knows something.",
-"The mirror predicts laughter, questionable stories, and at least one dramatic photo.",
-"Your reflection mouths: Drink some water, mysterious creature."
-],
-basement:[
-"You hear footsteps below. The problem is that you're still upstairs.",
-"A candle reveals a note: If you borrowed something, put it back.",
-"A sign reads: No actual demons beyond this point. Probably."
-],
-food:[
-"The spirits demand snacks. Chips, sweets, and shareable treats will appease them.",
-"The spirits accept your offering. Please label anything with common allergens.",
-"The spirits are hungry. Ask before taking food from somebody else's plate."
-],
-unknown:[
-"The door opens to a room full of people looking at you. Congratulations, you're now the entertainment.",
-"A voice says: You came all this way. You might as well have fun.",
-"A note reads: The real horror is leaving without saying goodbye to the host."
-]
 };
 
-function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
-
-function openDoor(name){
-var messages=doorMessages[name]||doorMessages.unknown;
-showResult("doorResult",pick(messages));
-if(Math.random()<0.18){
-setTimeout(function(){
-openPopup("Something Moved","You could swear something moved in the corner of your eye. Anyway… keep exploring.");
-},500);
-}
-}
-
-var fortunes=[
-"A mysterious stranger will compliment your costume. Try not to let it go to your head.",
-"Your laugh will be heard from three rooms away. The spirits approve.",
-"Your future contains snacks, a suspicious photo, and a story you will tell for years.",
-"The spirits advise water between drinks and a safe ride home.",
-"You will make a new friend tonight. Their costume might be better than yours. Accept this.",
-"The stars say: avoid unnecessary drama. You look better in spooky lighting anyway.",
-"A great night is coming. The only curse is forgetting where you put your phone."
-];
-
-function fortune(){showResult("fortuneResult",pick(fortunes));}
-
-var barMessages={
-sip:"THE FIRST SIP — If you feel like having a drink, enjoy it at your own pace. If not, grab a mocktail and make the same dramatic entrance. The vibe is the point, not what's in your cup.",
-water:"THE RESPONSIBLE ONE — Hydrate, snack, and stay legendary. The spirits respect someone who knows how to take care of themselves. Water is never a bad plot twist.",
-chaos:"CHAOS HAS ENTERED THE CHAT — Compliment somebody's costume like you're a dramatic movie villain. Bonus points for a serious bow. A drink is optional; the chaos is not.",
-escape:"THE EXIT IS THAT WAY — You can leave the cursed bar whenever you want. Check on your friends, keep your belongings close, and make sure everyone has a safe ride."
-};
-
-function barChoice(choice){
-var el=document.getElementById("barResult");
-if(!el)return;
-el.textContent=barMessages[choice]||barMessages.escape;
-el.classList.add("show");
-}
-
-var dares=[
-["Give your most dramatic villain introduction to the first person you see.","Bonus points for a spooky laugh. No drink required."],
-["Give someone's costume a completely over-the-top award speech.","Make them feel like they just won an Oscar for being terrifying."],
-["Make a toast to the host like you're addressing a royal court.","Your toast can be with a drink, water, soda, or an imaginary goblet."],
-["Do your best zombie walk across the room and back.","Keep it safe and watch where you're walking."],
-["Learn the name of someone you don't know well and introduce yourself.","The spirits support new friendships."],
-["Make up a spooky one-sentence rumor about the haunted house.","Keep it fictional and fun. No real-life gossip."],
-["Give the most suspicious person in the room a fake award.","Example: Most Likely to Be Haunted by Their Own Wi-Fi."],
-["Pose for a dramatic Halloween photo like you're on a horror movie poster.","Ask before including anyone else in the photo."],
-["Challenge someone to a ten-second staring contest.","First person to laugh loses. No alcohol needed."],
-["Make a dramatic toast to surviving another year of questionable decisions.","A sip is optional. The silly toast is the actual dare."],
-["Demonstrate your fake supernatural power.","Mind reading, disappearing snacks, or summoning good music all count."],
-["If you want to drink, take one small, comfortable sip. Otherwise, sip water or do a spooky pose.","No chugging, no pressure, and no need to explain your choice."],
-["Lead a group Halloween cheer like a haunted college pep rally.","Make it dramatic enough to summon a ghost."],
-["Pick your Halloween alter ego and use that name for the next ten minutes.","The more ridiculous the name, the better."],
-["Make the scariest funny face you can.","The goal is funny-scary, not actually terrifying the children."],
-["Give someone's costume a horror-movie title.","Keep it playful. The title should sound like a terrible sequel."]
-];
-
-var lastDare=-1;
-function newDare(){
-var n=Math.floor(Math.random()*dares.length);
-if(dares.length>1){
-while(n===lastDare)n=Math.floor(Math.random()*dares.length);
-}
-lastDare=n;
-document.getElementById("gameStep").textContent="ARRIVAL DARE "+(n+1)+" OF "+dares.length;
-document.getElementById("gamePrompt").textContent=dares[n][0];
-document.getElementById("gameNote").textContent=dares[n][1]+" You can always pass.";
-}
-
-function toggleLights(){
-document.body.classList.toggle("dark");
-toast(document.body.classList.contains("dark")?"The lights are dying…":"The lights return. For now.");
-}
-
-function openPopup(title,message){
-document.getElementById("popupTitle").textContent=title;
-document.getElementById("popupText").textContent=message;
-document.getElementById("popup").classList.add("show");
-}
-function closePopup(){document.getElementById("popup").classList.remove("show");}
-
-function scare(){
-document.getElementById("scareText").textContent=pick([
-"YOU'RE NOT ALONE.","WE SAVED YOU A SEAT.","DID YOU HEAR THAT?","THE PARTY HAS JUST BEGUN."
-]);
-document.getElementById("scare").classList.add("show");
-}
-function closeScare(){document.getElementById("scare").classList.remove("show");}
-
-function toast(message){
-var el=document.getElementById("toast");
-el.textContent=message;
-el.classList.add("show");
-clearTimeout(window.toastTimeout);
-window.toastTimeout=setTimeout(function(){el.classList.remove("show");},2800);
-}
-
-var rsvpText="";
-function makeRSVP(){
-var name=document.getElementById("guestName").value.trim();
-if(!name){toast("Enter your name first.");document.getElementById("guestName").focus();return;}
-var attendance=document.getElementById("attendance").value;
-var count=document.getElementById("guestCount").value;
-var note=document.getElementById("rsvpNote").value.trim();
-
-rsvpText="🎃 A NIGHT AMONG SINNERS BASH — RSVP\n\n"+
-"Name: "+name+"\n"+
-"Response: "+attendance+"\n"+
-"Party size: "+count+"\n"+
-"Date: October 31, 2026 at 5:00 PM\n"+
-"Location: The Flerb Home\n"+
-(note?"Message to the host: "+note+"\n":"")+
-"\nSent from the haunted invitation. 👻";
-
-showResult("rsvpResult",rsvpText);
-document.getElementById("copyButton").style.display="inline-block";
-}
-
-function copyRSVP(){
-if(!rsvpText)return;
-if(navigator.clipboard&&navigator.clipboard.writeText){
-navigator.clipboard.writeText(rsvpText).then(
-function(){toast("RSVP copied! Paste it into a message to the host.");},
-function(){fallbackCopy();}
-);
-}else{fallbackCopy();}
-}
-function fallbackCopy(){
-var input=document.createElement("textarea");
-input.value=rsvpText;
-document.body.appendChild(input);
-input.select();
-try{
-document.execCommand("copy");
-toast("RSVP copied! Paste it into a message to the host.");
-}catch(e){
-openPopup("Your RSVP Is Ready","Your RSVP is displayed on the page. Select and copy the message, then send it to the host.");
-}
-input.remove();
-}
-
-/* Spooky synthesized melody. Sound begins only after a button click. */
-var audio=null,master=null,musicTimer=null,musicOn=false,noteIndex=0;
-
-function tone(freq,duration,type,volume,delay){
-if(!audio||!master)return;
-var start=audio.currentTime+(delay||0);
-var osc=audio.createOscillator();
-var gain=audio.createGain();
-osc.type=type;
-osc.frequency.setValueAtTime(freq,start);
-gain.gain.setValueAtTime(.0001,start);
-gain.gain.exponentialRampToValueAtTime(Math.max(volume,.0002),start+.04);
-gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
-osc.connect(gain);
-gain.connect(master);
-osc.start(start);
-osc.stop(start+duration+.05);
-}
-
-function musicPhrase(){
-if(!musicOn||!audio)return;
-var melody=[261.63,311.13,392,349.23,261.63,233.08,311.13,261.63,196,233.08,261.63,311.13,349.23,311.13,233.08,196];
-var note=melody[noteIndex%melody.length];
-tone(note,1.05,"sine",.055,0);
-tone(note*2,.55,"triangle",.012,.04);
-if(noteIndex%4===0){
-tone(65.41,3.3,"sine",.025,0);
-tone(98,2.4,"sine",.009,.1);
-}
-if(noteIndex%8===6){
-tone(523.25,1.8,"sine",.012,.15);
-tone(587.33,1.4,"sine",.009,.45);
-}
-noteIndex++;
-}
-
-async function toggleMusic(){
-var btn=document.getElementById("musicButton");
-if(musicOn){
-musicOn=false;
-if(musicTimer)clearInterval(musicTimer);
-musicTimer=null;
-if(master&&audio)master.gain.setTargetAtTime(.0001,audio.currentTime,.15);
-btn.textContent="♫ Turn On Spooky Music";
-toast("The soundtrack has gone quiet.");
-return;
-}
-try{
-var AudioClass=window.AudioContext||window.webkitAudioContext;
-if(!AudioClass){toast("This browser does not support the soundtrack.");return;}
-if(!audio){
-audio=new AudioClass();
-master=audio.createGain();
-master.gain.value=.65;
-master.connect(audio.destination);
-}
-await audio.resume();
-master.gain.setTargetAtTime(.65,audio.currentTime,.2);
-musicOn=true;
-musicPhrase();
-musicTimer=setInterval(musicPhrase,850);
-btn.textContent="♫ Turn Off Spooky Music";
-toast("The haunted soundtrack has begun…");
-}catch(e){toast("Sound couldn't start. Try pressing the button again.");}
-}
-
-document.addEventListener("keydown",function(event){
-if(event.key==="Escape"){closePopup();closeScare();}
+document.querySelectorAll('[data-door]').forEach(button => {
+button.addEventListener('click', () => {
+const item = doorMessages[button.dataset.door];
+popupTitle.textContent = item.title;
+popupText.textContent = item.text;
+popup.classList.add('show');
+});
 });
 
-/* All page sections remain visible. This optional popup never blocks the page. */
-window.addEventListener("load",function(){
-setTimeout(function(){
-if(Math.random()<.3){
-openPopup("A Little Warning","The spirits have noticed you. Relax… they mostly want you to have fun.");
+document.getElementById('closePopup').addEventListener('click', () => {
+popup.classList.remove('show');
+});
+
+popup.addEventListener('click', event => {
+if (event.target === popup) popup.classList.remove('show');
+});
+
+/* FORTUNES */
+const fortunes = [
+"The spirits say you'll have a great night. They also say somebody will ask where the bathroom is at least nine times.",
+"Your future is dark, mysterious, and full of snacks you didn't bring.",
+"A stranger will compliment your costume. It will be your cousin. Accept the compliment anyway.",
+"Beware the person who says, 'I don't need a plate.' They will absolutely need a plate.",
+"The stars predict laughter, chaos, and someone losing their phone while holding it.",
+"You will encounter a terrifying creature tonight. It will be a toddler with a sugar rush.",
+"Your lucky number is 31. Your unlucky number is the number of trips you'll make to the car.",
+"The spirits have reviewed your aura. They say bring ice. Nobody ever brings enough ice.",
+"A dark secret will be revealed tonight: someone here has already eaten before arriving.",
+"Your fate is sealed. You are now in charge of taking a group photo where everyone looks normal.",
+"The dead have spoken. They said, 'Who brought the good dip?'",
+"A mysterious force will guide you toward the food table. Trust it. It's probably just hunger."
+];
+
+document.getElementById('fateButton').addEventListener('click', () => {
+document.getElementById('fateResult').textContent =
+fortunes[Math.floor(Math.random() * fortunes.length)];
+});
+
+/* SPOOKY SURPRISE */
+const scare = document.getElementById('scare');
+
+document.getElementById('scareButton').addEventListener('click', () => {
+scare.classList.add('show');
+});
+document.getElementById('closeScare').addEventListener('click', () => {
+scare.classList.remove('show');
+});
+
+/* LIGHTS */
+document.getElementById('lightsButton').addEventListener('click', event => {
+document.body.classList.toggle('lights-out');
+event.currentTarget.textContent =
+document.body.classList.contains('lights-out')
+? 'Turn the Lights Back Up'
+: 'Dim the Lights';
+});
+
+/* HOUSE RULES */
+const houseRules = {
+kids: "The little monsters are welcome, but their grown-ups are responsible for keeping an eye on them. Tiny humans are adorable; tiny humans running into traffic is not the Halloween vibe.",
+drinks: "The Cursed Bar is for grown-up ghouls of legal drinking age. Bring your own beverages, keep alcohol away from little hands, and remember that water and snacks are powerful protective magic. Nobody has to drink alcohol to have fun. Arrange a sober ride before drinking, and never drive impaired.",
+respect: "Be respectful, be considerate, and keep the drama at home. We're here for spooky fun, not a live reunion episode of everybody's family problems.",
+cleanup: "Fake blood, cups, plates, wrappers, and other evidence go in the proper bins. The host is not accepting applications for unpaid crime-scene cleanup."
+};
+
+document.querySelectorAll('[data-rule]').forEach(button => {
+button.addEventListener('click', () => {
+const detail = document.getElementById('ruleDetail');
+const wasOpen = button.classList.contains('open');
+
+document.querySelectorAll('.rule-button').forEach(item => {
+item.classList.remove('open');
+});
+
+if (wasOpen) {
+detail.classList.remove('show');
+detail.textContent = 'Choose a rule. The house is waiting.';
+return;
 }
-},15000);
+
+button.classList.add('open');
+detail.textContent = houseRules[button.dataset.rule];
+detail.classList.add('show');
+});
+});
+
+/* RSVP MESSAGE BUILDER */
+let rsvpMessage = '';
+
+document.getElementById('rsvpForm').addEventListener('submit', event => {
+event.preventDefault();
+
+const name = document.getElementById('guestName').value.trim();
+const souls = document.getElementById('souls').value;
+const bringing =
+document.getElementById('bringing').value.trim() || 'TBD (a mysterious offering)';
+
+rsvpMessage =
+`🎃 A NIGHT AMONG SINNERS BASH 🎃
+Name: ${name}
+Souls attending: ${souls}
+Bringing: ${bringing}
+
+October 31, 2026 · 5:00 PM
+The Flerb Home
+
+I have been summoned. I accept my fate.`;
+
+document.getElementById('rsvpResult').textContent =
+'Your RSVP is ready, ' + name + '. Copy it below and send it to the host!';
+document.getElementById('copyRsvp').style.display = 'inline-block';
+});
+
+document.getElementById('copyRsvp').addEventListener('click', async () => {
+if (!rsvpMessage) return;
+
+try {
+await navigator.clipboard.writeText(rsvpMessage);
+document.getElementById('rsvpResult').textContent =
+'Copied! Now send that message to the host before the spirits get impatient.';
+} catch (error) {
+const area = document.createElement('textarea');
+area.value = rsvpMessage;
+area.style.position = 'fixed';
+area.style.opacity = '0';
+document.body.appendChild(area);
+area.select();
+const copied = document.execCommand('copy');
+area.remove();
+
+document.getElementById('rsvpResult').textContent = copied
+? 'Copied! Now send that message to the host.'
+: 'Copy this RSVP message manually: ' + rsvpMessage;
+}
+});
+
+/* CURSED BAR PORTAL INTERACTIONS */
+const barPortal = document.getElementById('barPortal');
+const portalResult = document.getElementById('portalResult');
+
+function openBarPortal() {
+barPortal.classList.add('show');
+document.body.style.overflow = 'hidden';
+}
+
+function closeBarPortal() {
+barPortal.classList.remove('show');
+document.body.style.overflow = '';
+}
+
+document.getElementById('openBarPortal').addEventListener('click', openBarPortal);
+document.getElementById('closeBarPortal').addEventListener('click', closeBarPortal);
+document.getElementById('leaveBarPortal').addEventListener('click', closeBarPortal);
+
+barPortal.addEventListener('click', event => {
+if (event.target === barPortal) closeBarPortal();
+});
+
+const portalMessages = {
+sip: "THE SPIRITS HAVE SPOKEN: If you're an adult of legal drinking age and choose to have a drink, take it at your own pace. Eat something, sip water too, and remember: the goal is a fun night, not a competition to see who can feel the worst tomorrow. Nobody needs to get drunk to belong here. 🩸",
+
+water: "THE HYDRATION HEX IS ACTIVATED. Water acquired. Snacks secured. Your mortal body thanks you. You can dance, laugh, haunt the snack table, and have a legendary night without alcohol. Honestly? Powerful behavior. 💚",
+
+chaos: "THE COVEN APPROVES. Your assignment is to enjoy the party, admire the costumes, laugh too loudly, and make memories you can actually remember. Drinks are optional; being a menace on the dance floor is a personal choice. 🦇",
+
+exit: "THE WISEST CURSE OF ALL: Decide how you're getting home before you start drinking. Choose a sober driver, taxi, rideshare, or somewhere safe to stay. Don't drive after drinking, and don't get in a car with an impaired driver. Make it home alive to tell the story. 🚪"
+};
+
+document.querySelectorAll('[data-portal-choice]').forEach(button => {
+button.addEventListener('click', () => {
+portalResult.textContent = portalMessages[button.dataset.portalChoice];
+});
+});
+
+document.addEventListener('keydown', event => {
+if (event.key === 'Escape') {
+closeBarPortal();
+popup.classList.remove('show');
+scare.classList.remove('show');
+}
+});
+
+/*
+HAUNTED HOUSE SOUNDSCAPE
+Original atmospheric audio: soft wind, low eerie drones,
+slow wavering tones, and occasional ghostly descents.
+*/
+let audioContext = null;
+let masterGain = null;
+let soundOn = false;
+let soundNodes = [];
+let ghostTimer = null;
+
+function rememberNode(node) {
+soundNodes.push(node);
+return node;
+}
+
+function makeDrone(frequency, volume, detune = 0) {
+const now = audioContext.currentTime;
+const oscillator = rememberNode(audioContext.createOscillator());
+const filter = audioContext.createBiquadFilter();
+const gain = audioContext.createGain();
+
+oscillator.type = 'sawtooth';
+oscillator.frequency.setValueAtTime(frequency, now);
+oscillator.detune.setValueAtTime(detune, now);
+
+filter.type = 'lowpass';
+filter.frequency.setValueAtTime(360, now);
+filter.Q.value = 0.7;
+
+gain.gain.setValueAtTime(volume, now);
+oscillator.connect(filter);
+filter.connect(gain);
+gain.connect(masterGain);
+oscillator.start();
+
+rememberNode(oscillator);
+rememberNode(gain);
+return { oscillator, gain, filter };
+}
+
+function makeWind() {
+const bufferLength = audioContext.sampleRate * 3;
+const buffer = audioContext.createBuffer(1, bufferLength, audioContext.sampleRate);
+const channel = buffer.getChannelData(0);
+
+for (let i = 0; i < bufferLength; i++) {
+channel[i] = (Math.random() * 2 - 1) * 0.65;
+}
+
+const source = rememberNode(audioContext.createBufferSource());
+source.buffer = buffer;
+source.loop = true;
+
+const filter = audioContext.createBiquadFilter();
+filter.type = 'lowpass';
+filter.frequency.value = 350;
+filter.Q.value = 0.5;
+
+const windGain = audioContext.createGain();
+windGain.gain.value = 0.035;
+
+const filterLfo = rememberNode(audioContext.createOscillator());
+const lfoGain = audioContext.createGain();
+
+filterLfo.type = 'sine';
+filterLfo.frequency.value = 0.075;
+lfoGain.gain.value = 190;
+
+filterLfo.connect(lfoGain);
+lfoGain.connect(filter.frequency);
+source.connect(filter);
+filter.connect(windGain);
+windGain.connect(masterGain);
+source.start();
+filterLfo.start();
+
+rememberNode(windGain);
+rememberNode(filter);
+rememberNode(lfoGain);
+}
+
+function makeGhostlySweep() {
+if (!soundOn || !audioContext || !masterGain) return;
+
+const now = audioContext.currentTime;
+const oscillator = rememberNode(audioContext.createOscillator());
+const gain = audioContext.createGain();
+const filter = audioContext.createBiquadFilter();
+
+oscillator.type = 'sine';
+oscillator.frequency.setValueAtTime(260, now);
+oscillator.frequency.exponentialRampToValueAtTime(65, now + 5.5);
+
+filter.type = 'lowpass';
+filter.frequency.setValueAtTime(500, now);
+
+gain.gain.setValueAtTime(0.0001, now);
+gain.gain.linearRampToValueAtTime(0.055, now + 1.6);
+gain.gain.linearRampToValueAtTime(0.0001, now + 5.8);
+
+oscillator.connect(filter);
+filter.connect(gain);
+gain.connect(masterGain);
+oscillator.start(now);
+oscillator.stop(now + 6);
+
+oscillator.onended = () => {
+try {
+oscillator.disconnect();
+filter.disconnect();
+gain.disconnect();
+} catch (error) {}
+};
+}
+
+function startHauntedSoundscape() {
+if (!soundOn || !audioContext || !masterGain) return;
+
+makeWind();
+makeDrone(55, 0.025, -3);
+makeDrone(58.27, 0.018, 2);
+makeDrone(82.41, 0.012, -5);
+
+const upperDrone = makeDrone(110, 0.012, 0);
+const upperLfo = rememberNode(audioContext.createOscillator());
+const upperLfoGain = audioContext.createGain();
+
+upperLfo.type = 'sine';
+upperLfo.frequency.value = 0.09;
+upperLfoGain.gain.value = 3.5;
+upperLfo.connect(upperLfoGain);
+upperLfoGain.connect(upperDrone.oscillator.detune);
+upperLfo.start();
+
+rememberNode(upperLfoGain);
+makeGhostlySweep();
+ghostTimer = setInterval(makeGhostlySweep, 11500);
+}
+
+function stopHauntedSoundscape() {
+soundOn = false;
+clearInterval(ghostTimer);
+ghostTimer = null;
+
+const button = document.getElementById('soundButton');
+const status = document.getElementById('soundStatus');
+
+if (masterGain && audioContext) {
+const now = audioContext.currentTime;
+masterGain.gain.cancelScheduledValues(now);
+masterGain.gain.setTargetAtTime(0.0001, now, 0.12);
+}
+
+const nodesToStop = soundNodes.slice();
+soundNodes = [];
+
+setTimeout(() => {
+nodesToStop.forEach(node => {
+try {
+if (typeof node.stop === 'function') node.stop();
+} catch (error) {}
+try {
+node.disconnect();
+} catch (error) {}
+});
+}, 350);
+
+button.textContent = 'Awaken the Haunted House';
+status.textContent = 'Sound off. The house is listening.';
+}
+
+document.getElementById('soundButton').addEventListener('click', async () => {
+const button = document.getElementById('soundButton');
+const status = document.getElementById('soundStatus');
+
+if (soundOn) {
+stopHauntedSoundscape();
+return;
+}
+
+try {
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+if (!AudioCtx) throw new Error('Audio is not supported by this browser.');
+
+if (!audioContext) {
+audioContext = new AudioCtx();
+masterGain = audioContext.createGain();
+masterGain.gain.value = 0.0001;
+masterGain.connect(audioContext.destination);
+}
+
+await audioContext.resume();
+
+soundOn = true;
+masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+masterGain.gain.setTargetAtTime(0.85, audioContext.currentTime, 0.8);
+
+button.textContent = 'Silence the Spirits';
+status.textContent =
+'The haunted house is awake. Lower your volume if the atmosphere gets too intense.';
+
+startHauntedSoundscape();
+} catch (error) {
+soundOn = false;
+button.textContent = 'Awaken the Haunted House';
+status.textContent =
+'Audio could not start. Try opening the site in Safari or Chrome and tapping again.';
+}
 });
 </script>
 </body>
