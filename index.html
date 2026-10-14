@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080203">
 <title>A Night Among Sinners Bash</title>
 
 <style>
 :root {
---black: #050202;
---red: #bd001c;
---blood: #ed001f;
---darkred: #390008;
---green: #aaff22;
---text: #e7d9d9;
+--black: #070304;
+--panel: #100608;
+--red: #b5001b;
+--bright-red: #f00025;
+--green: #a8ff19;
+--muted: #bca6aa;
+--line: #51111b;
 }
 
 * { box-sizing: border-box; }
@@ -21,9 +23,9 @@ html { scroll-behavior: smooth; }
 
 body {
 margin: 0;
-color: var(--text);
 background:
-radial-gradient(ellipse at 50% 0%, #350009 0%, #130205 35%, #030202 78%);
+radial-gradient(ellipse at 50% 0%, #360008 0%, #160306 35%, #070304 75%);
+color: #e9dfe0;
 font-family: Georgia, "Times New Roman", serif;
 overflow-x: hidden;
 }
@@ -32,13 +34,12 @@ body::before {
 content: "";
 position: fixed;
 inset: 0;
-z-index: 2;
+z-index: 20;
 pointer-events: none;
-opacity: .12;
+opacity: .1;
 background: repeating-linear-gradient(
 0deg,
-transparent 0,
-transparent 3px,
+transparent 0 3px,
 #000 4px
 );
 }
@@ -46,150 +47,239 @@ transparent 3px,
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
+button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+outline: 2px solid var(--green);
+outline-offset: 4px;
+}
+
 section {
-width: min(900px, calc(100% - 32px));
-margin: 0 auto;
-padding: 55px 0;
 position: relative;
 z-index: 3;
+width: min(900px, calc(100% - 32px));
+margin: auto;
+padding: 56px 0;
 }
 
 .hero {
-min-height: 96vh;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-padding: 55px 20px;
+min-height: 100svh;
 position: relative;
+display: grid;
+place-items: center;
 overflow: hidden;
 isolation: isolate;
+padding: 60px 18px 85px;
+text-align: center;
 }
 
 .hero::before {
 content: "";
 position: absolute;
+z-index: -2;
 inset: 0;
-z-index: -1;
 background:
-radial-gradient(ellipse at center, transparent 15%, #050202 90%),
-radial-gradient(ellipse at 50% 80%, #64000d33, transparent 55%);
+radial-gradient(ellipse at center, transparent 10%, #070304 82%),
+radial-gradient(ellipse at 50% 75%, #85000e33, transparent 55%);
+}
+
+.hero::after {
+content: "";
+position: absolute;
+z-index: -1;
+bottom: 0;
+left: -10%;
+width: 120%;
+height: 180px;
+background: radial-gradient(ellipse, #8c14252c, transparent 68%);
+filter: blur(22px);
 }
 
 .hero-content {
 position: relative;
-z-index: 4;
+z-index: 5;
 width: 100%;
 }
 
 .eyebrow {
-color: #a98a8d;
+color: #a88a8e;
 font: 10px Arial, sans-serif;
 letter-spacing: 5px;
 text-transform: uppercase;
 }
 
-h1 {
-margin: 28px auto;
-color: #c0001c;
-font-family: Impact, "Arial Black", fantasy;
-font-size: clamp(48px, 11vw, 100px);
-font-weight: 900;
-line-height: .88;
-letter-spacing: -4px;
+.hero-title {
+position: relative;
+margin: 30px auto 38px;
+max-width: 850px;
 text-transform: uppercase;
 transform: rotate(-2deg);
-filter: drop-shadow(0 10px 5px #000);
+filter: drop-shadow(0 12px 6px #000);
 }
 
-.title-line {
+.title-word {
 display: block;
 position: relative;
 width: fit-content;
 max-width: 100%;
-margin: 10px auto;
-font-family: Impact, "Arial Black", fantasy;
-font-style: italic;
+margin: 0 auto 9px;
+color: #b6001a;
+font-family: Impact, "Arial Black", sans-serif;
+font-size: clamp(55px, 12vw, 112px);
 font-weight: 900;
--webkit-text-stroke: 1px #5a000b;
-color: #bd001b;
+font-style: italic;
+line-height: .86;
+letter-spacing: -4px;
+-webkit-text-stroke: 1px #5a000a;
 text-shadow:
-3px 4px 0 #400008,
--1px -1px 0 #ed263a,
-0 0 12px #b00019,
-0 0 26px #71000d;
-transform: rotate(-1deg);
+2px 3px 0 #4b0008,
+4px 5px 0 #240004,
+0 0 12px #ad0019,
+0 0 28px #75000e;
 }
 
-.title-line:nth-child(2) {
-font-size: .67em;
+/* Uneven blood drops beneath each title word */
+.title-word::after {
+content: "";
+position: absolute;
+top: 80%;
+left: 2%;
+width: 96%;
+height: 45px;
+pointer-events: none;
+background:
+radial-gradient(ellipse at 7% 0%, #ec001f 0 4px, transparent 5px),
+radial-gradient(ellipse at 88% 0%, #c6001c 0 5px, transparent 6px),
+linear-gradient(180deg, #b90019, #78000e 80%, #4d0008);
+clip-path: polygon(
+0 0, 100% 0, 100% 12%,
+92% 12%, 91% 62%, 88% 100%, 85% 62%,
+84% 12%, 72% 12%, 71% 42%, 68% 76%,
+65% 42%, 64% 12%, 45% 12%,
+43% 70%, 40% 100%, 37% 70%,
+36% 12%, 20% 12%, 18% 46%,
+15% 76%, 12% 46%, 11% 12%, 0 12%
+);
+filter: drop-shadow(0 3px 3px #470008);
+}
+
+.title-word:nth-child(1) {
+transform: rotate(-2deg) translateX(-3%);
+}
+
+.title-word:nth-child(1)::after {
+height: 31px;
+}
+
+.title-word:nth-child(2) {
+font-size: clamp(36px, 8vw, 74px);
 letter-spacing: -2px;
-color: #8d0015;
-transform: rotate(1.5deg);
+color: #970012;
+transform: rotate(1deg) translateX(2%);
+margin-top: 10px;
 }
 
-.title-line:nth-child(3) {
-transform: rotate(-2deg);
+.title-word:nth-child(2)::after {
+height: 38px;
+}
+
+.title-word:nth-child(3) {
+font-size: clamp(56px, 11vw, 105px);
+transform: rotate(-1deg) translateX(-1%);
+margin-top: 8px;
+}
+
+.title-word:nth-child(3)::after {
+height: 32px;
+}
+
+.blood-drop {
+position: absolute;
+z-index: 2;
+width: 7px;
+height: 22px;
+border-radius: 50% 50% 60% 60%;
+background: linear-gradient(90deg, #72000c, #f00025 45%, #8b0012);
+box-shadow: 0 2px 4px #240004;
+pointer-events: none;
+animation: bloodStretch 3.5s ease-in-out infinite alternate;
+}
+
+.drop-one { top: 48%; left: 9%; height: 25px; }
+.drop-two { top: 55%; right: 12%; height: 32px; animation-delay: 1s; }
+.drop-three { top: 72%; left: 18%; height: 17px; animation-delay: 1.7s; }
+
+@keyframes bloodStretch {
+from { transform: scaleY(.85); }
+to { transform: scaleY(1.2); }
+}
+
+/* Visible acid-green date with chunky cartoon slime */
+.date-wrap {
+position: relative;
+display: inline-block;
+margin: 40px auto 30px;
+isolation: isolate;
 }
 
 .date-slime {
 position: relative;
-display: inline-block;
-margin: 16px auto 46px;
-padding: 13px 21px;
-background: linear-gradient(180deg, #1a2805, #080e00);
-border: 1px solid #537d0c;
-color: #bdff51;
+z-index: 2;
+padding: 14px 23px;
+border: 2px solid #80bc0a;
+background: linear-gradient(180deg, #263d00, #102000);
+color: #d4ff82;
 font: 900 14px Impact, "Arial Black", sans-serif;
 letter-spacing: 3px;
 text-transform: uppercase;
-text-shadow: 0 0 6px #9bff00, 0 0 15px #65a800;
-box-shadow: 0 0 18px #75a90022, inset 0 0 14px #8cff001c;
+text-shadow: 0 0 7px #8cff00, 0 0 15px #5c9900;
+box-shadow: 0 0 18px #7dba2444, inset 0 0 15px #9cff0022;
 }
 
-/* Slime forms uneven hanging drips beneath the date */
-.slime-drips {
+.slime-bottom {
 position: absolute;
-top: 95%;
+z-index: 1;
+top: calc(100% - 2px);
 left: 0;
 width: 100%;
-height: 42px;
+height: 50px;
 pointer-events: none;
 }
 
-.slime-drips i {
+.slime-bottom i {
 position: absolute;
-display: block;
 top: 0;
-width: 8px;
-border-radius: 0 0 8px 8px;
+display: block;
+width: 11px;
+height: 28px;
+border-radius: 0 0 9px 9px;
 background: linear-gradient(
 90deg,
-#538800 0%,
-#aaff24 35%,
-#d4ff87 48%,
-#79b900 75%,
-#436d00 100%
+#548800 0%,
+#a5ee1a 24%,
+#d8ff9c 42%,
+#91d500 70%,
+#4d8000 100%
 );
-box-shadow: 0 2px 5px #7dbd00aa, 0 0 5px #aaff2266;
-animation: slimeWobble 3s ease-in-out infinite alternate;
+box-shadow: 1px 3px 4px #0008, 0 0 7px #8cff0077;
+transform-origin: top;
+animation: slimeWiggle 2.6s ease-in-out infinite alternate;
 }
 
-.slime-drips i:nth-child(1) { left: 9%; height: 15px; width: 6px; }
-.slime-drips i:nth-child(2) { left: 25%; height: 32px; width: 9px; animation-delay: .7s; }
-.slime-drips i:nth-child(3) { left: 42%; height: 20px; width: 7px; animation-delay: 1.2s; }
-.slime-drips i:nth-child(4) { left: 66%; height: 38px; width: 8px; animation-delay: .3s; }
-.slime-drips i:nth-child(5) { left: 86%; height: 24px; width: 6px; animation-delay: 1.6s; }
+.slime-bottom i:nth-child(1) { left: 8%; height: 18px; width: 8px; }
+.slime-bottom i:nth-child(2) { left: 26%; height: 37px; width: 12px; animation-delay: .6s; }
+.slime-bottom i:nth-child(3) { left: 45%; height: 25px; width: 9px; animation-delay: 1.1s; }
+.slime-bottom i:nth-child(4) { left: 70%; height: 43px; width: 12px; animation-delay: .3s; }
+.slime-bottom i:nth-child(5) { left: 89%; height: 21px; width: 8px; animation-delay: 1.4s; }
 
-@keyframes slimeWobble {
-from { transform: scaleY(.85); }
-to { transform: scaleY(1.1); }
+@keyframes slimeWiggle {
+from { transform: scaleY(.86); }
+to { transform: scaleY(1.08); }
 }
 
 .tagline {
-max-width: 540px;
-margin: 0 auto 27px;
-color: #c6b2b5;
+max-width: 530px;
+margin: 5px auto 27px;
+color: #c7b5b7;
 font-size: 17px;
 line-height: 1.8;
 }
@@ -197,37 +287,37 @@ line-height: 1.8;
 .primary-btn, .dark-btn {
 display: inline-block;
 padding: 14px 22px;
-border: 1px solid #a9001a;
+border: 1px solid #aa001a;
 border-radius: 0;
-color: #fff0f0;
-background: linear-gradient(135deg, #8f0013, #300006);
+background: linear-gradient(135deg, #9a0016, #310006);
+color: #fff1f2;
 font: 11px Arial, sans-serif;
 letter-spacing: 2px;
 text-transform: uppercase;
-box-shadow: 0 0 18px #79000d44;
+box-shadow: 0 0 17px #7a001a44;
 transition: .2s;
 }
 
 .primary-btn:hover, .dark-btn:hover {
-background: #c00020;
-box-shadow: 0 0 25px #e0002066;
+background: #c50020;
+box-shadow: 0 0 26px #e0002066;
 transform: translateY(-2px);
 }
 
-.sound-btn {
-margin-top: 18px;
-padding: 12px 17px;
-border: 1px solid #58232b;
-color: #e7c7cb;
-background: #090506;
+.sound-btn, .utility-btn {
+margin-top: 17px;
+padding: 12px 16px;
+border: 1px solid #60222b;
+background: #0b0507;
+color: #e8c8cc;
 font: 10px Arial, sans-serif;
 letter-spacing: 2px;
 text-transform: uppercase;
 }
 
 .sound-note {
-margin-top: 10px;
-color: #927a7e;
+margin-top: 9px;
+color: #947c80;
 font: 11px Arial, sans-serif;
 }
 
@@ -243,7 +333,7 @@ letter-spacing: 1px;
 
 .section-intro {
 max-width: 650px;
-color: #bca7aa;
+color: var(--muted);
 line-height: 1.8;
 }
 
@@ -254,26 +344,22 @@ background: linear-gradient(90deg, transparent, #8c0017, transparent);
 }
 
 .invite-card {
-position: relative;
 padding: clamp(22px, 5vw, 42px);
-background: linear-gradient(145deg, #190407, #080506 75%);
 border: 1px solid #64101e;
+background: linear-gradient(145deg, #190407, #080506 75%);
 box-shadow: inset 0 0 35px #6e001522, 0 12px 40px #000;
 }
 
 .invite-card::before {
-content: "OFFICIAL SUMMONS // DO NOT IGNORE";
+content: "OFFICIAL SUMMONS // OCTOBER 31";
 display: block;
 margin-bottom: 22px;
-color: #a90019;
+color: #b4001c;
 font: 10px Arial, sans-serif;
 letter-spacing: 3px;
 }
 
-.invite-card p {
-color: #d1bfc0;
-line-height: 1.9;
-}
+.invite-card p { color: #d1bfc0; line-height: 1.9; }
 
 .event-details {
 display: grid;
@@ -307,12 +393,10 @@ margin-top: 28px;
 
 .door {
 position: relative;
-min-height: 245px;
+min-height: 240px;
 overflow: hidden;
 padding: 18px 12px;
-background:
-linear-gradient(90deg, #070304, #1b060a 48%, #070304),
-#0b0506;
+background: linear-gradient(90deg, #080304, #1b060a 48%, #070304);
 border: 2px solid #4a1019;
 color: #d8bfc1;
 text-align: center;
@@ -352,8 +436,8 @@ display: block;
 position: relative;
 z-index: 1;
 margin: 14px 0 22px;
-color: #8e0016;
-font-size: 36px;
+color: #b0001a;
+font-size: 34px;
 text-shadow: 0 0 14px #a00020;
 }
 
@@ -394,10 +478,7 @@ color: #d6bfc0;
 line-height: 1.9;
 }
 
-.door-message.show {
-display: block;
-animation: appear .4s;
-}
+.door-message.show { display: block; animation: appear .4s; }
 
 @keyframes appear {
 from { opacity: 0; transform: translateY(8px); }
@@ -528,25 +609,7 @@ letter-spacing: 3px;
 text-align: center;
 }
 
-.fog {
-position: fixed;
-z-index: 0;
-pointer-events: none;
-bottom: -90px;
-left: -20%;
-width: 140%;
-height: 240px;
-background: radial-gradient(ellipse, #8b182833, transparent 68%);
-filter: blur(25px);
-animation: fogMove 13s ease-in-out infinite alternate;
-}
-
-@keyframes fogMove {
-from { transform: translateX(-5%) scaleX(.9); }
-to { transform: translateX(5%) scaleX(1.15); }
-}
-
-/* Floating ghost silhouettes, made with CSS instead of emojis */
+/* Foggy ghost silhouettes built without emoji characters */
 .ghost {
 position: fixed;
 z-index: 1;
@@ -556,12 +619,12 @@ pointer-events: none;
 opacity: 0;
 border-radius: 50% 50% 25% 25%;
 background:
-radial-gradient(ellipse at 34% 37%, #171316 0 5px, transparent 6px),
-radial-gradient(ellipse at 66% 37%, #171316 0 5px, transparent 6px),
-radial-gradient(ellipse at 50% 53%, #2b1b20 0 4px, transparent 5px),
+radial-gradient(ellipse at 34% 37%, #21171a 0 5px, transparent 6px),
+radial-gradient(ellipse at 66% 37%, #21171a 0 5px, transparent 6px),
+radial-gradient(ellipse at 50% 53%, #291b1f 0 4px, transparent 5px),
 radial-gradient(ellipse at 50% 36%, #f2eded 0%, #d3cdcf 40%, #999094 67%, #6a6064 75%, transparent 77%);
-filter: drop-shadow(0 0 14px #d8cdd144);
-animation: ghostFloat 21s linear infinite;
+filter: drop-shadow(0 0 14px #d8cdd144) blur(.3px);
+animation: ghostFloat 24s linear infinite;
 }
 
 .ghost::before {
@@ -591,31 +654,22 @@ top: 58%;
 left: -120px;
 width: 53px;
 height: 76px;
-animation-delay: 7s;
+animation-delay: 8s;
 }
 .ghost.three {
 top: 39%;
 left: -120px;
 width: 65px;
 height: 91px;
-animation-delay: 14s;
+animation-delay: 16s;
 }
 
 @keyframes ghostFloat {
-0% {
-transform: translateX(-5vw) translateY(0) rotate(-8deg);
-opacity: 0;
-}
+0% { transform: translateX(-5vw) translateY(0) rotate(-8deg); opacity: 0; }
 12% { opacity: .32; }
-45% {
-transform: translateX(52vw) translateY(-48px) rotate(8deg);
-opacity: .2;
-}
+45% { transform: translateX(52vw) translateY(-48px) rotate(8deg); opacity: .2; }
 80% { opacity: .28; }
-100% {
-transform: translateX(120vw) translateY(24px) rotate(-6deg);
-opacity: 0;
-}
+100% { transform: translateX(120vw) translateY(24px) rotate(-6deg); opacity: 0; }
 }
 
 #scare {
@@ -630,10 +684,7 @@ background: #050000;
 text-align: center;
 }
 
-#scare.show {
-display: flex;
-animation: scareFlash .18s 3;
-}
+#scare.show { display: flex; animation: scareFlash .18s 3; }
 
 .scare-text {
 color: #e00020;
@@ -654,10 +705,9 @@ letter-spacing: 4px;
 }
 
 @media (max-width: 480px) {
-.title-line { letter-spacing: -2px; }
-.title-line:nth-child(2) { letter-spacing: -1px; }
+.title-word { letter-spacing: -2px; }
+.title-word:nth-child(2) { letter-spacing: -1px; }
 .date-slime { font-size: 12px; letter-spacing: 2px; }
-.ghost { transform: scale(.8); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -668,7 +718,6 @@ letter-spacing: 4px;
 
 <body>
 
-<div class="fog"></div>
 <div class="ghost one"></div>
 <div class="ghost two"></div>
 <div class="ghost three"></div>
@@ -677,23 +726,25 @@ letter-spacing: 4px;
 <div class="hero-content">
 <div class="eyebrow">You have been warned</div>
 
-<h1>
-<span class="title-line">A Night</span>
-<span class="title-line">Among Sinners</span>
-<span class="title-line">Bash</span>
+<h1 class="hero-title">
+<span class="title-word">A Night</span>
+<span class="title-word">Among Sinners</span>
+<span class="title-word">Bash</span>
+<i class="blood-drop drop-one"></i>
+<i class="blood-drop drop-two"></i>
+<i class="blood-drop drop-three"></i>
 </h1>
 
-<div class="date-slime">
-October 31 · 5 PM
-<span class="slime-drips" aria-hidden="true">
+<div class="date-wrap">
+<div class="date-slime">October 31 · 5 PM</div>
+<div class="slime-bottom" aria-hidden="true">
 <i></i><i></i><i></i><i></i><i></i>
-</span>
+</div>
 </div>
 
 <p class="tagline">
 One night. Questionable decisions.
 A suspicious number of monsters.
-<br><em>Something is waiting for you.</em>
 </p>
 
 <button class="primary-btn"
@@ -703,11 +754,13 @@ Enter if you dare
 
 <br>
 <button class="sound-btn" id="soundButton" onclick="toggleMusic()">
-▶ Play the haunted soundtrack
+♫ Awaken the darkness
 </button>
-<div class="sound-note">
-Turn up your volume. Headphones recommended.
-</div>
+<div class="sound-note">An original eerie soundtrack · Tap to start or stop</div>
+<br>
+<button class="utility-btn" id="lightsButton" onclick="toggleLights()">
+Dim the lights
+</button>
 </div>
 </header>
 
@@ -718,14 +771,13 @@ Turn up your volume. Headphones recommended.
 
 <p>
 The night is dark. The doors are open.
-And whatever happens after sunset is between you
-and whatever follows you home.
+Join us for a Halloween night of costumes, creepy surprises,
+good food, and questionable decisions.
 </p>
 
 <p>
-Come dressed for the occasion, bring your appetite,
-and prepare for a Halloween night full of creepy surprises,
-questionable luck, good food, and things that go bump in the night.
+Come dressed for the occasion, bring something for the table,
+and prepare to spend a night with the sinners.
 </p>
 
 <div class="divider"></div>
@@ -736,7 +788,7 @@ questionable luck, good food, and things that go bump in the night.
 <span>Saturday, October 31, 2026</span>
 </div>
 <div class="detail">
-<strong>WHEN THE SUN SETS</strong>
+<strong>WHEN</strong>
 <span>5:00 PM</span>
 </div>
 <div class="detail">
@@ -752,9 +804,8 @@ questionable luck, good food, and things that go bump in the night.
 <div class="divider"></div>
 
 <p>
-<strong style="color:#d0001e">Costumes encouraged.</strong>
-Your presence is requested. Your good behavior is expected.
-Your soul? We'll see about that.
+<strong style="color:#e00020">Costumes encouraged.</strong>
+Good vibes required. Bad behavior will be remembered.
 </p>
 
 <button class="primary-btn"
@@ -769,7 +820,7 @@ Answer the summons
 <h2>Which Door Will You Open?</h2>
 <p class="section-intro">
 Every door leads somewhere. Not every destination wants you there.
-Choose carefully. Or don't. That makes it more interesting.
+Pick one to uncover what lies behind it.
 </p>
 
 <div class="door-grid">
@@ -819,9 +870,8 @@ Choose carefully. Or don't. That makes it more interesting.
 <div class="secret-box">
 <div class="secret-label">CLASSIFIED // DO NOT OPEN</div>
 <p>
-Something has been left here for the curious.
-Most people will scroll right past it.
-The ones who don't may regret it.
+Some things are hidden for a reason.
+If you're curious enough to look, press below.
 </p>
 
 <button class="dark-btn" onclick="revealSecret()">
@@ -829,17 +879,14 @@ Unseal the message
 </button>
 
 <div class="secret-content" id="secretContent">
-<strong style="color:#df001f">YOU WEREN'T SUPPOSED TO FIND THIS.</strong>
+<strong style="color:#ed001f">YOU WEREN'T SUPPOSED TO FIND THIS.</strong>
 <p>
 Count the doors. Remember the date. Watch the shadows.
-And if you hear your name whispered when nobody is near,
-whatever you do...
+If you hear your name whispered when nobody is near...
 </p>
-<p style="color:#e00020;font-size:20px">DON'T ANSWER.</p>
-<p>
-Some secrets are better left buried.
-This one is coming to the party.
-</p>
+<p style="color:#ed001f;font-size:20px">DON'T ANSWER.</p>
+<p>Some secrets are better left buried. This one is coming to the party.</p>
+<button class="dark-btn" onclick="triggerScare()">Look behind you</button>
 </div>
 </div>
 </section>
@@ -850,8 +897,8 @@ This one is coming to the party.
 
 <div class="luck-card">
 <p>
-The spirits are listening. Your luck has been noticed.
-Press the button and find out what the night has decided for you.
+The spirits are listening. Press the button and see what the night
+has decided for you. You can try your luck more than once.
 </p>
 
 <button class="primary-btn" onclick="testLuck()">Tempt fate</button>
@@ -866,7 +913,7 @@ Press the button and find out what the night has decided for you.
 <div class="rsvp-panel">
 <p class="section-intro">
 Tell us who's coming and what you're bringing.
-The guest list must be accounted for before the night begins.
+Every soul must be accounted for.
 </p>
 
 <form id="rsvpForm">
@@ -894,15 +941,14 @@ placeholder="Who dares to attend?" required>
 <div>
 <label for="bringing">What Are You Bringing?</label>
 <textarea id="bringing" name="bringing"
-placeholder="Food, drinks, dessert... or a mysterious offering?"
-required></textarea>
+placeholder="Food, drinks, dessert... your offering?" required></textarea>
 </div>
 
 <button class="primary-btn" type="submit">Submit Your Offering</button>
 
 <p class="form-note">
-RSVP preview only: connect a form service to collect and save
-actual responses before sharing this website.
+This form currently shows a preview only. Connect a form service
+before sharing the website to collect actual RSVPs.
 </p>
 
 <div class="form-result" id="formResult" aria-live="polite"></div>
@@ -923,7 +969,7 @@ A NIGHT AMONG SINNERS BASH · OCTOBER 31, 2026
 <p>WHAT HAPPENS IN THE DARK STAYS IN THE DARK.</p>
 </footer>
 
-<div id="scare" role="dialog" aria-modal="true">
+<div id="scare" role="dialog" aria-modal="true" aria-label="Scare screen">
 <div class="scare-text">
 IT SEES YOU.
 <p>YOU SHOULD NOT HAVE OPENED THAT.</p>
@@ -934,35 +980,35 @@ IT SEES YOU.
 <script>
 const doorMessages = {
 red: `
-<strong style="color:#e00020">THE RED ROOM IS OPEN.</strong><br>
+<strong style="color:#ed001f">THE RED ROOM IS OPEN.</strong><br>
 The floorboards creak, even when nobody moves.
 A chair is waiting for you. There is already someone sitting in it.
 <br><br>Maybe choose another door.
 `,
 guest: `
-<strong style="color:#e00020">THE LAST GUEST HAS ARRIVED.</strong><br>
+<strong style="color:#ed001f">THE LAST GUEST HAS ARRIVED.</strong><br>
 The headcount is wrong. One more person is here than you invited.
 Nobody remembers opening the door for them.
 <br><br>Check the guest list carefully.
 `,
 mirror: `
-<strong style="color:#e00020">DON'T LOOK TWICE.</strong><br>
+<strong style="color:#ed001f">DON'T LOOK TWICE.</strong><br>
 Your reflection smiled before you did.
 You turned around. Nothing was there.
 When you looked back, the reflection was still smiling.
 <br><br>Stop looking.
 `,
 basement: `
-<strong style="color:#e00020">SOMETHING IS DOWNSTAIRS.</strong><br>
+<strong style="color:#ed001f">SOMETHING IS DOWNSTAIRS.</strong><br>
 You hear three knocks from beneath the floor.
 Then three more. Then a voice asking why you left it alone.
 <br><br>There is no reason to go down there.
 `,
 potluck: `
-<strong style="color:#a5d46b">THE POTLUCK IS OPEN.</strong><br>
-Every guest must bring something to share: a dish, dessert,
-snack, or drink. The table will be full and the guests will be fed.
-<br><br>Bring something good, and label any common allergens.
+<strong style="color:#baff62">THE POTLUCK IS OPEN.</strong><br>
+Every guest brings something to share: a dish, dessert, snack, or drink.
+The table will be full and the guests will be fed.
+<br><br>Bring something good, and label common allergens.
 Even monsters have dietary requirements.
 `
 };
@@ -984,21 +1030,44 @@ secret.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
 const fates = [
 "BAD OMEN. Someone will say your name when nobody is looking. Probably.",
-"THE CURSE IS DELAYED. You may enjoy one peaceful snack before chaos begins.",
+"THE CURSE IS DELAYED. Enjoy one peaceful snack before chaos begins.",
 "THE SPIRITS APPROVE. Your costume will be remembered. For better or worse.",
 "UNLUCKY. You have been chosen to help clean up. The spirits are demanding.",
 "A WARNING. Don't be the first to leave. Don't ask why.",
 "LUCKY SOUL. You get first pick at the food table. Use this power wisely.",
 "THE SHADOW FOLLOWS. It might just be someone in a costume. Probably.",
-"FATE HAS SPOKEN. Bring something delicious. The potluck spirits are hungry."
+"FATE HAS SPOKEN. Bring something delicious. The potluck spirits are hungry.",
+"THE HOUSE HAS CHOSEN YOU. You are officially in charge of the next song.",
+"A SMALL VICTORY. You have escaped the curse. For the next ten minutes."
 ];
 
 function testLuck() {
 const result = document.getElementById("luckResult");
-result.textContent = fates[Math.floor(Math.random() * fates.length)];
+const fate = fates[Math.floor(Math.random() * fates.length)];
+result.textContent = fate;
 result.classList.add("show");
 }
 
+/* Lights-off effect can be toggled on and off */
+let lightsDimmed = false;
+
+function toggleLights() {
+lightsDimmed = !lightsDimmed;
+document.body.style.filter = lightsDimmed ? "brightness(.55)" : "";
+document.getElementById("lightsButton").textContent =
+lightsDimmed ? "Restore the lights" : "Dim the lights";
+}
+
+/* Scare is optional and only runs when someone clicks for it */
+function triggerScare() {
+document.getElementById("scare").classList.add("show");
+}
+
+function closeScare() {
+document.getElementById("scare").classList.remove("show");
+}
+
+/* RSVP preview. This does not transmit or save responses. */
 document.getElementById("rsvpForm").addEventListener("submit", function(event) {
 event.preventDefault();
 
@@ -1010,7 +1079,7 @@ const result = document.getElementById("formResult");
 result.replaceChildren();
 
 const heading = document.createElement("strong");
-heading.style.color = "#e00020";
+heading.style.color = "#ed001f";
 heading.textContent = "YOUR SUMMONS HAS BEEN PREPARED.";
 result.appendChild(heading);
 
@@ -1025,24 +1094,29 @@ result.appendChild(line);
 });
 
 const note = document.createElement("p");
-note.textContent = "This is only a preview. Your RSVP has NOT been sent to the host yet.";
+note.textContent = "Preview only: your RSVP has NOT been sent to the host.";
 result.appendChild(note);
 result.classList.add("show");
 });
 
-/* Original generated synth atmosphere; not the actual Rockwell recording. */
+/*
+Original eerie ambient soundtrack.
+Smooth sine/triangle tones and slow bell notes, no harsh noise oscillator.
+It is not the Rockwell recording.
+*/
 let audioContext = null;
 let musicNodes = [];
 let musicPlaying = false;
 let musicTimer = null;
 let musicStep = 0;
+let masterGain = null;
 
 async function toggleMusic() {
 const button = document.getElementById("soundButton");
 
 if (musicPlaying) {
 stopMusic();
-button.textContent = "▶ Play the haunted soundtrack";
+button.textContent = "♫ Awaken the darkness";
 return;
 }
 
@@ -1055,7 +1129,10 @@ return;
 }
 
 if (!audioContext) audioContext = new AudioCtx();
-if (audioContext.state === "suspended") await audioContext.resume();
+
+if (audioContext.state === "suspended") {
+await audioContext.resume();
+}
 
 if (audioContext.state !== "running") {
 button.textContent = "Tap again to enable sound";
@@ -1064,101 +1141,120 @@ return;
 
 musicPlaying = true;
 musicStep = 0;
-button.textContent = "■ Stop the haunted soundtrack";
+button.textContent = "■ Silence the darkness";
 
-startDrone();
-playBeat();
-musicTimer = setInterval(playBeat, 650);
+startAmbient();
+playBell();
+musicTimer = setInterval(playBell, 2400);
 } catch (error) {
 button.textContent = "Tap to try the sound again";
 console.error("Audio could not start:", error);
 }
 }
 
-function startDrone() {
+function startAmbient() {
 const ctx = audioContext;
 const now = ctx.currentTime;
 
-const master = ctx.createGain();
-master.gain.setValueAtTime(0.0001, now);
-master.gain.exponentialRampToValueAtTime(0.32, now + 1.2);
-master.connect(ctx.destination);
-musicNodes.push(master);
+masterGain = ctx.createGain();
+masterGain.gain.setValueAtTime(0.0001, now);
+masterGain.gain.exponentialRampToValueAtTime(0.18, now + 2.5);
+masterGain.connect(ctx.destination);
+musicNodes.push(masterGain);
 
-const filter = ctx.createBiquadFilter();
-filter.type = "lowpass";
-filter.frequency.value = 900;
-filter.connect(master);
+const lowFilter = ctx.createBiquadFilter();
+lowFilter.type = "lowpass";
+lowFilter.frequency.value = 450;
+lowFilter.connect(masterGain);
 
-const bass = ctx.createOscillator();
-bass.type = "sawtooth";
-bass.frequency.value = 55;
+const lowTone = ctx.createOscillator();
+lowTone.type = "sine";
+lowTone.frequency.value = 55;
 
-const bassGain = ctx.createGain();
-bassGain.gain.value = 0.28;
-bass.connect(bassGain);
-bassGain.connect(filter);
-bass.start();
+const lowGain = ctx.createGain();
+lowGain.gain.value = 0.35;
+lowTone.connect(lowGain);
+lowGain.connect(lowFilter);
+lowTone.start();
 
 const pad = ctx.createOscillator();
 pad.type = "triangle";
 pad.frequency.value = 110;
 
 const padGain = ctx.createGain();
-padGain.gain.value = 0.15;
+padGain.gain.value = 0.16;
 pad.connect(padGain);
-padGain.connect(filter);
+padGain.connect(masterGain);
 pad.start();
 
-const eerie = ctx.createOscillator();
-eerie.type = "sine";
-eerie.frequency.value = 164.81;
+const highPad = ctx.createOscillator();
+highPad.type = "sine";
+highPad.frequency.value = 164.81;
 
-const eerieGain = ctx.createGain();
-eerieGain.gain.value = 0.07;
-eerie.connect(eerieGain);
-eerieGain.connect(master);
-eerie.start();
+const highGain = ctx.createGain();
+highGain.gain.value = 0.045;
+highPad.connect(highGain);
+highGain.connect(masterGain);
+highPad.start();
 
-musicNodes.push(bass, bassGain, pad, padGain, eerie, eerieGain, filter);
+/* Slow pitch movement adds an eerie, ghostly feeling */
+const lfo = ctx.createOscillator();
+lfo.type = "sine";
+lfo.frequency.value = 0.08;
+
+const lfoGain = ctx.createGain();
+lfoGain.gain.value = 3;
+lfo.connect(lfoGain);
+lfoGain.connect(pad.frequency);
+lfo.start();
+
+musicNodes.push(
+lowFilter, lowTone, lowGain, pad, padGain,
+highPad, highGain, lfo, lfoGain
+);
 }
 
-function playBeat() {
+function playBell() {
 if (!musicPlaying || !audioContext) return;
 
 const ctx = audioContext;
 const now = ctx.currentTime;
-const notes = [55, 55, 65.41, 55, 73.42, 65.41, 55, 82.41];
+const notes = [220, 261.63, 196, 293.66, 220, 164.81, 246.94, 196];
 const freq = notes[musicStep % notes.length];
 musicStep++;
 
-const osc = ctx.createOscillator();
-const gain = ctx.createGain();
-const filter = ctx.createBiquadFilter();
+const bell = ctx.createOscillator();
+const bellGain = ctx.createGain();
+const bellFilter = ctx.createBiquadFilter();
 
-osc.type = "square";
-osc.frequency.setValueAtTime(freq, now);
-osc.frequency.exponentialRampToValueAtTime(freq * 0.96, now + 0.22);
+bell.type = "sine";
+bell.frequency.setValueAtTime(freq, now);
+bell.frequency.exponentialRampToValueAtTime(freq * 0.997, now + 2.2);
 
-filter.type = "lowpass";
-filter.frequency.value = 500;
+bellFilter.type = "lowpass";
+bellFilter.frequency.value = 1400;
 
-gain.gain.setValueAtTime(0.0001, now);
-gain.gain.exponentialRampToValueAtTime(0.2, now + 0.025);
-gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+bellGain.gain.setValueAtTime(0.0001, now);
+bellGain.gain.exponentialRampToValueAtTime(0.075, now + 0.08);
+bellGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.5);
 
-osc.connect(filter);
-filter.connect(gain);
-gain.connect(ctx.destination);
-osc.start(now);
-osc.stop(now + 0.38);
+bell.connect(bellFilter);
+bellFilter.connect(bellGain);
+bellGain.connect(masterGain);
 
-musicNodes.push(osc, gain, filter);
-if (musicNodes.length > 100) musicNodes = musicNodes.slice(-30);
+bell.start(now);
+bell.stop(now + 2.6);
+
+musicNodes.push(bell, bellGain, bellFilter);
+
+if (musicNodes.length > 90) {
+musicNodes = musicNodes.slice(-24);
+}
 }
 
 function stopMusic() {
 musicPlaying = false;
+
 if (musicTimer) {
 clearInterval(musicTimer);
 musicTimer = null;
@@ -1172,13 +1268,9 @@ if (typeof node.disconnect === "function") node.disconnect();
 });
 
 musicNodes = [];
-}
-
-function closeScare() {
-document.getElementById("scare").classList.remove("show");
+masterGain = null;
 }
 </script>
 
 </body>
 </html>
-
