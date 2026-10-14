@@ -2,531 +2,494 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A Night Among Sinners Bash</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
-:root {
---blood: #b10e20;
---darkblood: #5b0711;
---green: #668b42;
---black: #080707;
---paper: #e8d8c2;
---muted: #b8a99a;
-}
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-margin: 0;
-color: var(--paper);
-background:
-radial-gradient(ellipse at top, #30080d 0%, transparent 55%),
-radial-gradient(ellipse at bottom, #13200d 0%, transparent 50%),
-var(--black);
-font-family: "Special Elite", monospace;
-text-align: center;
-overflow-x: hidden;
-}
-
-body::before {
-content: "";
-position: fixed;
-inset: 0;
-z-index: -1;
-pointer-events: none;
-opacity: .13;
-background-image: repeating-linear-gradient(
-0deg,
-transparent,
-transparent 3px,
-#ffffff 4px,
-transparent 5px
-);
-}
-
-body.lights-out {
-filter: brightness(.48);
-}
-
-body.lights-out .jumpscare,
-body.lights-out .popup,
-body.lights-out .modal {
-filter: brightness(2);
-}
-
-h1, h2, h3 {
-font-family: "Creepster", cursive;
-font-weight: normal;
-letter-spacing: 2px;
-}
-
-h1 {
-color: #e52a38;
-font-size: clamp(3rem, 9vw, 6.5rem);
-text-shadow: 4px 4px 0 #31050a, 0 0 28px #b10e20;
-line-height: 1;
-margin: 12px 0;
-}
-
-h2 {
-color: #e02b3b;
-font-size: clamp(2rem, 6vw, 3.4rem);
-margin: 0 0 16px;
-}
-
-h3 {
-color: #d7b78b;
-font-size: 1.8rem;
-}
-
-p { line-height: 1.7; }
-
-a { color: #e6b5a4; }
-
-button, input, select, textarea {
-font: inherit;
-}
-
-button {
-color: var(--paper);
-background: #30070d;
-border: 1px solid #a51a2a;
-padding: 12px 18px;
-cursor: pointer;
-transition: .2s ease;
-margin: 5px;
-}
-
-button:hover {
-background: #80101d;
-border-color: #ff5968;
-transform: translateY(-2px);
-box-shadow: 0 0 18px #8d1124;
-}
-
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-outline: 2px solid #e4bd8a;
-outline-offset: 3px;
-}
-
-header {
-min-height: 95vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 60px 18px;
-position: relative;
-overflow: hidden;
-}
-
-.eyebrow {
-color: #a9c28d;
-letter-spacing: 4px;
-text-transform: uppercase;
-font-size: .85rem;
-}
-
-.subtitle {
-max-width: 700px;
-font-size: clamp(1rem, 3vw, 1.35rem);
-}
-
-.warning {
-color: #e8a2a2;
-font-size: .9rem;
-max-width: 600px;
-}
-
-.skull {
-font-size: 3rem;
-animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-0%,100% { transform: translateY(0) rotate(-3deg); }
-50% { transform: translateY(-12px) rotate(3deg); }
-}
-
-@keyframes flicker {
-0%, 18%, 22%, 55%, 100% { opacity: 1; }
-20%, 54% { opacity: .72; }
-56% { opacity: .9; }
-}
-
-@keyframes ghost {
-0% { transform: translate(0, 0); }
-50% { transform: translate(15px, -22px); }
-100% { transform: translate(0, 0); }
-}
-
-.ghost {
-position: fixed;
-pointer-events: none;
-z-index: 2;
-opacity: .15;
-font-size: 2.5rem;
-animation: ghost 7s ease-in-out infinite;
-}
-
-.ghost.one { top: 18%; left: 3%; }
-.ghost.two { top: 60%; right: 4%; animation-delay: -3s; }
-.ghost.three { bottom: 8%; left: 8%; animation-delay: -5s; }
-
-nav {
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-gap: 6px;
-padding: 12px;
-background: rgba(0,0,0,.72);
-border-top: 1px solid #451019;
-border-bottom: 1px solid #451019;
-position: sticky;
-top: 0;
-z-index: 10;
-backdrop-filter: blur(8px);
-}
-
-nav a {
-text-decoration: none;
-color: #e8d8c2;
-padding: 8px 10px;
-font-size: .8rem;
-}
-
-nav a:hover { color: #ff5362; }
-
-section {
-padding: 75px 18px;
-max-width: 1000px;
-margin: 0 auto;
-}
-
-.section-intro {
-max-width: 720px;
-margin: 0 auto 28px;
-}
-
-.card-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 15px;
-margin-top: 28px;
-}
-
-.card {
-background: linear-gradient(145deg, rgba(48,7,13,.88), rgba(10,10,10,.96));
-border: 1px solid #61202a;
-padding: 22px;
-box-shadow: 0 8px 24px #0008;
-}
-
-.card p { font-size: .95rem; }
-
-.door {
-min-height: 190px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-}
-
-.door button {
-width: 100%;
-margin-top: auto;
-}
-
-.door-symbol {
-font-size: 2.4rem;
-margin-bottom: 8px;
-}
-
-.green { color: #a9ca8b; }
-.red { color: #f17a80; }
-.gold { color: #e4bd8a; }
-
-.divider {
-color: #86202a;
-letter-spacing: 8px;
-margin: 18px;
-}
-
-.panel {
-max-width: 750px;
-margin: 25px auto;
-padding: 28px 20px;
-border: 1px solid #5b1720;
-background: rgba(0,0,0,.48);
-}
-
-.result {
-display: none;
-margin: 18px auto 0;
-max-width: 650px;
-padding: 20px;
-border: 1px dashed #a12b39;
-background: #140609;
-line-height: 1.8;
-}
-
-.result.show { display: block; }
-
-input, textarea {
-width: 100%;
-max-width: 550px;
-padding: 12px;
-margin: 8px auto;
-color: #f5e7d5;
-background: #10090a;
-border: 1px solid #6a2730;
-display: block;
-}
-
-textarea { min-height: 90px; resize: vertical; }
-
-.rules-list {
-text-align: left;
-max-width: 650px;
-margin: 25px auto;
-line-height: 2;
-}
-
-.rules-list li::marker { color: #bb3442; }
-
-.bar-section {
-max-width: 900px;
-border: 1px solid #78202a;
-background:
-radial-gradient(ellipse at top, #351018 0%, #100709 65%);
-padding: clamp(24px, 5vw, 48px);
-position: relative;
-overflow: hidden;
-}
-
-.bar-section::before {
-content: "☠";
-position: absolute;
-font-size: 13rem;
-color: #b10e20;
-opacity: .06;
-top: -35px;
-right: -20px;
-pointer-events: none;
-}
-
-.bar-stamp {
-display: inline-block;
-color: #e6b88a;
-border: 1px solid #a64c42;
-padding: 7px 12px;
-font-size: .78rem;
-letter-spacing: 2px;
-transform: rotate(-2deg);
-}
-
-.bar-headline {
-font-size: clamp(2.7rem, 8vw, 4.8rem);
-margin: 20px 0 12px;
-}
-
-.bar-copy {
-max-width: 680px;
-margin: 0 auto 22px;
-font-size: 1.05rem;
-}
-
-.bar-warning {
-color: #f18d8d;
-font-size: .95rem;
-border-top: 1px dashed #71232d;
-border-bottom: 1px dashed #71232d;
-padding: 13px 5px;
-margin: 22px auto;
-max-width: 650px;
-}
-
-.bar-actions, .button-row {
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-gap: 6px;
-}
-
-.bar-result {
-text-align: left;
-max-width: 680px;
-margin: 25px auto 0;
-padding: 20px;
-background: #090606;
-border-left: 3px solid #a21d2d;
-display: none;
-line-height: 1.8;
-}
-
-.bar-result.show { display: block; }
-
-.game-card {
-max-width: 720px;
-margin: 25px auto;
-border: 1px solid #77402e;
-background: linear-gradient(135deg, #241016, #0a0808);
-padding: clamp(22px, 5vw, 38px);
-}
-
-.game-step {
-color: #e7c18c;
-letter-spacing: 2px;
-font-size: .8rem;
-}
-
-.game-prompt {
-font-size: clamp(1.2rem, 4vw, 1.7rem);
-line-height: 1.5;
-margin: 20px auto;
-}
-
-.game-note {
-font-size: .85rem;
-color: #bcae9f;
-}
-
-.modal, .popup {
-display: none;
-position: fixed;
-z-index: 100;
-inset: 0;
-padding: 20px;
-background: rgba(0,0,0,.92);
-justify-content: center;
-align-items: center;
-}
-
-.modal.show, .popup.show { display: flex; }
-
-.modal-content, .popup-content {
-max-width: 550px;
-width: 100%;
-padding: 30px 20px;
-background: #130609;
-border: 1px solid #b32638;
-box-shadow: 0 0 40px #7c1020;
-}
-
-.modal h2, .popup h2 { margin-top: 0; }
-
-.jumpscare {
-display: none;
-position: fixed;
-z-index: 200;
-inset: 0;
-background: #050303;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-padding: 20px;
-}
-
-.jumpscare.show { display: flex; }
-
-.scare-face {
-font-size: clamp(6rem, 28vw, 14rem);
-color: #d8192e;
-animation: flicker .18s infinite;
-text-shadow: 0 0 45px red;
-}
-
-.jumpscare p {
-font-family: "Creepster", cursive;
-font-size: 2rem;
-color: #f2dddd;
-}
-
-footer {
-border-top: 1px solid #42121a;
-padding: 40px 18px 55px;
-color: #a99a8e;
-font-size: .85rem;
-}
-
-footer button { margin-top: 14px; }
-
-.smallprint {
-font-size: .8rem;
-color: #aa9a8d;
-}
-
-#toast {
-position: fixed;
-bottom: 20px;
-left: 50%;
-transform: translateX(-50%);
-background: #21070b;
-border: 1px solid #a51a2a;
-color: #fff0e2;
-padding: 12px 18px;
-z-index: 300;
-display: none;
-width: max-content;
-max-width: 90vw;
-}
-
-#toast.show { display: block; }
-
-@media (max-width: 600px) {
-nav { position: relative; }
-section { padding: 55px 15px; }
-header { min-height: 85vh; }
-.card-grid { grid-template-columns: 1fr; }
-}
+:root{--red:#bd1729;--dark:#100608;--paper:#eadac7;--green:#9bbd80}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#390910,transparent 55%),#090708;color:var(--paper);font-family:"Special Elite",monospace;text-align:center}
+h1,h2,h3{font-family:"Creepster",cursive;font-weight:normal;letter-spacing:2px}
+h1{font-size:clamp(3rem,10vw,6rem);color:#ed293e;text-shadow:0 0 22px #9f071b;margin:15px 0}
+h2{font-size:clamp(2.2rem,7vw,3.5rem);color:#e32a3e}
+h3{font-size:1.8rem;color:#dfbd91}
+p{line-height:1.7}
+button{background:#31080e;color:var(--paper);border:1px solid #a52a3a;padding:12px 17px;margin:5px;font:inherit;cursor:pointer;max-width:100%}
+button:hover{background:#801324;box-shadow:0 0 15px #a51c2c}
+input,select,textarea{display:block;width:100%;max-width:540px;margin:10px auto;padding:12px;background:#100a0b;color:white;border:1px solid #77303a;font:inherit}
+header{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:45px 18px}
+header p,.intro{max-width:720px}
+.eyebrow{letter-spacing:4px;color:var(--green);font-size:.85rem}
+.skull{font-size:3rem}
+.gold{color:#e7bd88}
+.red{color:#f17b88}
+nav{position:sticky;top:0;z-index:5;display:flex;justify-content:center;flex-wrap:wrap;gap:5px;padding:12px;background:#0b0808ed;border-block:1px solid #4b1720}
+nav a{color:#eadac7;text-decoration:none;font-size:.85rem;padding:6px}
+nav a:hover{color:#ff5265}
+section{max-width:1000px;margin:auto;padding:65px 18px}
+.intro{margin:0 auto 25px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card,.panel{background:linear-gradient(145deg,#26090e,#0d090a);border:1px solid #64202a;padding:22px}
+.card{display:flex;flex-direction:column;align-items:center;min-height:215px}
+.card button{margin-top:auto}
+.symbol{font-size:2.5rem}
+.result{display:none;max-width:700px;margin:20px auto;padding:20px;background:#14080a;border:1px dashed #a52a3a;line-height:1.8}
+.result.show{display:block}
+.divider{color:#a22b3c;letter-spacing:8px;margin:15px}
+.rules{text-align:left;max-width:700px;margin:25px auto;line-height:2}
+.bar{position:relative;overflow:hidden;border:1px solid #812332;background:radial-gradient(ellipse at top,#38101a,#0b0708 75%);padding:clamp(22px,5vw,45px)}
+.bar-stamp{display:inline-block;border:1px solid #b35b4a;padding:7px 12px;color:#eac397;letter-spacing:2px;font-size:.8rem}
+.bar h2{font-size:clamp(2.8rem,8vw,4.8rem);margin:20px 0}
+.bar-warning{border-block:1px dashed #7b2731;color:#ff9b9b;padding:12px;margin:20px auto;max-width:650px}
+.bar-result{display:none;max-width:680px;text-align:left;margin:25px auto;padding:20px;background:#080506;border-left:3px solid #b51c31;line-height:1.8}
+.bar-result.show{display:block}
+.game{max-width:720px;margin:20px auto;padding:25px;background:#1b0b10;border:1px solid #8a4439}
+.game-prompt{font-size:clamp(1.2rem,4vw,1.7rem);line-height:1.5}
+.small{font-size:.82rem;color:#b9aa9d}
+footer{padding:45px 18px;border-top:1px solid #4b1720}
+.modal{display:none;position:fixed;z-index:20;inset:0;background:#000e;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal-box{max-width:540px;width:100%;padding:25px;background:#16070b;border:1px solid #d1253b;box-shadow:0 0 35px #951023}
+#scare{display:none;position:fixed;inset:0;z-index:30;background:#050303;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+#scare.show{display:flex}
+.scare-face{font-size:clamp(7rem,28vw,14rem);color:#e21c32;text-shadow:0 0 35px red}
+#toast{display:none;position:fixed;z-index:40;bottom:15px;left:50%;transform:translateX(-50%);background:#26080e;border:1px solid #b51c31;padding:12px;max-width:90vw}
+#toast.show{display:block}
+body.dark{filter:brightness(.5)}
+body.dark .modal,body.dark #scare{filter:brightness(2)}
+@media(max-width:600px){nav{position:relative}section{padding:48px 14px}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
-<div class="ghost one">👻</div>
-<div class="ghost two">🕷️</div>
-<div class="ghost three">👻</div>
-
 <header id="top">
-<div class="skull">☠</div>
-<div class="eyebrow">One night. Bad decisions. Good stories.</div>
+<div class="skull">☠️</div>
+<div class="eyebrow">ONE NIGHT. BAD DECISIONS. GOOD STORIES.</div>
 <h1>A Night Among Sinners Bash</h1>
-<p class="subtitle">
-You're invited to one wicked Halloween night.
-Come dressed to haunt, ready to laugh, and prepared to explain yourself the next morning.
-</p>
+<p class="intro">You're invited to one wicked Halloween night. Come dressed to haunt, ready to laugh, and prepared to explain yourself the next morning.</p>
 <p class="gold">October 31, 2026 · 5:00 PM</p>
 <p>The Flerb Home</p>
-<p class="warning">
-Costumes encouraged. Good vibes required. Your questionable decisions are your own responsibility.
-</p>
-<button onclick="document.getElementById('doors').scrollIntoView({behavior:'smooth'})">
-ENTER IF YOU DARE
-</button>
+<p class="small">Costumes encouraged. Good vibes required. Questionable decisions are your own responsibility.</p>
+<button onclick="goTo('doors')">ENTER IF YOU DARE</button>
 </header>
 
-<nav aria-label="Main navigation">
+<nav>
 <a href="#doors">The Doors</a>
 <a href="#fate">Your Fate</a>
 <a href="#rules">House Rules</a>
 <a href="#bar">Cursed Bar</a>
+<a href="#arrival">Midnight Mischief</a>
 <a href="#rsvp">RSVP</a>
 </nav>
 
 <section id="doors">
 <h2>Choose Your Door</h2>
-<p class="section-intro">
-Every door hides a secret. Some are harmless. Some are embarrassing.
-One might make you question why you came here in the first place.
-</p>
+<p class="intro">Every door hides a secret. Some are harmless. Some are embarrassing. One might make you question why you came here.</p>
+<div class="grid">
+<article class="card"><div class="symbol">🩸</div><h3>The Red Room</h3><p>Something in here remembers what you did last Halloween.</p><button onclick="openDoor('red')">Open the Door</button></article>
+<article class="card"><div class="symbol">🕯️</div><h3>The Last Guest</h3><p>Someone arrived before you. Nobody remembers seeing them.</p><button onclick="openDoor('guest')">Knock Twice</button></article>
+<article class="card"><div class="symbol">🪞</div><h3>The Black Mirror</h3><p>Look carefully. It might be showing your future.</p><button onclick="openDoor('mirror')">Look Inside</button></article>
+<article class="card"><div class="symbol">🪦</div><h3>The Basement</h3><p>There's a reason nobody goes down there alone.</p><button onclick="openDoor('basement')">Go Downstairs</button></article>
+<article class="card"><div class="symbol">🍕</div><h3>The Offering</h3><p>Even sinners need snacks. Find out what the spirits want.</p><button onclick="openDoor('food')">Make an Offering</button></article>
+<article class="card"><div class="symbol">❓</div><h3>The Unmarked Door</h3><p>There is no sign. That should concern you.</p><button onclick="openDoor('unknown')">Turn the Handle</button></article>
+</div>
+<div id="doorResult" class="result" aria-live="polite"></div>
+</section>
 
-<div class="card-grid">
-<article class=
-  </html>
+<div class="divider">✦ ☠ ✦ ☠ ✦</div>
+
+<section id="fate">
+<h2>Test Your Fate</h2>
+<p class="intro">The spirits have gathered. Ask for a prophecy if you're brave enough to hear it.</p>
+<div class="panel">
+<div class="symbol">🔮</div>
+<button onclick="fortune()">Reveal My Halloween Fortune</button>
+<div id="fortuneResult" class="result" aria-live="polite"></div>
+</div>
+<div class="panel" style="margin-top:20px">
+<h3>Look Behind You</h3>
+<p>You have the strange feeling someone is standing right behind you.</p>
+<button onclick="scare()">Check Behind You</button>
+</div>
+</section>
+
+<div class="divider">✦ ☠ ✦ ☠ ✦</div>
+
+<section id="rules">
+<h2>Rules of the Damned</h2>
+<div class="panel">
+<ol class="rules">
+<li>Respect the host, the home, and everybody at the party.</li>
+<li>Costumes encouraged. Main-character energy welcome.</li>
+<li>Don't touch what isn't yours. Haunted décor is not a souvenir.</li>
+<li>Ask before posting someone else's pictures.</li>
+<li>If you drink, pace yourself, have water, and arrange a safe ride home.</li>
+<li>Nobody has to drink or participate in any dare.</li>
+<li>Clean up after yourself. The host is not your personal cleanup crew.</li>
+<li>Keep the vibes good. We're here for Halloween, not a real-life horror story.</li>
+</ol>
+</div>
+<div class="panel" style="margin-top:20px">
+<h3>Dim the Lights</h3>
+<p>Make this place feel a little more cursed.</p>
+<button onclick="toggleLights()">Toggle the Darkness</button>
+</div>
+</section>
+
+<div class="divider">✦ ☠ ✦ ☠ ✦</div>
+
+<section id="bar" class="bar">
+<div class="bar-stamp">ENTER AT YOUR OWN RISK</div>
+<h2>The Cursed Bar</h2>
+<p class="intro">Be ready to drink <em>if you want to</em> — we're here for Halloween, questionable stories, loud laughs, and college-party energy. No boring vibes allowed. Grab a drink, grab a mocktail, and come join the chaos.</p>
+<div class="bar-warning">☠ Don't be the reason the host changes the locks. ☠</div>
+<p class="intro">Choose your fate below. Nobody gets pressured, nobody has to drink, and nobody needs to prove anything.</p>
+<button onclick="barChoice('sip')">🍷 The First Sip</button>
+<button onclick="barChoice('water')">💧 The Responsible One</button>
+<button onclick="barChoice('chaos')">😈 Invite the Chaos</button>
+<button onclick="barChoice('escape')">🚪 Get Me Out</button>
+<div id="barResult" class="bar-result" aria-live="polite"></div>
+<p class="small">Drink if you choose to, take it at your own pace, and keep water nearby. Alcohol is never required for a good night.</p>
+</section>
+
+<div class="divider">✦ ☠ ✦ ☠ ✦</div>
+
+<section id="arrival">
+<h2>Midnight Mischief</h2>
+<p class="intro"><span class="gold">THE ARRIVAL DARE</span><br>Your first mission starts the moment you arrive. Pick a dare, complete it, and officially enter the chaos. No waiting until midnight — the trouble starts at the door.</p>
+<div class="game">
+<div class="gold" id="gameStep">YOUR FIRST SIN AWAITS</div>
+<p class="game-prompt" id="gamePrompt">Ready to earn your place among the sinners?</p>
+<p id="gameNote" class="small">Draw a dare when you arrive. You can pass or choose another at any time.</p>
+<button onclick="newDare()">Draw My Arrival Dare</button>
+<button onclick="newDare()">Pass / Give Me Another</button>
+</div>
+<p class="small">Some dares have an optional sip; others are just silly. Replace any sip with water, a mocktail, or simply doing the dare. No chugging and no pressure.</p>
+</section>
+
+<div class="divider">✦ ☠ ✦ ☠ ✦</div>
+
+<section id="rsvp">
+<h2>Answer the Summons</h2>
+<p class="intro">The spirits need a head count. Let the host know whether you're coming.</p>
+<div class="panel">
+<label for="guestName">Your name</label>
+<input id="guestName" placeholder="Name of the sinner">
+<label for="attendance">Are you coming?</label>
+<select id="attendance">
+<option>I'll be there 👻</option>
+<option>Can't make it this time 🪦</option>
+<option>Still deciding 🔮</option>
+</select>
+<label for="guestCount">How many people, including you?</label>
+<select id="guestCount">
+<option>Just me</option><option>2 people</option><option>3 people</option><option>4 people</option><option>5 or more</option>
+</select>
+<label for="rsvpNote">Message to the host (optional)</label>
+<textarea id="rsvpNote" placeholder="Questions or anything the host should know?"></textarea>
+<button onclick="makeRSVP()">Prepare My RSVP</button>
+<div id="rsvpResult" class="result" aria-live="polite"></div>
+<button id="copyButton" style="display:none" onclick="copyRSVP()">Copy RSVP Message</button>
+</div>
+<p class="small">This prepares a message for you to copy and send to the host. It does not automatically notify the host.</p>
+</section>
+
+<footer>
+<div class="skull">☠️</div>
+<h2>The Night Awaits</h2>
+<p>October 31, 2026 · 5:00 PM</p>
+<p>The Flerb Home</p>
+<p>Come for the costumes. Stay for the chaos.</p>
+<button id="musicButton" onclick="toggleMusic()">♫ Turn On Spooky Music</button>
+<button onclick="goTo('top')">Back to the Beginning</button>
+<p class="small">Sound starts only when you choose to turn it on.</p>
+</footer>
+
+<div class="modal" id="popup" role="dialog" aria-modal="true">
+<div class="modal-box">
+<h2 id="popupTitle">A Message from Beyond</h2>
+<p id="popupText"></p>
+<button onclick="closePopup()">Return to the Party</button>
+</div>
+</div>
+
+<div id="scare">
+<div class="scare-face">☠</div>
+<h2 id="scareText">YOU'RE NOT ALONE.</h2>
+<button onclick="closeScare()">Okay, I'm Leaving</button>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+function goTo(id){
+var el=document.getElementById(id);
+if(el) el.scrollIntoView({behavior:"smooth"});
+}
+
+function showResult(id,text){
+var el=document.getElementById(id);
+if(!el)return;
+el.textContent=text;
+el.classList.add("show");
+}
+
+var doorMessages={
+red:[
+"The Red Room remembers every embarrassing thing you've ever done. It says tonight will be no different.",
+"A voice whispers: You may enter, but leave your dignity at the door.",
+"The room is empty. Somehow, that makes it worse."
+],
+guest:[
+"Someone knocks back from the other side. You didn't knock first.",
+"A shadow slips away. The guest list just gained one more name.",
+"The last guest says: Don't be the first to fall asleep."
+],
+mirror:[
+"Your reflection smiles a second later than you do. It knows something.",
+"The mirror predicts laughter, questionable stories, and at least one dramatic photo.",
+"Your reflection mouths: Drink some water, mysterious creature."
+],
+basement:[
+"You hear footsteps below. The problem is that you're still upstairs.",
+"A candle reveals a note: If you borrowed something, put it back.",
+"A sign reads: No actual demons beyond this point. Probably."
+],
+food:[
+"The spirits demand snacks. Chips, sweets, and shareable treats will appease them.",
+"The spirits accept your offering. Please label anything with common allergens.",
+"The spirits are hungry. Ask before taking food from somebody else's plate."
+],
+unknown:[
+"The door opens to a room full of people looking at you. Congratulations, you're now the entertainment.",
+"A voice says: You came all this way. You might as well have fun.",
+"A note reads: The real horror is leaving without saying goodbye to the host."
+]
+};
+
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+function openDoor(name){
+var messages=doorMessages[name]||doorMessages.unknown;
+showResult("doorResult",pick(messages));
+if(Math.random()<0.18){
+setTimeout(function(){
+openPopup("Something Moved","You could swear something moved in the corner of your eye. Anyway… keep exploring.");
+},500);
+}
+}
+
+var fortunes=[
+"A mysterious stranger will compliment your costume. Try not to let it go to your head.",
+"Your laugh will be heard from three rooms away. The spirits approve.",
+"Your future contains snacks, a suspicious photo, and a story you will tell for years.",
+"The spirits advise water between drinks and a safe ride home.",
+"You will make a new friend tonight. Their costume might be better than yours. Accept this.",
+"The stars say: avoid unnecessary drama. You look better in spooky lighting anyway.",
+"A great night is coming. The only curse is forgetting where you put your phone."
+];
+
+function fortune(){showResult("fortuneResult",pick(fortunes));}
+
+var barMessages={
+sip:"THE FIRST SIP — If you feel like having a drink, enjoy it at your own pace. If not, grab a mocktail and make the same dramatic entrance. The vibe is the point, not what's in your cup.",
+water:"THE RESPONSIBLE ONE — Hydrate, snack, and stay legendary. The spirits respect someone who knows how to take care of themselves. Water is never a bad plot twist.",
+chaos:"CHAOS HAS ENTERED THE CHAT — Compliment somebody's costume like you're a dramatic movie villain. Bonus points for a serious bow. A drink is optional; the chaos is not.",
+escape:"THE EXIT IS THAT WAY — You can leave the cursed bar whenever you want. Check on your friends, keep your belongings close, and make sure everyone has a safe ride."
+};
+
+function barChoice(choice){
+var el=document.getElementById("barResult");
+if(!el)return;
+el.textContent=barMessages[choice]||barMessages.escape;
+el.classList.add("show");
+}
+
+var dares=[
+["Give your most dramatic villain introduction to the first person you see.","Bonus points for a spooky laugh. No drink required."],
+["Give someone's costume a completely over-the-top award speech.","Make them feel like they just won an Oscar for being terrifying."],
+["Make a toast to the host like you're addressing a royal court.","Your toast can be with a drink, water, soda, or an imaginary goblet."],
+["Do your best zombie walk across the room and back.","Keep it safe and watch where you're walking."],
+["Learn the name of someone you don't know well and introduce yourself.","The spirits support new friendships."],
+["Make up a spooky one-sentence rumor about the haunted house.","Keep it fictional and fun. No real-life gossip."],
+["Give the most suspicious person in the room a fake award.","Example: Most Likely to Be Haunted by Their Own Wi-Fi."],
+["Pose for a dramatic Halloween photo like you're on a horror movie poster.","Ask before including anyone else in the photo."],
+["Challenge someone to a ten-second staring contest.","First person to laugh loses. No alcohol needed."],
+["Make a dramatic toast to surviving another year of questionable decisions.","A sip is optional. The silly toast is the actual dare."],
+["Demonstrate your fake supernatural power.","Mind reading, disappearing snacks, or summoning good music all count."],
+["If you want to drink, take one small, comfortable sip. Otherwise, sip water or do a spooky pose.","No chugging, no pressure, and no need to explain your choice."],
+["Lead a group Halloween cheer like a haunted college pep rally.","Make it dramatic enough to summon a ghost."],
+["Pick your Halloween alter ego and use that name for the next ten minutes.","The more ridiculous the name, the better."],
+["Make the scariest funny face you can.","The goal is funny-scary, not actually terrifying the children."],
+["Give someone's costume a horror-movie title.","Keep it playful. The title should sound like a terrible sequel."]
+];
+
+var lastDare=-1;
+function newDare(){
+var n=Math.floor(Math.random()*dares.length);
+if(dares.length>1){
+while(n===lastDare)n=Math.floor(Math.random()*dares.length);
+}
+lastDare=n;
+document.getElementById("gameStep").textContent="ARRIVAL DARE "+(n+1)+" OF "+dares.length;
+document.getElementById("gamePrompt").textContent=dares[n][0];
+document.getElementById("gameNote").textContent=dares[n][1]+" You can always pass.";
+}
+
+function toggleLights(){
+document.body.classList.toggle("dark");
+toast(document.body.classList.contains("dark")?"The lights are dying…":"The lights return. For now.");
+}
+
+function openPopup(title,message){
+document.getElementById("popupTitle").textContent=title;
+document.getElementById("popupText").textContent=message;
+document.getElementById("popup").classList.add("show");
+}
+function closePopup(){document.getElementById("popup").classList.remove("show");}
+
+function scare(){
+document.getElementById("scareText").textContent=pick([
+"YOU'RE NOT ALONE.","WE SAVED YOU A SEAT.","DID YOU HEAR THAT?","THE PARTY HAS JUST BEGUN."
+]);
+document.getElementById("scare").classList.add("show");
+}
+function closeScare(){document.getElementById("scare").classList.remove("show");}
+
+function toast(message){
+var el=document.getElementById("toast");
+el.textContent=message;
+el.classList.add("show");
+clearTimeout(window.toastTimeout);
+window.toastTimeout=setTimeout(function(){el.classList.remove("show");},2800);
+}
+
+var rsvpText="";
+function makeRSVP(){
+var name=document.getElementById("guestName").value.trim();
+if(!name){toast("Enter your name first.");document.getElementById("guestName").focus();return;}
+var attendance=document.getElementById("attendance").value;
+var count=document.getElementById("guestCount").value;
+var note=document.getElementById("rsvpNote").value.trim();
+
+rsvpText="🎃 A NIGHT AMONG SINNERS BASH — RSVP\n\n"+
+"Name: "+name+"\n"+
+"Response: "+attendance+"\n"+
+"Party size: "+count+"\n"+
+"Date: October 31, 2026 at 5:00 PM\n"+
+"Location: The Flerb Home\n"+
+(note?"Message to the host: "+note+"\n":"")+
+"\nSent from the haunted invitation. 👻";
+
+showResult("rsvpResult",rsvpText);
+document.getElementById("copyButton").style.display="inline-block";
+}
+
+function copyRSVP(){
+if(!rsvpText)return;
+if(navigator.clipboard&&navigator.clipboard.writeText){
+navigator.clipboard.writeText(rsvpText).then(
+function(){toast("RSVP copied! Paste it into a message to the host.");},
+function(){fallbackCopy();}
+);
+}else{fallbackCopy();}
+}
+function fallbackCopy(){
+var input=document.createElement("textarea");
+input.value=rsvpText;
+document.body.appendChild(input);
+input.select();
+try{
+document.execCommand("copy");
+toast("RSVP copied! Paste it into a message to the host.");
+}catch(e){
+openPopup("Your RSVP Is Ready","Your RSVP is displayed on the page. Select and copy the message, then send it to the host.");
+}
+input.remove();
+}
+
+/* Spooky synthesized melody. Sound begins only after a button click. */
+var audio=null,master=null,musicTimer=null,musicOn=false,noteIndex=0;
+
+function tone(freq,duration,type,volume,delay){
+if(!audio||!master)return;
+var start=audio.currentTime+(delay||0);
+var osc=audio.createOscillator();
+var gain=audio.createGain();
+osc.type=type;
+osc.frequency.setValueAtTime(freq,start);
+gain.gain.setValueAtTime(.0001,start);
+gain.gain.exponentialRampToValueAtTime(Math.max(volume,.0002),start+.04);
+gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
+osc.connect(gain);
+gain.connect(master);
+osc.start(start);
+osc.stop(start+duration+.05);
+}
+
+function musicPhrase(){
+if(!musicOn||!audio)return;
+var melody=[261.63,311.13,392,349.23,261.63,233.08,311.13,261.63,196,233.08,261.63,311.13,349.23,311.13,233.08,196];
+var note=melody[noteIndex%melody.length];
+tone(note,1.05,"sine",.055,0);
+tone(note*2,.55,"triangle",.012,.04);
+if(noteIndex%4===0){
+tone(65.41,3.3,"sine",.025,0);
+tone(98,2.4,"sine",.009,.1);
+}
+if(noteIndex%8===6){
+tone(523.25,1.8,"sine",.012,.15);
+tone(587.33,1.4,"sine",.009,.45);
+}
+noteIndex++;
+}
+
+async function toggleMusic(){
+var btn=document.getElementById("musicButton");
+if(musicOn){
+musicOn=false;
+if(musicTimer)clearInterval(musicTimer);
+musicTimer=null;
+if(master&&audio)master.gain.setTargetAtTime(.0001,audio.currentTime,.15);
+btn.textContent="♫ Turn On Spooky Music";
+toast("The soundtrack has gone quiet.");
+return;
+}
+try{
+var AudioClass=window.AudioContext||window.webkitAudioContext;
+if(!AudioClass){toast("This browser does not support the soundtrack.");return;}
+if(!audio){
+audio=new AudioClass();
+master=audio.createGain();
+master.gain.value=.65;
+master.connect(audio.destination);
+}
+await audio.resume();
+master.gain.setTargetAtTime(.65,audio.currentTime,.2);
+musicOn=true;
+musicPhrase();
+musicTimer=setInterval(musicPhrase,850);
+btn.textContent="♫ Turn Off Spooky Music";
+toast("The haunted soundtrack has begun…");
+}catch(e){toast("Sound couldn't start. Try pressing the button again.");}
+}
+
+document.addEventListener("keydown",function(event){
+if(event.key==="Escape"){closePopup();closeScare();}
+});
+
+/* All page sections remain visible. This optional popup never blocks the page. */
+window.addEventListener("load",function(){
+setTimeout(function(){
+if(Math.random()<.3){
+openPopup("A Little Warning","The spirits have noticed you. Relax… they mostly want you to have fun.");
+}
+},15000);
+});
+</script>
+</body>
+</html>
