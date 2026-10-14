@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +41,6 @@ opacity: .12;
 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
 }
 
-a { color: var(--green); }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
@@ -64,7 +64,6 @@ border-bottom: 1px solid #493033;
 padding-bottom: 13px;
 }
 
-/* SOUND + LIGHTS ARE NOW AT THE TOP */
 .top-controls {
 display: flex;
 justify-content: center;
@@ -130,16 +129,14 @@ left: 8%;
 right: 4%;
 bottom: -17px;
 height: 27px;
-background:
-radial-gradient(ellipse at 12% 0%, #a51b25 0 5px, transparent 6px),
-radial-gradient(ellipse at 33% 0%, #a51b25 0 4px, transparent 5px),
-radial-gradient(ellipse at 54% 0%, #a51b25 0 6px, transparent 7px),
-radial-gradient(ellipse at 76% 0%, #a51b25 0 4px, transparent 5px),
-linear-gradient(#a51b25, #a51b25);
-background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 8px;
-background-repeat: no-repeat;
-background-position: center top;
-clip-path: polygon(0 0,100% 0,100% 12%,88% 12%,86% 75%,82% 75%,80% 12%,64% 12%,62% 95%,58% 95%,56% 12%,43% 12%,42% 55%,38% 55%,36% 12%,20% 12%,19% 85%,15% 85%,14% 12%,0 12%);
+background: #a51b25;
+clip-path: polygon(
+0 0,100% 0,100% 12%,88% 12%,86% 75%,
+82% 75%,80% 12%,64% 12%,62% 95%,
+58% 95%,56% 12%,43% 12%,42% 55%,
+38% 55%,36% 12%,20% 12%,19% 85%,
+15% 85%,14% 12%,0 12%
+);
 filter: drop-shadow(0 3px 1px #240206);
 }
 
@@ -160,7 +157,7 @@ font-style: normal;
 margin: 35px auto 0;
 display: inline-block;
 position: relative;
-padding: 10px 18px 23px;
+padding: 10px 18px 27px;
 }
 
 .date {
@@ -169,7 +166,7 @@ font-size: clamp(17px, 4vw, 23px);
 letter-spacing: 2px;
 text-shadow: 0 0 12px #8dff3633;
 position: relative;
-z-index: 1;
+z-index: 2;
 }
 
 .date strong {
@@ -177,14 +174,15 @@ color: var(--green);
 font-weight: normal;
 }
 
-/* CARTOON SLIME: GOOEY BLOBS, FAT DRIPS + SHINY HIGHLIGHTS */
+/* WIGGLING, DRIPPING CARTOON SLIME */
 .slime {
 position: absolute;
-height: 29px;
+height: 36px;
 left: 2%;
 right: 2%;
-bottom: -2px;
+bottom: -1px;
 pointer-events: none;
+z-index: 1;
 filter: drop-shadow(0 3px 1px #233b08);
 }
 
@@ -194,51 +192,119 @@ position: absolute;
 top: 0;
 left: 3%;
 right: 3%;
-height: 11px;
-background: #8dff36;
+height: 12px;
+background: linear-gradient(
+180deg,
+#caff8b 0%,
+#a4ff52 30%,
+#76e522 100%
+);
 border-radius: 48% 40% 25% 30%;
-box-shadow:
-inset 0 3px 0 #c1ff82,
-0 1px 0 #5ebc1b;
+box-shadow: inset 0 2px 0 #d8ffb5;
+animation: slimeWobble 3s ease-in-out infinite;
 }
 
 .slime::after {
 content: "";
 position: absolute;
-top: 4px;
-left: 6%;
-width: 13%;
-height: 8px;
+top: 3px;
+left: 9%;
+width: 12%;
+height: 5px;
 border-radius: 50%;
-background: #d4ff9e;
+background: #e4ffbf;
 opacity: .9;
 transform: rotate(-8deg);
+animation: slimeShine 3s ease-in-out infinite;
 }
 
 .slime i {
 position: absolute;
 top: 5px;
 display: block;
-background: linear-gradient(90deg, #71df20, #a5ff51 45%, #83f52c);
+background: linear-gradient(
+90deg,
+#65d719 0%,
+#9eff43 45%,
+#80ed27 100%
+);
 border-radius: 0 0 10px 10px;
 box-shadow: inset 2px 0 0 #c1ff82;
+transform-origin: top center;
 }
 
 .slime i:nth-child(1) {
-left: 15%; width: 11px; height: 18px;
+left: 15%;
+width: 11px;
+height: 18px;
+animation: dripOne 3.4s ease-in-out infinite;
 }
+
 .slime i:nth-child(2) {
-left: 37%; width: 13px; height: 28px;
+left: 37%;
+width: 13px;
+height: 27px;
 border-radius: 0 0 12px 12px;
+animation: dripTwo 4.1s ease-in-out infinite;
 }
+
 .slime i:nth-child(3) {
-left: 61%; width: 9px; height: 15px;
+left: 61%;
+width: 9px;
+height: 15px;
+animation: dripThree 3.7s ease-in-out infinite;
 }
+
 .slime i:nth-child(4) {
-left: 81%; width: 12px; height: 23px;
+left: 81%;
+width: 12px;
+height: 23px;
+animation: dripFour 4.4s ease-in-out infinite;
 }
+
 .slime i:nth-child(5) {
-left: 93%; width: 7px; height: 12px;
+left: 93%;
+width: 7px;
+height: 12px;
+animation: dripFive 3.2s ease-in-out infinite;
+}
+
+@keyframes slimeWobble {
+0%, 100% { transform: scaleX(1) translateY(0); }
+50% { transform: scaleX(1.025) translateY(2px); }
+}
+
+@keyframes slimeShine {
+0%, 100% { opacity: .8; transform: translateX(0) rotate(-8deg); }
+50% { opacity: 1; transform: translateX(5px) rotate(-4deg); }
+}
+
+@keyframes dripOne {
+0%, 100% { height: 18px; transform: rotate(0); }
+45% { height: 26px; transform: rotate(-3deg); }
+60% { height: 21px; }
+}
+
+@keyframes dripTwo {
+0%, 100% { height: 27px; transform: scaleY(1); }
+35% { height: 35px; transform: scaleY(1.06); }
+55% { height: 23px; transform: scaleY(.95); }
+}
+
+@keyframes dripThree {
+0%, 100% { height: 15px; transform: rotate(0); }
+50% { height: 23px; transform: rotate(4deg); }
+}
+
+@keyframes dripFour {
+0%, 100% { height: 23px; transform: rotate(0); }
+40% { height: 32px; transform: rotate(3deg); }
+65% { height: 19px; }
+}
+
+@keyframes dripFive {
+0%, 100% { height: 12px; }
+50% { height: 20px; }
 }
 
 .location {
@@ -353,16 +419,41 @@ margin-top: 15px;
 text-transform: uppercase;
 }
 
+/* INVITATION-STYLE SUMMONS */
 .summons {
-margin-top: 38px;
-padding: 23px 22px;
-border-left: 2px solid #79212a;
-background: linear-gradient(90deg, #291214aa, transparent);
+position: relative;
+margin-top: 42px;
+padding: 30px 24px;
+text-align: center;
+border: 1px solid #714047;
+outline: 1px solid #2e191c;
+outline-offset: 5px;
+background:
+radial-gradient(ellipse at top, #39171b 0%, transparent 70%),
+linear-gradient(145deg, #1d1012, #0c0909);
+box-shadow: inset 0 0 35px #5d12171a;
+}
+
+.summons::before,
+.summons::after {
+content: "✦";
+position: absolute;
+color: #a34b52;
+font-size: 20px;
+top: 12px;
+}
+
+.summons::before { left: 14px; }
+.summons::after { right: 14px; }
+
+.summons .section-label {
+color: #bd7b7d;
+letter-spacing: 3px;
 }
 
 .summons h2 {
-font-size: 32px;
-margin-bottom: 12px;
+font-size: clamp(32px, 7vw, 43px);
+margin-bottom: 16px;
 }
 
 .summons p {
@@ -372,16 +463,22 @@ line-height: 1.9;
 margin: 0;
 }
 
+.summons .summons-details {
+display: inline-block;
+margin: 20px auto;
+padding: 13px 20px;
+border-top: 1px solid #704047;
+border-bottom: 1px solid #704047;
+color: var(--green);
+font-size: 12px;
+letter-spacing: 1px;
+line-height: 2;
+}
+
 .summons .fine-print {
 color: #8e8178;
 font-size: 11px;
 margin-top: 10px;
-}
-
-.summons .summons-details {
-color: var(--green);
-margin: 12px 0;
-letter-spacing: .5px;
 }
 
 .fate-box {
@@ -560,7 +657,7 @@ margin-top: 36px;
 line-height: 2;
 }
 
-/* SPOOKIER GHOST SILHOUETTES */
+/* SPOOKY FLOATING GHOSTS */
 .ghost {
 position: fixed;
 width: 55px;
@@ -698,7 +795,7 @@ filter: brightness(1.6);
 .door { min-height: 130px; }
 .topline { font-size: 9px; }
 .rsvp { padding: 19px; }
-.summons { padding: 19px 16px; }
+.summons { padding: 28px 18px; }
 .rule-buttons { grid-template-columns: 1fr; }
 }
 </style>
@@ -805,7 +902,7 @@ Click one if you're feeling brave. Or bored. Same thing, honestly.
 </div>
 
 <div class="summons">
-<div class="section-label">A formal summons from the underworld</div>
+<div class="section-label">You're officially invited to the madness</div>
 <h2>You Have Been Summoned.</h2>
 <p>
 Costumes encouraged. Bad decisions optional. Dramatic entrances appreciated.
@@ -813,10 +910,12 @@ Bring your people, your appetite, and whatever questionable energy you've been s
 Kids are welcome, adults can have their drinks, and everybody is expected to keep it cute,
 be respectful, and not give the host a reason to regret this whole operation.
 </p>
-<p class="summons-details">
+
+<div class="summons-details">
 OCTOBER 31, 2026 · 5:00 PM<br>
 THE FLERB HOME
-</p>
+</div>
+
 <p class="fine-print">
 The management is not responsible for fake blood on furniture, suspicious noises,
 or anyone claiming they “aren't scared” immediately before screaming.
@@ -894,7 +993,6 @@ your RSVP to the host.
 </div>
 </section>
 
-<!-- HOUSE RULES STAY AT THE BOTTOM AND ARE INTERACTIVE -->
 <section class="house-rules">
 <div class="section-label">Read the fine print... if you dare</div>
 <h2>The House Rules.</h2>
@@ -1020,8 +1118,8 @@ const fortunes = [
 ];
 
 document.getElementById('fateButton').addEventListener('click', () => {
-const result = fortunes[Math.floor(Math.random() * fortunes.length)];
-document.getElementById('fateResult').textContent = result;
+document.getElementById('fateResult').textContent =
+fortunes[Math.floor(Math.random() * fortunes.length)];
 });
 
 const scare = document.getElementById('scare');
@@ -1079,7 +1177,8 @@ event.preventDefault();
 
 const name = document.getElementById('guestName').value.trim();
 const souls = document.getElementById('souls').value;
-const bringing = document.getElementById('bringing').value.trim() || 'TBD (a mysterious offering)';
+const bringing =
+document.getElementById('bringing').value.trim() || 'TBD (a mysterious offering)';
 
 rsvpMessage =
 `🎃 A NIGHT AMONG SINNERS BASH 🎃
@@ -1113,6 +1212,7 @@ document.body.appendChild(area);
 area.select();
 const copied = document.execCommand('copy');
 area.remove();
+
 document.getElementById('rsvpResult').textContent = copied
 ? 'Copied! Now send that message to the host.'
 : 'Copy this RSVP message manually: ' + rsvpMessage;
@@ -1120,85 +1220,118 @@ document.getElementById('rsvpResult').textContent = copied
 });
 
 /*
-Original spooky Halloween soundscape.
-Low haunted drones, dissonant minor-key notes, and eerie high chimes.
-Start with a tap because browsers require user interaction for audio.
+ORIGINAL HALLOWEEN MELODY
+Musical notes and eerie chimes replace the continuous buzzy drone.
+Tap the button to start because browsers require a user gesture.
 */
 let audioContext = null;
 let masterGain = null;
 let soundOn = false;
 let soundTimer = null;
-let bassTimer = null;
-let noteIndex = 0;
+let melodyStep = 0;
 
-function makeDrone(frequency, type, volume, detune = 0) {
-const oscillator = audioContext.createOscillator();
-const gain = audioContext.createGain();
-
-oscillator.type = type;
-oscillator.frequency.value = frequency;
-oscillator.detune.value = detune;
-gain.gain.value = volume;
-
-oscillator.connect(gain);
-gain.connect(masterGain);
-oscillator.start();
-
-return { oscillator, gain };
-}
-
-function playNote(frequency, duration = 2.8, volume = 0.16, type = 'sine') {
+function playTone(frequency, options = {}) {
 if (!audioContext || !soundOn) return;
+
+const {
+duration = 1.8,
+volume = 0.12,
+type = 'sine',
+attack = 0.06,
+release = 0.3
+} = options;
 
 const now = audioContext.currentTime;
 const oscillator = audioContext.createOscillator();
-const gain = audioContext.createGain();
+const envelope = audioContext.createGain();
 const filter = audioContext.createBiquadFilter();
 
 oscillator.type = type;
 oscillator.frequency.setValueAtTime(frequency, now);
-filter.type = 'lowpass';
-filter.frequency.value = 1800;
 
-gain.gain.setValueAtTime(0.0001, now);
-gain.gain.exponentialRampToValueAtTime(volume, now + 0.08);
-gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+// Rounded, softer tone instead of a harsh buzzy sound
+filter.type = 'lowpass';
+filter.frequency.value = type === 'triangle' ? 1400 : 2200;
+filter.Q.value = 0.5;
+
+envelope.gain.setValueAtTime(0.0001, now);
+envelope.gain.exponentialRampToValueAtTime(
+Math.max(0.0002, volume), now + attack
+);
+envelope.gain.setValueAtTime(
+Math.max(0.0002, volume), now + Math.max(attack + 0.02, duration - release)
+);
+envelope.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
 oscillator.connect(filter);
-filter.connect(gain);
-gain.connect(masterGain);
+filter.connect(envelope);
+envelope.connect(masterGain);
 
 oscillator.start(now);
-oscillator.stop(now + duration + 0.05);
+oscillator.stop(now + duration + 0.04);
 }
 
-function playThump() {
-if (!audioContext || !soundOn) return;
-
-const now = audioContext.currentTime;
-const oscillator = audioContext.createOscillator();
-const gain = audioContext.createGain();
-
-oscillator.type = 'sine';
-oscillator.frequency.setValueAtTime(90, now);
-oscillator.frequency.exponentialRampToValueAtTime(38, now + 0.35);
-
-gain.gain.setValueAtTime(0.0001, now);
-gain.gain.exponentialRampToValueAtTime(0.28, now + 0.025);
-gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.48);
-
-oscillator.connect(gain);
-gain.connect(masterGain);
-oscillator.start(now);
-oscillator.stop(now + 0.5);
+function playChime(frequency) {
+playTone(frequency, {
+duration: 3.2,
+volume: 0.19,
+type: 'sine',
+attack: 0.025,
+release: 2.7
+});
 }
 
-const halloweenNotes = [
-130.81, 155.56, 174.61, 130.81,
-116.54, 146.83, 174.61, 207.65,
-155.56, 130.81, 103.83, 155.56,
-174.61, 146.83, 116.54, 130.81
+function playHalloweenPhrase() {
+if (!soundOn) return;
+
+/*
+A little spooky melody in a minor-key feel.
+Notes are separated so it sounds musical rather than like a constant hum.
+*/
+const melody = [
+{ note: 392.00, wait: 0 },
+{ note: 349.23, wait: 420 },
+{ note: 311.13, wait: 840 },
+{ note: 233.08, wait: 1450 },
+{ note: 261.63, wait: 2050 },
+{ note: 311.13, wait: 2600 },
+{ note: 277.18, wait: 3200 },
+{ note: 207.65, wait: 3900 }
 ];
+
+melody.forEach(item => {
+setTimeout(() => {
+if (!soundOn) return;
+playTone(item.note, {
+duration: 1.2,
+volume: 0.18,
+type: 'sine',
+attack: 0.035,
+release: 0.55
+});
+}, item.wait);
+});
+
+// Occasional ghostly chime above the melody
+setTimeout(() => {
+if (soundOn) playChime([783.99, 698.46, 622.25, 523.25][melodyStep % 4]);
+}, 1100);
+
+// Low musical note underneath, not a continuous buzzing tone
+setTimeout(() => {
+if (soundOn) {
+playTone([130.81, 116.54, 103.83, 123.47][melodyStep % 4], {
+duration: 1.7,
+volume: 0.14,
+type: 'sine',
+attack: 0.18,
+release: 0.9
+});
+}
+}, 1800);
+
+melodyStep++;
+}
 
 document.getElementById('soundButton').addEventListener('click', async () => {
 const button = document.getElementById('soundButton');
@@ -1207,10 +1340,9 @@ const status = document.getElementById('soundStatus');
 if (soundOn) {
 soundOn = false;
 clearInterval(soundTimer);
-clearInterval(bassTimer);
 
 if (masterGain && audioContext) {
-masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.2);
+masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.15);
 }
 
 button.textContent = 'Start the Soundscape';
@@ -1224,60 +1356,39 @@ if (!AudioCtx) throw new Error('Audio is not supported by this browser.');
 
 if (!audioContext) {
 audioContext = new AudioCtx();
-
 masterGain = audioContext.createGain();
 masterGain.gain.value = 0.0001;
 masterGain.connect(audioContext.destination);
-
-// Deep, layered haunted-house drones
-makeDrone(43.65, 'sine', 0.34);
-makeDrone(55, 'triangle', 0.19, -7);
-makeDrone(55.8, 'sawtooth', 0.045, 9);
-makeDrone(82.41, 'sine', 0.12);
-makeDrone(110, 'triangle', 0.045, -4);
 }
 
 await audioContext.resume();
 soundOn = true;
 
-// Louder master level than the previous version
-masterGain.gain.setTargetAtTime(0.48, audioContext.currentTime, 0.45);
+// Louder overall output; still limited by device/browser volume
+masterGain.gain.setTargetAtTime(0.85, audioContext.currentTime, 0.25);
 
-// Start immediately with a low ominous note and a high, eerie chime
-playNote(65.41, 3.8, 0.22, 'triangle');
-playNote(783.99, 2.3, 0.12, 'sine');
-playThump();
+// Start right away so the visitor can hear it immediately
+playTone(196, {
+duration: 1.4,
+volume: 0.2,
+type: 'sine',
+attack: 0.04,
+release: 0.7
+});
+
+playChime(783.99);
+playHalloweenPhrase();
 
 soundTimer = setInterval(() => {
 if (!soundOn) return;
-
-const note = halloweenNotes[noteIndex % halloweenNotes.length];
-noteIndex++;
-
-playNote(note, 2.5 + Math.random() * 1.8, 0.20, 'triangle');
-
-// Occasionally layer a dissonant high note
-if (Math.random() > 0.42) {
-playNote(note * 2.98, 2.2, 0.09, 'sine');
-}
-
-// Sparse, deep heartbeat-like thumps
-if (Math.random() > 0.58) {
-playThump();
-}
-}, 1150);
-
-bassTimer = setInterval(() => {
-if (!soundOn) return;
-
-const lowNotes = [41.2, 43.65, 49, 36.71];
-playNote(lowNotes[Math.floor(Math.random() * lowNotes.length)], 3.5, 0.18, 'sine');
-}, 3300);
+playHalloweenPhrase();
+}, 4800);
 
 button.textContent = 'Turn Off the Soundscape';
-status.textContent = 'Haunted Halloween ambience playing. Raise your device volume for the full effect.';
+status.textContent = 'Spooky Halloween melody playing. Raise your device volume for the full effect.';
 } catch (error) {
-status.textContent = 'Audio could not start here. Try opening the site in Safari or Chrome and tapping again.';
+status.textContent =
+'Audio could not start here. Try opening the site in Safari or Chrome and tapping again.';
 }
 });
 </script>
