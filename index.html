@@ -234,17 +234,17 @@ body.lights-out #popup,body.lights-out #scare,body.lights-out #barPortal{filter:
 <h2>RSVP, Mortal.</h2>
 <p class="intro">Let us know who's coming and what you're bringing. “I'll bring vibes” is not a food item. We checked.</p>
 <div class="rsvp">
-<p>Fill this out to prepare your RSVP message.</p>
-<form id="rsvpForm">
+<p>Send your RSVP straight to the host. The house is listening.</p>
+<form id="rsvpForm" action="https://formspree.io/f/xvkzwlpw" method="POST">
 <div><label for="guestName">NAME</label><input id="guestName" name="guestName" placeholder="Your human name... or alias" required></div>
 <div><label for="attendance">ARE YOU COMING?</label><select id="attendance" name="attendance" required><option value="">Choose your fate</option><option value="Yes, I'm coming">Yes, I'm coming</option><option value="Sorry, I can't make it">Sorry, I can't make it</option><option value="Maybe, still deciding">Maybe, still deciding</option></select></div>
 <div><label for="souls"># OF SOULS IN YOUR PARTY (INCLUDING YOU)</label><select id="souls" name="souls" required><option value="">Choose your party size</option><option>1 person</option><option>2 people</option><option>3 people</option><option>4 people</option><option>5 people</option><option>6 people</option><option>7+ people</option></select></div>
 <div><label for="bringing">WHAT ARE YOU BRINGING?</label><input id="bringing" name="bringing" placeholder="Food, drinks, dessert, etc."></div>
-<button class="action" type="submit">Prepare My RSVP</button>
+<input type="hidden" name="event" value="A Night Among Sinners Bash — October 31, 2026, 5:00 PM — The Flerb Home">
+<button class="action" id="rsvpSubmit" type="submit">Send My RSVP Into the Darkness</button>
 </form>
 <p id="rsvpResult" aria-live="polite"></p>
-<p class="form-note">This prepares a message for you to copy and send to the host. It does not automatically send your RSVP.</p>
-<button class="action secondary" id="copyRsvp" style="display:none" type="button">Copy RSVP Message</button>
+<p class="form-note">Your RSVP will be sent to the host. Please submit only once.</p>
 </div>
 </section>
 
@@ -447,43 +447,48 @@ detail.classList.add('show');
 });
 });
 
-/* RSVP MESSAGE BUILDER */
-let rsvpMessage = '';
-document.getElementById('rsvpForm').addEventListener('submit', event => {
-event.preventDefault();
-const name = document.getElementById('guestName').value.trim();
-const attendance = document.getElementById('attendance').value;
-const souls = document.getElementById('souls').value;
-const bringing = document.getElementById('bringing').value.trim() || 'TBD (a mysterious offering)';
-rsvpMessage =
-`A NIGHT AMONG SINNERS BASH
-Name: ${name}
-RSVP: ${attendance}
-Party size: ${souls}
-Bringing: ${bringing}
-October 31, 2026 · 5:00 PM
-The Flerb Home
-I have been summoned. I accept my fate.`;
-document.getElementById('rsvpResult').textContent = 'Your RSVP message is ready, ' + name + '. Copy it below and send it to the host!';
-document.getElementById('copyRsvp').style.display = 'inline-block';
-});
+/* RSVP DELIVERY THROUGH FORMSPREE */
+const rsvpForm = document.getElementById('rsvpForm');
+const rsvpResult = document.getElementById('rsvpResult');
+const rsvpSubmit = document.getElementById('rsvpSubmit');
 
-document.getElementById('copyRsvp').addEventListener('click', async () => {
-if (!rsvpMessage) return;
-try {
-await navigator.clipboard.writeText(rsvpMessage);
-document.getElementById('rsvpResult').textContent = 'Copied! Now paste the message into a text and send it to the host.';
-} catch (error) {
-const area = document.createElement('textarea');
-area.value = rsvpMessage;
-area.style.position = 'fixed';
-area.style.opacity = '0';
-document.body.appendChild(area);
-area.select();
-const copied = document.execCommand('copy');
-area.remove();
-document.getElementById('rsvpResult').textContent = copied ? 'Copied! Now paste the message into a text and send it to the host.' : 'Copy this RSVP message manually:\n' + rsvpMessage;
-}
+rsvpForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!rsvpForm.reportValidity()) return;
+
+  const guestName = document.getElementById('guestName').value.trim();
+  rsvpSubmit.disabled = true;
+  rsvpSubmit.textContent = 'Sending your fate...';
+  rsvpResult.textContent = '';
+
+  try {
+    const response = await fetch(rsvpForm.action, {
+      method: 'POST',
+      body: new FormData(rsvpForm),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      rsvpResult.textContent = `Your RSVP has been sent, ${guestName}. The house has received your answer. Happy haunting!`;
+      rsvpForm.reset();
+      rsvpSubmit.textContent = 'RSVP Sent';
+    } else {
+      let errorMessage = 'The house swallowed your RSVP. Please try again in a moment.';
+      try {
+        const data = await response.json();
+        if (data.errors && data.errors.length) {
+          errorMessage = data.errors.map(error => error.message).join(' ');
+        }
+      } catch (_) {}
+      rsvpResult.textContent = errorMessage + ' If this keeps happening, please contact the host directly.';
+      rsvpSubmit.disabled = false;
+      rsvpSubmit.textContent = 'Try Sending Again';
+    }
+  } catch (error) {
+    rsvpResult.textContent = 'The connection to the house failed. Check your internet connection and try again.';
+    rsvpSubmit.disabled = false;
+    rsvpSubmit.textContent = 'Try Sending Again';
+  }
 });
 
 /* MIDNIGHT PROPHECY */
