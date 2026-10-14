@@ -7,616 +7,1178 @@
 
 <style>
 :root {
---red: #a30019;
---green: #9cff57;
---purple: #291039;
---black: #050406;
+--black: #050202;
+--red: #bd001c;
+--blood: #ed001f;
+--darkred: #390008;
+--green: #aaff22;
+--text: #e7d9d9;
 }
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
 margin: 0;
-background: var(--black);
-color: #e8e0e9;
+color: var(--text);
+background:
+radial-gradient(ellipse at 50% 0%, #350009 0%, #130205 35%, #030202 78%);
 font-family: Georgia, "Times New Roman", serif;
 overflow-x: hidden;
 }
 
-body::before,
-body::after {
+body::before {
 content: "";
 position: fixed;
-inset: -50%;
+inset: 0;
+z-index: 2;
 pointer-events: none;
-z-index: 5;
-opacity: .17;
-background:
-radial-gradient(ellipse at 20% 50%, #a7a7a7 0%, transparent 35%),
-radial-gradient(ellipse at 70% 60%, #6b6b6b 0%, transparent 30%),
-radial-gradient(ellipse at 40% 20%, #343434 0%, transparent 35%);
-filter: blur(35px);
-animation: fog 35s linear infinite alternate;
+opacity: .12;
+background: repeating-linear-gradient(
+0deg,
+transparent 0,
+transparent 3px,
+#000 4px
+);
 }
 
-body::after {
-opacity: .11;
-animation-duration: 50s;
-animation-direction: alternate-reverse;
-}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
 
-@keyframes fog {
-from { transform: translate(-8%, -3%) rotate(0deg); }
-to { transform: translate(8%, 5%) rotate(12deg); }
-}
-
-body, button, input, select, textarea {
-font-family: Georgia, "Times New Roman", serif;
-}
-
-button, a, input, select, textarea {
+section {
+width: min(900px, calc(100% - 32px));
+margin: 0 auto;
+padding: 55px 0;
 position: relative;
-z-index: 10;
-}
-
-button {
-cursor: pointer;
+z-index: 3;
 }
 
 .hero {
-min-height: 92vh;
+min-height: 96vh;
 display: flex;
-flex-direction: column;
-justify-content: center;
 align-items: center;
+justify-content: center;
 text-align: center;
-padding: 70px 20px;
-background:
-radial-gradient(ellipse at center, #260c24 0%, #100812 45%, #050406 78%);
-border-bottom: 1px solid #45121f;
+padding: 55px 20px;
 position: relative;
+overflow: hidden;
+isolation: isolate;
+}
+
+.hero::before {
+content: "";
+position: absolute;
+inset: 0;
+z-index: -1;
+background:
+radial-gradient(ellipse at center, transparent 15%, #050202 90%),
+radial-gradient(ellipse at 50% 80%, #64000d33, transparent 55%);
+}
+
+.hero-content {
+position: relative;
+z-index: 4;
+width: 100%;
 }
 
 .eyebrow {
-color: var(--green);
+color: #a98a8d;
+font: 10px Arial, sans-serif;
 letter-spacing: 5px;
 text-transform: uppercase;
-font-size: 11px;
 }
 
 h1 {
-color: #e6dbe5;
-font-size: clamp(40px, 8vw, 86px);
-line-height: .98;
-letter-spacing: 2px;
+margin: 28px auto;
+color: #c0001c;
+font-family: Impact, "Arial Black", fantasy;
+font-size: clamp(48px, 11vw, 100px);
+font-weight: 900;
+line-height: .88;
+letter-spacing: -4px;
 text-transform: uppercase;
-max-width: 950px;
-margin: 25px 0;
-text-shadow: 0 0 18px #65001b, 0 0 45px #37001d;
+transform: rotate(-2deg);
+filter: drop-shadow(0 10px 5px #000);
 }
 
-.subtitle {
-font-size: clamp(15px, 2vw, 20px);
-color: #c0b1c3;
+.title-line {
+display: block;
+position: relative;
+width: fit-content;
+max-width: 100%;
+margin: 10px auto;
+font-family: Impact, "Arial Black", fantasy;
 font-style: italic;
+font-weight: 900;
+-webkit-text-stroke: 1px #5a000b;
+color: #bd001b;
+text-shadow:
+3px 4px 0 #400008,
+-1px -1px 0 #ed263a,
+0 0 12px #b00019,
+0 0 26px #71000d;
+transform: rotate(-1deg);
 }
 
-.warning {
-margin-top: 35px;
-color: #e54b5e;
-font-size: 12px;
+.title-line:nth-child(2) {
+font-size: .67em;
+letter-spacing: -2px;
+color: #8d0015;
+transform: rotate(1.5deg);
+}
+
+.title-line:nth-child(3) {
+transform: rotate(-2deg);
+}
+
+.date-slime {
+position: relative;
+display: inline-block;
+margin: 16px auto 46px;
+padding: 13px 21px;
+background: linear-gradient(180deg, #1a2805, #080e00);
+border: 1px solid #537d0c;
+color: #bdff51;
+font: 900 14px Impact, "Arial Black", sans-serif;
 letter-spacing: 3px;
 text-transform: uppercase;
+text-shadow: 0 0 6px #9bff00, 0 0 15px #65a800;
+box-shadow: 0 0 18px #75a90022, inset 0 0 14px #8cff001c;
 }
 
-button, .button {
-background: #170d19;
-color: #d9ffbd;
-border: 1px solid #71934c;
-padding: 13px 20px;
-margin: 7px;
+/* Slime forms uneven hanging drips beneath the date */
+.slime-drips {
+position: absolute;
+top: 95%;
+left: 0;
+width: 100%;
+height: 42px;
+pointer-events: none;
+}
+
+.slime-drips i {
+position: absolute;
+display: block;
+top: 0;
+width: 8px;
+border-radius: 0 0 8px 8px;
+background: linear-gradient(
+90deg,
+#538800 0%,
+#aaff24 35%,
+#d4ff87 48%,
+#79b900 75%,
+#436d00 100%
+);
+box-shadow: 0 2px 5px #7dbd00aa, 0 0 5px #aaff2266;
+animation: slimeWobble 3s ease-in-out infinite alternate;
+}
+
+.slime-drips i:nth-child(1) { left: 9%; height: 15px; width: 6px; }
+.slime-drips i:nth-child(2) { left: 25%; height: 32px; width: 9px; animation-delay: .7s; }
+.slime-drips i:nth-child(3) { left: 42%; height: 20px; width: 7px; animation-delay: 1.2s; }
+.slime-drips i:nth-child(4) { left: 66%; height: 38px; width: 8px; animation-delay: .3s; }
+.slime-drips i:nth-child(5) { left: 86%; height: 24px; width: 6px; animation-delay: 1.6s; }
+
+@keyframes slimeWobble {
+from { transform: scaleY(.85); }
+to { transform: scaleY(1.1); }
+}
+
+.tagline {
+max-width: 540px;
+margin: 0 auto 27px;
+color: #c6b2b5;
+font-size: 17px;
+line-height: 1.8;
+}
+
+.primary-btn, .dark-btn {
+display: inline-block;
+padding: 14px 22px;
+border: 1px solid #a9001a;
+border-radius: 0;
+color: #fff0f0;
+background: linear-gradient(135deg, #8f0013, #300006);
+font: 11px Arial, sans-serif;
+letter-spacing: 2px;
 text-transform: uppercase;
-letter-spacing: 1px;
-font-size: 11px;
+box-shadow: 0 0 18px #79000d44;
 transition: .2s;
 }
 
-button:hover, .button:hover {
-background: #38203b;
-border-color: #ff354f;
-color: white;
-box-shadow: 0 0 18px #8d002a66;
+.primary-btn:hover, .dark-btn:hover {
+background: #c00020;
+box-shadow: 0 0 25px #e0002066;
+transform: translateY(-2px);
 }
 
-main {
-max-width: 1000px;
-margin: auto;
-padding: 40px 20px 80px;
+.sound-btn {
+margin-top: 18px;
+padding: 12px 17px;
+border: 1px solid #58232b;
+color: #e7c7cb;
+background: #090506;
+font: 10px Arial, sans-serif;
+letter-spacing: 2px;
+text-transform: uppercase;
 }
 
-section {
-margin: 65px 0;
-padding: 30px;
-background: linear-gradient(145deg, #100b12, #09070a);
-border: 1px solid #332033;
-box-shadow: 0 15px 45px #0008;
+.sound-note {
+margin-top: 10px;
+color: #927a7e;
+font: 11px Arial, sans-serif;
 }
 
 h2 {
-color: #c5ff92;
-font-size: 25px;
-font-weight: normal;
+margin: 0 0 18px;
+color: #d00020;
+font-size: clamp(28px, 6vw, 43px);
+line-height: 1.1;
 text-transform: uppercase;
+text-shadow: 0 0 13px #900014;
+letter-spacing: 1px;
+}
+
+.section-intro {
+max-width: 650px;
+color: #bca7aa;
+line-height: 1.8;
+}
+
+.divider {
+height: 1px;
+margin: 25px 0;
+background: linear-gradient(90deg, transparent, #8c0017, transparent);
+}
+
+.invite-card {
+position: relative;
+padding: clamp(22px, 5vw, 42px);
+background: linear-gradient(145deg, #190407, #080506 75%);
+border: 1px solid #64101e;
+box-shadow: inset 0 0 35px #6e001522, 0 12px 40px #000;
+}
+
+.invite-card::before {
+content: "OFFICIAL SUMMONS // DO NOT IGNORE";
+display: block;
+margin-bottom: 22px;
+color: #a90019;
+font: 10px Arial, sans-serif;
 letter-spacing: 3px;
 }
 
-h3 {
-color: #e6d6e5;
-font-weight: normal;
+.invite-card p {
+color: #d1bfc0;
+line-height: 1.9;
 }
 
-p {
-line-height: 1.8;
-color: #c7bdca;
-}
-
-.details {
+.event-details {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-gap: 15px;
+grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+gap: 12px;
+margin-top: 24px;
 }
 
 .detail {
-border-left: 2px solid #a30019;
-padding: 12px 15px;
-background: #ffffff05;
+padding: 17px;
+background: #0b0708;
+border-left: 2px solid #a00019;
 }
 
 .detail strong {
 display: block;
-color: #a7f47b;
 margin-bottom: 8px;
-text-transform: uppercase;
-font-size: 11px;
+color: #c0001d;
+font: 10px Arial, sans-serif;
 letter-spacing: 2px;
 }
 
-.doors {
+.detail span { color: #e0cece; line-height: 1.6; }
+
+.door-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
 gap: 15px;
-margin-top: 25px;
+margin-top: 28px;
 }
 
 .door {
-min-height: 180px;
+position: relative;
+min-height: 245px;
+overflow: hidden;
+padding: 18px 12px;
 background:
-linear-gradient(180deg, #180d1a, #070608);
-border: 1px solid #4b263c;
-padding: 20px 12px;
-color: #d9d0da;
-font-size: 13px;
-letter-spacing: 2px;
+linear-gradient(90deg, #070304, #1b060a 48%, #070304),
+#0b0506;
+border: 2px solid #4a1019;
+color: #d8bfc1;
+text-align: center;
+box-shadow: inset 0 0 25px #000, 0 10px 25px #000;
+transition: .25s;
+}
+
+.door::before {
+content: "";
+position: absolute;
+inset: 10px;
+border: 1px solid #5b1b25;
+pointer-events: none;
+}
+
+.door::after {
+content: "";
+position: absolute;
+top: -35px;
+left: 50%;
+width: 85px;
+height: 85px;
+transform: translateX(-50%);
+background: #970018;
+filter: blur(40px);
+opacity: .28;
 }
 
 .door:hover {
-background: #240c18;
-box-shadow: inset 0 0 30px #7d001c55;
+border-color: #df001f;
+transform: translateY(-5px);
+box-shadow: 0 0 25px #b0001944, inset 0 0 30px #70000d44;
 }
 
-.door .number {
+.door-symbol {
 display: block;
-font-size: 35px;
-color: #a30019;
-margin-bottom: 15px;
+position: relative;
+z-index: 1;
+margin: 14px 0 22px;
+color: #8e0016;
+font-size: 36px;
+text-shadow: 0 0 14px #a00020;
 }
 
-.hidden {
-display: none !important;
+.door h3 {
+position: relative;
+z-index: 1;
+margin: 0 0 12px;
+color: #c9001d;
+font-size: 16px;
+text-transform: uppercase;
 }
 
-.reveal {
+.door p {
+position: relative;
+z-index: 1;
+color: #b09a9d;
+font-size: 12px;
+line-height: 1.7;
+}
+
+.door small {
+position: relative;
+z-index: 1;
+display: block;
+margin-top: 15px;
+color: #806267;
+font: 9px Arial, sans-serif;
+letter-spacing: 2px;
+}
+
+.door-message {
+display: none;
+margin-top: 20px;
+padding: 22px;
+background: #0b0506;
+border: 1px solid #5d0c19;
+color: #d6bfc0;
+line-height: 1.9;
+}
+
+.door-message.show {
+display: block;
+animation: appear .4s;
+}
+
+@keyframes appear {
+from { opacity: 0; transform: translateY(8px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.secret-box {
+padding: 26px;
+background: #080506;
+border: 1px solid #4d151d;
+box-shadow: inset 0 0 35px #5b000d22;
+}
+
+.secret-label {
+margin-bottom: 16px;
+color: #9b6d72;
+font: 10px Arial, sans-serif;
+letter-spacing: 4px;
+}
+
+.secret-box p { color: #bda9ab; line-height: 1.9; }
+
+.secret-content {
+display: none;
 margin-top: 20px;
 padding: 20px;
-border: 1px dashed #a30019;
-background: #160811;
+background: #160307;
+border-left: 2px solid #c0001b;
+color: #e0cacc;
+line-height: 1.9;
 }
 
-input, select, textarea {
-display: block;
-width: 100%;
-margin: 12px 0;
-padding: 13px;
-background: #0a080c;
-color: white;
-border: 1px solid #493248;
-font-size: 15px;
+.secret-content.show { display: block; }
+
+.luck-card {
+padding: 28px;
+border: 1px solid #65101c;
+background: radial-gradient(ellipse at top, #28050b, #080506 70%);
+text-align: center;
 }
+
+.luck-card p { color: #bba4a6; line-height: 1.9; }
+
+.luck-result {
+display: none;
+margin-top: 20px;
+padding: 22px;
+background: #090405;
+border: 1px solid #4c1119;
+color: #e1c9cb;
+line-height: 1.9;
+}
+
+.luck-result.show { display: block; }
+
+.rsvp-panel {
+padding: clamp(22px, 5vw, 38px);
+background: linear-gradient(145deg, #170307, #080506);
+border: 1px solid #68101e;
+box-shadow: 0 0 35px #4d000d22;
+}
+
+form { display: grid; gap: 19px; margin-top: 25px; }
 
 label {
 display: block;
-margin-top: 15px;
-color: #c5ff92;
-font-size: 13px;
+margin-bottom: 9px;
+color: #c6aeb1;
+font: 11px Arial, sans-serif;
+letter-spacing: 2px;
+text-transform: uppercase;
 }
 
-.small {
-font-size: 12px;
-color: #958a98;
+input, select, textarea {
+width: 100%;
+padding: 14px;
+border: 1px solid #4d2026;
+border-radius: 0;
+outline: none;
+color: #f0dfe1;
+background: #080506;
 }
+
+input:focus, select:focus, textarea:focus {
+border-color: #bd001b;
+box-shadow: 0 0 10px #85000f44;
+}
+
+textarea { min-height: 100px; resize: vertical; }
+
+.form-note {
+color: #947c80;
+font: 12px Arial, sans-serif;
+line-height: 1.8;
+}
+
+.form-result {
+display: none;
+padding: 18px;
+border: 1px solid #791020;
+background: #0b0506;
+line-height: 1.9;
+overflow-wrap: anywhere;
+}
+
+.form-result.show { display: block; }
+
+.warning {
+margin-top: 28px;
+padding: 23px;
+border: 1px solid #4b171d;
+background: #0a0607;
+color: #c0adaf;
+font-size: 13px;
+line-height: 1.9;
+}
+
+.warning strong { color: #ed3144; }
+.warning .green { color: #b4e780; }
 
 footer {
+position: relative;
+z-index: 3;
+padding: 35px 20px 45px;
+color: #785b60;
+font: 10px Arial, sans-serif;
+letter-spacing: 3px;
 text-align: center;
-padding: 45px 20px;
-color: #716574;
-font-size: 12px;
-letter-spacing: 2px;
-border-top: 1px solid #321523;
+}
+
+.fog {
+position: fixed;
+z-index: 0;
+pointer-events: none;
+bottom: -90px;
+left: -20%;
+width: 140%;
+height: 240px;
+background: radial-gradient(ellipse, #8b182833, transparent 68%);
+filter: blur(25px);
+animation: fogMove 13s ease-in-out infinite alternate;
+}
+
+@keyframes fogMove {
+from { transform: translateX(-5%) scaleX(.9); }
+to { transform: translateX(5%) scaleX(1.15); }
+}
+
+/* Floating ghost silhouettes, made with CSS instead of emojis */
+.ghost {
+position: fixed;
+z-index: 1;
+width: 76px;
+height: 105px;
+pointer-events: none;
+opacity: 0;
+border-radius: 50% 50% 25% 25%;
+background:
+radial-gradient(ellipse at 34% 37%, #171316 0 5px, transparent 6px),
+radial-gradient(ellipse at 66% 37%, #171316 0 5px, transparent 6px),
+radial-gradient(ellipse at 50% 53%, #2b1b20 0 4px, transparent 5px),
+radial-gradient(ellipse at 50% 36%, #f2eded 0%, #d3cdcf 40%, #999094 67%, #6a6064 75%, transparent 77%);
+filter: drop-shadow(0 0 14px #d8cdd144);
+animation: ghostFloat 21s linear infinite;
+}
+
+.ghost::before {
+content: "";
+position: absolute;
+left: 0;
+right: 0;
+bottom: -12px;
+height: 36px;
+background: linear-gradient(180deg, #c6c0c455, transparent);
+clip-path: polygon(0 0, 20% 8%, 32% 85%, 45% 30%, 58% 100%, 72% 20%, 85% 80%, 100% 0, 100% 100%, 0 100%);
+filter: blur(2px);
+}
+
+.ghost::after {
+content: "";
+position: absolute;
+inset: 8px 10px 0;
+border-radius: 50%;
+background: linear-gradient(100deg, #fff4, transparent 55%);
+filter: blur(7px);
+}
+
+.ghost.one { top: 20%; left: -120px; }
+.ghost.two {
+top: 58%;
+left: -120px;
+width: 53px;
+height: 76px;
+animation-delay: 7s;
+}
+.ghost.three {
+top: 39%;
+left: -120px;
+width: 65px;
+height: 91px;
+animation-delay: 14s;
+}
+
+@keyframes ghostFloat {
+0% {
+transform: translateX(-5vw) translateY(0) rotate(-8deg);
+opacity: 0;
+}
+12% { opacity: .32; }
+45% {
+transform: translateX(52vw) translateY(-48px) rotate(8deg);
+opacity: .2;
+}
+80% { opacity: .28; }
+100% {
+transform: translateX(120vw) translateY(24px) rotate(-6deg);
+opacity: 0;
+}
 }
 
 #scare {
-position: fixed;
-inset: 0;
-z-index: 100;
-background: #030203;
 display: none;
+position: fixed;
+z-index: 100;
+inset: 0;
 align-items: center;
 justify-content: center;
+padding: 25px;
+background: #050000;
 text-align: center;
-padding: 20px;
 }
 
 #scare.show {
 display: flex;
-animation: flash .12s alternate 5;
-}
-
-.scare-face {
-font-size: clamp(60px, 18vw, 170px);
-color: #d00024;
-text-shadow: 0 0 35px red;
+animation: scareFlash .18s 3;
 }
 
 .scare-text {
-font-size: 20px;
-color: white;
+color: #e00020;
+font-size: clamp(35px, 9vw, 75px);
+text-shadow: 0 0 25px red;
+text-transform: uppercase;
+}
+
+.scare-text p {
+color: #e6caca;
+font: 12px Arial, sans-serif;
 letter-spacing: 4px;
 }
 
-@keyframes flash {
-from { background: #050305; }
-to { background: #32000b; }
+@keyframes scareFlash {
+0%, 100% { background: #050000; }
+50% { background: #48000a; }
 }
 
-audio { display: none; }
+@media (max-width: 480px) {
+.title-line { letter-spacing: -2px; }
+.title-line:nth-child(2) { letter-spacing: -1px; }
+.date-slime { font-size: 12px; letter-spacing: 2px; }
+.ghost { transform: scale(.8); }
+}
 
-@media (max-width: 600px) {
-section { padding: 20px; }
-.hero { min-height: 80vh; }
+@media (prefers-reduced-motion: reduce) {
+*, *::before, *::after { animation-duration: .01ms !important; }
 }
 </style>
 </head>
 
 <body>
 
+<div class="fog"></div>
+<div class="ghost one"></div>
+<div class="ghost two"></div>
+<div class="ghost three"></div>
+
 <header class="hero">
-<div class="eyebrow">October 31, 2026 · 5:00 PM</div>
-<h1>A Night Among Sinners Bash</h1>
-<p class="subtitle">One night. Questionable decisions. A suspicious number of monsters.</p>
-<div class="warning">You were invited. You were not promised safety.</div>
-<div style="margin-top:25px">
-<button id="soundButton" type="button">Start Haunted Audio</button>
-<button type="button" onclick="document.getElementById('invitation').scrollIntoView({behavior:'smooth'})">Enter If You Dare</button>
+<div class="hero-content">
+<div class="eyebrow">You have been warned</div>
+
+<h1>
+<span class="title-line">A Night</span>
+<span class="title-line">Among Sinners</span>
+<span class="title-line">Bash</span>
+</h1>
+
+<div class="date-slime">
+October 31 · 5 PM
+<span class="slime-drips" aria-hidden="true">
+<i></i><i></i><i></i><i></i><i></i>
+</span>
 </div>
-<p class="small">Sound is optional. Headphones recommended.</p>
+
+<p class="tagline">
+One night. Questionable decisions.
+A suspicious number of monsters.
+<br><em>Something is waiting for you.</em>
+</p>
+
+<button class="primary-btn"
+onclick="document.getElementById('invitation').scrollIntoView({behavior:'smooth'})">
+Enter if you dare
+</button>
+
+<br>
+<button class="sound-btn" id="soundButton" onclick="toggleMusic()">
+▶ Play the haunted soundtrack
+</button>
+<div class="sound-note">
+Turn up your volume. Headphones recommended.
+</div>
+</div>
 </header>
 
-<main id="invitation">
+<section id="invitation">
+<div class="invite-card">
+<div class="eyebrow">Official summons</div>
+<h2>You've Been Summoned</h2>
 
-<section>
-<h2>The Invitation</h2>
 <p>
-The night is calling. The lights are low. Something is waiting in the dark.
-Come dressed for Halloween and join us for a night of food, drinks, and questionable company.
+The night is dark. The doors are open.
+And whatever happens after sunset is between you
+and whatever follows you home.
 </p>
 
-<div class="details">
-<div class="detail">
-<strong>Date</strong>
-Saturday, October 31, 2026
-</div>
-<div class="detail">
-<strong>Time</strong>
-5:00 PM
-</div>
-<div class="detail">
-<strong>Location</strong>
-The Flerb Home
-</div>
-<div class="detail">
-<strong>Food</strong>
-Potluck — bring something to share
-</div>
-</div>
-
-<p>Family-friendly Halloween fun. Alcoholic drinks will be available for adults only. Please drink responsibly.</p>
-</section>
-
-<section>
-<h2>Choose Your Door</h2>
-<p>Every door leads somewhere. Not every destination is worth finding.</p>
-
-<div class="doors">
-<button class="door" onclick="openDoor(1)">
-<span class="number">01</span>
-THE BASEMENT
-</button>
-<button class="door" onclick="openDoor(2)">
-<span class="number">02</span>
-THE RED ROOM
-</button>
-<button class="door" onclick="openDoor(3)">
-<span class="number">03</span>
-THE EMPTY HOUSE
-</button>
-<button class="door" onclick="openDoor(4)">
-<span class="number">04</span>
-DO NOT ENTER
-</button>
-</div>
-
-<div id="doorReveal" class="reveal hidden" aria-live="polite"></div>
-</section>
-
-<section>
-<h2>Something Is Watching</h2>
 <p>
-Most people see only what they are looking for.
-The rest is hidden in plain sight.
+Come dressed for the occasion, bring your appetite,
+and prepare for a Halloween night full of creepy surprises,
+questionable luck, good food, and things that go bump in the night.
 </p>
-<button type="button" onclick="revealSecret()">Reveal the Secret</button>
-<div id="secret" class="reveal hidden">
-You found it. Now look over your shoulder.
-<br><br>
-Some invitations should never have been opened.
+
+<div class="divider"></div>
+
+<div class="event-details">
+<div class="detail">
+<strong>THE NIGHT</strong>
+<span>Saturday, October 31, 2026</span>
+</div>
+<div class="detail">
+<strong>WHEN THE SUN SETS</strong>
+<span>5:00 PM</span>
+</div>
+<div class="detail">
+<strong>WHERE</strong>
+<span>The Flerb Home</span>
+</div>
+<div class="detail">
+<strong>THE OFFERING</strong>
+<span>Bring a dish or something to share</span>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<p>
+<strong style="color:#d0001e">Costumes encouraged.</strong>
+Your presence is requested. Your good behavior is expected.
+Your soul? We'll see about that.
+</p>
+
+<button class="primary-btn"
+onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">
+Answer the summons
+</button>
 </div>
 </section>
 
-<section>
+<section id="doors">
+<div class="eyebrow">Choose your fate</div>
+<h2>Which Door Will You Open?</h2>
+<p class="section-intro">
+Every door leads somewhere. Not every destination wants you there.
+Choose carefully. Or don't. That makes it more interesting.
+</p>
+
+<div class="door-grid">
+<button class="door" onclick="openDoor('red')">
+<span class="door-symbol">†</span>
+<h3>The Red Room</h3>
+<p>The walls remember what happened here.</p>
+<small>DO NOT KNOCK</small>
+</button>
+
+<button class="door" onclick="openDoor('guest')">
+<span class="door-symbol">☠</span>
+<h3>The Last Guest</h3>
+<p>Someone arrived before you. They never left.</p>
+<small>ONE MORE PLACE SET</small>
+</button>
+
+<button class="door" onclick="openDoor('mirror')">
+<span class="door-symbol">◈</span>
+<h3>The Black Mirror</h3>
+<p>Look too long, and something looks back.</p>
+<small>DON'T LOOK BEHIND YOU</small>
+</button>
+
+<button class="door" onclick="openDoor('basement')">
+<span class="door-symbol">♜</span>
+<h3>The Basement</h3>
+<p>You heard the footsteps. Nobody else did.</p>
+<small>THE LIGHT DOESN'T WORK</small>
+</button>
+
+<button class="door" onclick="openDoor('potluck')">
+<span class="door-symbol">♨</span>
+<h3>The Potluck</h3>
+<p>Bring a dish. Feed the guests. Don't ask what's in the bowl.</p>
+<small>EVERYONE BRINGS SOMETHING</small>
+</button>
+</div>
+
+<div class="door-message" id="doorMessage" aria-live="polite"></div>
+</section>
+
+<section id="secret">
+<div class="eyebrow">Not meant for mortal eyes</div>
+<h2>A Message From The Other Side</h2>
+
+<div class="secret-box">
+<div class="secret-label">CLASSIFIED // DO NOT OPEN</div>
+<p>
+Something has been left here for the curious.
+Most people will scroll right past it.
+The ones who don't may regret it.
+</p>
+
+<button class="dark-btn" onclick="revealSecret()">
+Unseal the message
+</button>
+
+<div class="secret-content" id="secretContent">
+<strong style="color:#df001f">YOU WEREN'T SUPPOSED TO FIND THIS.</strong>
+<p>
+Count the doors. Remember the date. Watch the shadows.
+And if you hear your name whispered when nobody is near,
+whatever you do...
+</p>
+<p style="color:#e00020;font-size:20px">DON'T ANSWER.</p>
+<p>
+Some secrets are better left buried.
+This one is coming to the party.
+</p>
+</div>
+</div>
+</section>
+
+<section id="luck">
+<div class="eyebrow">Fate is feeling cruel</div>
 <h2>Test Your Luck</h2>
-<p>The following button is not for the easily startled.</p>
-<button type="button" onclick="jumpScare()">DO NOT PRESS</button>
-<p class="small">Optional visual scare. No sudden sound is used for the jump scare.</p>
+
+<div class="luck-card">
+<p>
+The spirits are listening. Your luck has been noticed.
+Press the button and find out what the night has decided for you.
+</p>
+
+<button class="primary-btn" onclick="testLuck()">Tempt fate</button>
+<div class="luck-result" id="luckResult" aria-live="polite"></div>
+</div>
 </section>
 
-<section>
-<h2>Confirm Your Arrival</h2>
-<p>Tell us how many souls will be joining you.</p>
+<section id="rsvp">
+<div class="eyebrow">Confirm your survival</div>
+<h2>RSVP Before It's Too Late</h2>
+
+<div class="rsvp-panel">
+<p class="section-intro">
+Tell us who's coming and what you're bringing.
+The guest list must be accounted for before the night begins.
+</p>
 
 <form id="rsvpForm">
-<label for="guestName">Your name</label>
-<input id="guestName" name="guestName" placeholder="Enter your name" required>
+<div>
+<label for="guestName">Name</label>
+<input id="guestName" name="name" type="text"
+placeholder="Who dares to attend?" required>
+</div>
 
-<label for="guestCount">How many souls will be joining you?</label>
-<select id="guestCount" name="guestCount" required>
-<option value="1">1 soul</option>
-<option value="2">2 souls</option>
-<option value="3">3 souls</option>
-<option value="4">4 souls</option>
-<option value="5">5 souls</option>
-<option value="6+">6 or more souls</option>
+<div>
+<label for="souls"># of Souls Joining You</label>
+<select id="souls" name="souls" required>
+<option value="">Choose your number...</option>
+<option>Just me</option>
+<option>2 souls</option>
+<option>3 souls</option>
+<option>4 souls</option>
+<option>5 souls</option>
+<option>6 souls</option>
+<option>7 souls</option>
+<option>8+ souls</option>
 </select>
+</div>
 
-<label for="bringing">What are you bringing to the potluck?</label>
-<input id="bringing" name="bringing" placeholder="Food, snacks, drinks, or nothing">
+<div>
+<label for="bringing">What Are You Bringing?</label>
+<textarea id="bringing" name="bringing"
+placeholder="Food, drinks, dessert... or a mysterious offering?"
+required></textarea>
+</div>
 
-<button type="submit">Submit Your Soul</button>
-</form>
+<button class="primary-btn" type="submit">Submit Your Offering</button>
 
-<p class="small" id="rsvpMessage">
-Note: This demo does not send your RSVP to the host yet. A connected form is needed to collect responses.
+<p class="form-note">
+RSVP preview only: connect a form service to collect and save
+actual responses before sharing this website.
 </p>
+
+<div class="form-result" id="formResult" aria-live="polite"></div>
+</form>
+</div>
+
+<div class="warning">
+<strong>THE RULES OF THE NIGHT</strong>
+<p class="green">Family-friendly fun is welcome. Little monsters are welcome, too.</p>
+<p><strong>Alcohol will be available for adults.</strong> Drink responsibly, arrange a safe ride if you're drinking, and never drink and drive.</p>
+<p><strong>Act right.</strong> Respect the hosts, the home, and everyone attending. Keep the drama outside the gates.</p>
+<p>Be spooky. Have fun. Don't be the reason the spirits get blamed for something you did.</p>
+</div>
 </section>
 
-</main>
-
-<div id="scare" role="dialog" aria-modal="true" aria-label="Jump scare">
-<div>
-<div class="scare-face">◉</div>
-<p class="scare-text">YOU SHOULD NOT HAVE COME HERE.</p>
-<button type="button" onclick="closeScare()">GET ME OUT</button>
-</div>
-</div>
-
 <footer>
-A NIGHT AMONG SINNERS BASH
-<p>Come for the party. Leave before midnight.</p>
+A NIGHT AMONG SINNERS BASH · OCTOBER 31, 2026
+<p>WHAT HAPPENS IN THE DARK STAYS IN THE DARK.</p>
 </footer>
 
+<div id="scare" role="dialog" aria-modal="true">
+<div class="scare-text">
+IT SEES YOU.
+<p>YOU SHOULD NOT HAVE OPENED THAT.</p>
+<button class="dark-btn" onclick="closeScare()">GET ME OUT</button>
+</div>
+</div>
+
 <script>
-"use strict";
-
-let audioContext = null;
-let masterGain = null;
-let soundTimer = null;
-let soundOn = false;
-let oscillators = [];
-let noiseSource = null;
-let noiseGain = null;
-
-const soundButton = document.getElementById("soundButton");
-
-async function startHauntedAudio() {
-const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-
-if (!AudioContextClass) {
-alert("Your browser does not support generated audio. Try opening the website in Chrome or Safari.");
-return;
-}
-
-try {
-if (!audioContext) {
-audioContext = new AudioContextClass();
-}
-
-await audioContext.resume();
-
-if (audioContext.state !== "running") {
-alert("Audio is blocked by your browser. Try opening the site directly in Chrome or Safari and clicking the sound button again.");
-return;
-}
-
-masterGain = audioContext.createGain();
-masterGain.gain.value = 0.22;
-masterGain.connect(audioContext.destination);
-
-// Deep, eerie background drone.
-[55, 55.8, 82.4].forEach((frequency, index) => {
-const osc = audioContext.createOscillator();
-const gain = audioContext.createGain();
-
-osc.type = index === 1 ? "triangle" : "sine";
-osc.frequency.value = frequency;
-gain.gain.value = index === 2 ? 0.10 : 0.18;
-
-osc.connect(gain);
-gain.connect(masterGain);
-osc.start();
-
-oscillators.push(osc);
-});
-
-// Create a low-volume layer of wind-like noise.
-const bufferSize = audioContext.sampleRate * 3;
-const noiseBuffer = audioContext.createBuffer(
-1, bufferSize, audioContext.sampleRate
-);
-const channel = noiseBuffer.getChannelData(0);
-
-for (let i = 0; i < bufferSize; i++) {
-channel[i] = (Math.random() * 2 - 1) * 0.35;
-}
-
-noiseSource = audioContext.createBufferSource();
-noiseSource.buffer = noiseBuffer;
-noiseSource.loop = true;
-
-const filter = audioContext.createBiquadFilter();
-filter.type = "lowpass";
-filter.frequency.value = 180;
-
-noiseGain = audioContext.createGain();
-noiseGain.gain.value = 0.17;
-
-noiseSource.connect(filter);
-filter.connect(noiseGain);
-noiseGain.connect(masterGain);
-noiseSource.start();
-
-soundOn = true;
-soundButton.textContent = "Stop Haunted Audio";
-
-// Occasionally play a distant, high eerie note.
-soundTimer = setInterval(() => {
-if (!audioContext || audioContext.state !== "running" || !masterGain) return;
-
-const note = audioContext.createOscillator();
-const noteGain = audioContext.createGain();
-const now = audioContext.currentTime;
-
-note.type = "sine";
-note.frequency.setValueAtTime(
-[174.61, 196, 207.65, 233.08][Math.floor(Math.random() * 4)],
-now
-);
-
-noteGain.gain.setValueAtTime(0.0001, now);
-noteGain.gain.exponentialRampToValueAtTime(0.09, now + 0.5);
-noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 3.5);
-
-note.connect(noteGain);
-noteGain.connect(masterGain);
-
-note.start(now);
-note.stop(now + 3.6);
-}, 5000);
-
-} catch (error) {
-console.error("Audio could not start:", error);
-alert("The browser couldn't start the audio. Try refreshing the page and clicking Start Haunted Audio again.");
-stopHauntedAudio();
-}
-}
-
-function stopHauntedAudio() {
-if (soundTimer) {
-clearInterval(soundTimer);
-soundTimer = null;
-}
-
-oscillators.forEach(osc => {
-try { osc.stop(); } catch (error) {}
-});
-oscillators = [];
-
-if (noiseSource) {
-try { noiseSource.stop(); } catch (error) {}
-noiseSource = null;
-}
-
-if (masterGain && audioContext) {
-try {
-masterGain.gain.setTargetAtTime(0, audioContext.currentTime, 0.08);
-} catch (error) {}
-}
-
-masterGain = null;
-noiseGain = null;
-soundOn = false;
-soundButton.textContent = "Start Haunted Audio";
-}
-
-soundButton.addEventListener("click", () => {
-if (soundOn) {
-stopHauntedAudio();
-} else {
-startHauntedAudio();
-}
-});
-
-function openDoor(number) {
-const messages = {
-1: "You hear something moving beneath your feet. The basement door locks behind you.",
-2: "The walls are stained red. A voice whispers your name, although nobody here knows it.",
-3: "Every room is empty. Every mirror shows someone standing behind you.",
-4: "You were warned. Something on the other side has been waiting for you."
+const doorMessages = {
+red: `
+<strong style="color:#e00020">THE RED ROOM IS OPEN.</strong><br>
+The floorboards creak, even when nobody moves.
+A chair is waiting for you. There is already someone sitting in it.
+<br><br>Maybe choose another door.
+`,
+guest: `
+<strong style="color:#e00020">THE LAST GUEST HAS ARRIVED.</strong><br>
+The headcount is wrong. One more person is here than you invited.
+Nobody remembers opening the door for them.
+<br><br>Check the guest list carefully.
+`,
+mirror: `
+<strong style="color:#e00020">DON'T LOOK TWICE.</strong><br>
+Your reflection smiled before you did.
+You turned around. Nothing was there.
+When you looked back, the reflection was still smiling.
+<br><br>Stop looking.
+`,
+basement: `
+<strong style="color:#e00020">SOMETHING IS DOWNSTAIRS.</strong><br>
+You hear three knocks from beneath the floor.
+Then three more. Then a voice asking why you left it alone.
+<br><br>There is no reason to go down there.
+`,
+potluck: `
+<strong style="color:#a5d46b">THE POTLUCK IS OPEN.</strong><br>
+Every guest must bring something to share: a dish, dessert,
+snack, or drink. The table will be full and the guests will be fed.
+<br><br>Bring something good, and label any common allergens.
+Even monsters have dietary requirements.
+`
 };
 
-const reveal = document.getElementById("doorReveal");
-reveal.textContent = messages[number];
-reveal.classList.remove("hidden");
+function openDoor(door) {
+const box = document.getElementById("doorMessage");
+box.innerHTML = doorMessages[door];
+box.classList.add("show");
+box.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function revealSecret() {
-document.getElementById("secret").classList.toggle("hidden");
+const secret = document.getElementById("secretContent");
+secret.classList.toggle("show");
+if (secret.classList.contains("show")) {
+secret.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
 }
 
-function jumpScare() {
-const scare = document.getElementById("scare");
-scare.classList.add("show");
-}
+const fates = [
+"BAD OMEN. Someone will say your name when nobody is looking. Probably.",
+"THE CURSE IS DELAYED. You may enjoy one peaceful snack before chaos begins.",
+"THE SPIRITS APPROVE. Your costume will be remembered. For better or worse.",
+"UNLUCKY. You have been chosen to help clean up. The spirits are demanding.",
+"A WARNING. Don't be the first to leave. Don't ask why.",
+"LUCKY SOUL. You get first pick at the food table. Use this power wisely.",
+"THE SHADOW FOLLOWS. It might just be someone in a costume. Probably.",
+"FATE HAS SPOKEN. Bring something delicious. The potluck spirits are hungry."
+];
 
-function closeScare() {
-document.getElementById("scare").classList.remove("show");
+function testLuck() {
+const result = document.getElementById("luckResult");
+result.textContent = fates[Math.floor(Math.random() * fates.length)];
+result.classList.add("show");
 }
 
 document.getElementById("rsvpForm").addEventListener("submit", function(event) {
 event.preventDefault();
 
-document.getElementById("rsvpMessage").textContent =
-"Your details are filled in, but this demo does not send them to the host. Connect a real RSVP form before using this for your invitations.";
+const name = document.getElementById("guestName").value.trim();
+const souls = document.getElementById("souls").value;
+const bringing = document.getElementById("bringing").value.trim();
+const result = document.getElementById("formResult");
+
+result.replaceChildren();
+
+const heading = document.createElement("strong");
+heading.style.color = "#e00020";
+heading.textContent = "YOUR SUMMONS HAS BEEN PREPARED.";
+result.appendChild(heading);
+
+[
+["Name: ", name],
+["Souls joining you: ", souls],
+["Offering: ", bringing]
+].forEach(function(pair) {
+const line = document.createElement("div");
+line.textContent = pair[0] + pair[1];
+result.appendChild(line);
 });
+
+const note = document.createElement("p");
+note.textContent = "This is only a preview. Your RSVP has NOT been sent to the host yet.";
+result.appendChild(note);
+result.classList.add("show");
+});
+
+/* Original generated synth atmosphere; not the actual Rockwell recording. */
+let audioContext = null;
+let musicNodes = [];
+let musicPlaying = false;
+let musicTimer = null;
+let musicStep = 0;
+
+async function toggleMusic() {
+const button = document.getElementById("soundButton");
+
+if (musicPlaying) {
+stopMusic();
+button.textContent = "▶ Play the haunted soundtrack";
+return;
+}
+
+try {
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+
+if (!AudioCtx) {
+button.textContent = "Audio is not supported by this browser";
+return;
+}
+
+if (!audioContext) audioContext = new AudioCtx();
+if (audioContext.state === "suspended") await audioContext.resume();
+
+if (audioContext.state !== "running") {
+button.textContent = "Tap again to enable sound";
+return;
+}
+
+musicPlaying = true;
+musicStep = 0;
+button.textContent = "■ Stop the haunted soundtrack";
+
+startDrone();
+playBeat();
+musicTimer = setInterval(playBeat, 650);
+} catch (error) {
+button.textContent = "Tap to try the sound again";
+console.error("Audio could not start:", error);
+}
+}
+
+function startDrone() {
+const ctx = audioContext;
+const now = ctx.currentTime;
+
+const master = ctx.createGain();
+master.gain.setValueAtTime(0.0001, now);
+master.gain.exponentialRampToValueAtTime(0.32, now + 1.2);
+master.connect(ctx.destination);
+musicNodes.push(master);
+
+const filter = ctx.createBiquadFilter();
+filter.type = "lowpass";
+filter.frequency.value = 900;
+filter.connect(master);
+
+const bass = ctx.createOscillator();
+bass.type = "sawtooth";
+bass.frequency.value = 55;
+
+const bassGain = ctx.createGain();
+bassGain.gain.value = 0.28;
+bass.connect(bassGain);
+bassGain.connect(filter);
+bass.start();
+
+const pad = ctx.createOscillator();
+pad.type = "triangle";
+pad.frequency.value = 110;
+
+const padGain = ctx.createGain();
+padGain.gain.value = 0.15;
+pad.connect(padGain);
+padGain.connect(filter);
+pad.start();
+
+const eerie = ctx.createOscillator();
+eerie.type = "sine";
+eerie.frequency.value = 164.81;
+
+const eerieGain = ctx.createGain();
+eerieGain.gain.value = 0.07;
+eerie.connect(eerieGain);
+eerieGain.connect(master);
+eerie.start();
+
+musicNodes.push(bass, bassGain, pad, padGain, eerie, eerieGain, filter);
+}
+
+function playBeat() {
+if (!musicPlaying || !audioContext) return;
+
+const ctx = audioContext;
+const now = ctx.currentTime;
+const notes = [55, 55, 65.41, 55, 73.42, 65.41, 55, 82.41];
+const freq = notes[musicStep % notes.length];
+musicStep++;
+
+const osc = ctx.createOscillator();
+const gain = ctx.createGain();
+const filter = ctx.createBiquadFilter();
+
+osc.type = "square";
+osc.frequency.setValueAtTime(freq, now);
+osc.frequency.exponentialRampToValueAtTime(freq * 0.96, now + 0.22);
+
+filter.type = "lowpass";
+filter.frequency.value = 500;
+
+gain.gain.setValueAtTime(0.0001, now);
+gain.gain.exponentialRampToValueAtTime(0.2, now + 0.025);
+gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+
+osc.connect(filter);
+filter.connect(gain);
+gain.connect(ctx.destination);
+osc.start(now);
+osc.stop(now + 0.38);
+
+musicNodes.push(osc, gain, filter);
+if (musicNodes.length > 100) musicNodes = musicNodes.slice(-30);
+}
+
+function stopMusic() {
+musicPlaying = false;
+if (musicTimer) {
+clearInterval(musicTimer);
+musicTimer = null;
+}
+
+musicNodes.forEach(function(node) {
+try {
+if (typeof node.stop === "function") node.stop();
+if (typeof node.disconnect === "function") node.disconnect();
+} catch (error) {}
+});
+
+musicNodes = [];
+}
+
+function closeScare() {
+document.getElementById("scare").classList.remove("show");
+}
 </script>
 
 </body>
 </html>
+
