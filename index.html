@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -193,12 +192,7 @@ top: 0;
 left: 3%;
 right: 3%;
 height: 12px;
-background: linear-gradient(
-180deg,
-#caff8b 0%,
-#a4ff52 30%,
-#76e522 100%
-);
+background: linear-gradient(180deg, #caff8b 0%, #a4ff52 30%, #76e522 100%);
 border-radius: 48% 40% 25% 30%;
 box-shadow: inset 0 2px 0 #d8ffb5;
 animation: slimeWobble 3s ease-in-out infinite;
@@ -222,50 +216,31 @@ animation: slimeShine 3s ease-in-out infinite;
 position: absolute;
 top: 5px;
 display: block;
-background: linear-gradient(
-90deg,
-#65d719 0%,
-#9eff43 45%,
-#80ed27 100%
-);
+background: linear-gradient(90deg, #65d719 0%, #9eff43 45%, #80ed27 100%);
 border-radius: 0 0 10px 10px;
 box-shadow: inset 2px 0 0 #c1ff82;
 transform-origin: top center;
 }
 
 .slime i:nth-child(1) {
-left: 15%;
-width: 11px;
-height: 18px;
+left: 15%; width: 11px; height: 18px;
 animation: dripOne 3.4s ease-in-out infinite;
 }
-
 .slime i:nth-child(2) {
-left: 37%;
-width: 13px;
-height: 27px;
+left: 37%; width: 13px; height: 27px;
 border-radius: 0 0 12px 12px;
 animation: dripTwo 4.1s ease-in-out infinite;
 }
-
 .slime i:nth-child(3) {
-left: 61%;
-width: 9px;
-height: 15px;
+left: 61%; width: 9px; height: 15px;
 animation: dripThree 3.7s ease-in-out infinite;
 }
-
 .slime i:nth-child(4) {
-left: 81%;
-width: 12px;
-height: 23px;
+left: 81%; width: 12px; height: 23px;
 animation: dripFour 4.4s ease-in-out infinite;
 }
-
 .slime i:nth-child(5) {
-left: 93%;
-width: 7px;
-height: 12px;
+left: 93%; width: 7px; height: 12px;
 animation: dripFive 3.2s ease-in-out infinite;
 }
 
@@ -273,35 +248,29 @@ animation: dripFive 3.2s ease-in-out infinite;
 0%, 100% { transform: scaleX(1) translateY(0); }
 50% { transform: scaleX(1.025) translateY(2px); }
 }
-
 @keyframes slimeShine {
 0%, 100% { opacity: .8; transform: translateX(0) rotate(-8deg); }
 50% { opacity: 1; transform: translateX(5px) rotate(-4deg); }
 }
-
 @keyframes dripOne {
 0%, 100% { height: 18px; transform: rotate(0); }
 45% { height: 26px; transform: rotate(-3deg); }
 60% { height: 21px; }
 }
-
 @keyframes dripTwo {
 0%, 100% { height: 27px; transform: scaleY(1); }
 35% { height: 35px; transform: scaleY(1.06); }
 55% { height: 23px; transform: scaleY(.95); }
 }
-
 @keyframes dripThree {
 0%, 100% { height: 15px; transform: rotate(0); }
 50% { height: 23px; transform: rotate(4deg); }
 }
-
 @keyframes dripFour {
 0%, 100% { height: 23px; transform: rotate(0); }
 40% { height: 32px; transform: rotate(3deg); }
 65% { height: 19px; }
 }
-
 @keyframes dripFive {
 0%, 100% { height: 12px; }
 50% { height: 20px; }
@@ -313,11 +282,7 @@ color: #9e8f88;
 font-size: 12px;
 letter-spacing: 1px;
 }
-
-.location b {
-color: #ded0c3;
-font-weight: normal;
-}
+.location b { color: #ded0c3; font-weight: normal; }
 
 .rule {
 width: 100%;
@@ -368,13 +333,11 @@ position: relative;
 overflow: hidden;
 transition: transform .2s, border-color .2s, background .2s;
 }
-
 .door:hover {
 transform: translateY(-3px);
 border-color: #a13b43;
 background: linear-gradient(145deg, #301619, #100d0d 72%);
 }
-
 .door::after {
 content: "";
 position: absolute;
@@ -386,14 +349,12 @@ border: 1px solid #6a2b30;
 border-radius: 50%;
 opacity: .28;
 }
-
 .door-number {
 color: #9a343b;
 font-size: 10px;
 letter-spacing: 2px;
 margin-bottom: 14px;
 }
-
 .door h3 {
 font-family: 'Creepster', Impact, fantasy;
 font-size: 27px;
@@ -402,14 +363,12 @@ margin: 0 0 9px;
 color: #eee0d4;
 letter-spacing: .5px;
 }
-
 .door p {
 color: #b5a59b;
 font-size: 12px;
 line-height: 1.65;
 margin: 0;
 }
-
 .door .open-label {
 display: inline-block;
 color: var(--green);
@@ -433,36 +392,29 @@ radial-gradient(ellipse at top, #39171b 0%, transparent 70%),
 linear-gradient(145deg, #1d1012, #0c0909);
 box-shadow: inset 0 0 35px #5d12171a;
 }
-
-.summons::before,
-.summons::after {
+.summons::before, .summons::after {
 content: "✦";
 position: absolute;
 color: #a34b52;
 font-size: 20px;
 top: 12px;
 }
-
 .summons::before { left: 14px; }
 .summons::after { right: 14px; }
-
 .summons .section-label {
 color: #bd7b7d;
 letter-spacing: 3px;
 }
-
 .summons h2 {
 font-size: clamp(32px, 7vw, 43px);
 margin-bottom: 16px;
 }
-
 .summons p {
 color: #c1b2a6;
 font-size: 13px;
 line-height: 1.9;
 margin: 0;
 }
-
 .summons .summons-details {
 display: inline-block;
 margin: 20px auto;
@@ -474,7 +426,6 @@ font-size: 12px;
 letter-spacing: 1px;
 line-height: 2;
 }
-
 .summons .fine-print {
 color: #8e8178;
 font-size: 11px;
@@ -488,7 +439,6 @@ padding: 28px 18px;
 background: #100b0c;
 margin-top: 24px;
 }
-
 .fate-box p {
 color: #a99a91;
 font-size: 12px;
@@ -505,17 +455,14 @@ font-size: 11px;
 letter-spacing: 1.5px;
 transition: .2s;
 }
-
 .action:hover {
 background: #8c1724;
 box-shadow: 0 0 18px #9d172633;
 }
-
 .action.secondary {
 background: transparent;
 border-color: #514044;
 }
-
 #fateResult {
 min-height: 32px;
 margin-top: 18px;
@@ -530,19 +477,16 @@ padding: 25px;
 border: 1px solid #4d292d;
 background: linear-gradient(135deg, #1c1112, #0c0909);
 }
-
 .rsvp p {
 color: #b4a59a;
 font-size: 12px;
 line-height: 1.8;
 }
-
 form {
 display: grid;
 gap: 15px;
 margin-top: 20px;
 }
-
 label {
 display: block;
 color: #c9b8ac;
@@ -550,7 +494,6 @@ font-size: 11px;
 letter-spacing: 1px;
 margin-bottom: 7px;
 }
-
 input, select, textarea {
 width: 100%;
 border: 1px solid #493034;
@@ -560,20 +503,9 @@ padding: 12px;
 outline: none;
 border-radius: 0;
 }
-
-input:focus, select:focus, textarea:focus {
-border-color: #9b3a42;
-}
-
-input::placeholder, textarea::placeholder {
-color: #75666a;
-}
-
-.form-note {
-color: #81736e !important;
-font-size: 10px !important;
-}
-
+input:focus, select:focus, textarea:focus { border-color: #9b3a42; }
+input::placeholder, textarea::placeholder { color: #75666a; }
+.form-note { color: #81736e !important; font-size: 10px !important; }
 #rsvpResult {
 color: var(--green);
 line-height: 1.8;
@@ -581,7 +513,7 @@ font-size: 12px;
 overflow-wrap: anywhere;
 }
 
-/* INTERACTIVE HOUSE RULES AT THE BOTTOM */
+/* INTERACTIVE HOUSE RULES */
 .house-rules {
 margin-top: 30px;
 padding: 25px 20px;
@@ -591,20 +523,17 @@ radial-gradient(ellipse at top, #241012, transparent 75%),
 #0c0909;
 text-align: center;
 }
-
 .house-rules > p {
 color: #a99a91;
 font-size: 12px;
 line-height: 1.8;
 }
-
 .rule-buttons {
 display: grid;
 grid-template-columns: repeat(2, minmax(0, 1fr));
 gap: 10px;
 margin-top: 20px;
 }
-
 .rule-button {
 border: 1px solid #573037;
 background: #140d0e;
@@ -613,13 +542,10 @@ padding: 14px 10px;
 text-align: left;
 transition: .2s;
 }
-
-.rule-button:hover,
-.rule-button.open {
+.rule-button:hover, .rule-button.open {
 border-color: #9b3540;
 background: #281014;
 }
-
 .rule-button span {
 display: block;
 color: var(--green);
@@ -627,13 +553,11 @@ font-size: 10px;
 letter-spacing: 1px;
 margin-bottom: 8px;
 }
-
 .rule-button strong {
 font-family: 'Creepster', Impact, fantasy;
 font-size: 21px;
 font-weight: normal;
 }
-
 .rule-detail {
 display: none;
 text-align: left;
@@ -645,8 +569,74 @@ color: #c7b6aa;
 font-size: 12px;
 line-height: 1.8;
 }
-
 .rule-detail.show { display: block; }
+
+/* NEW: INTERACTIVE CURSED BAR */
+.cursed-bar {
+margin-top: 28px;
+padding: 25px 20px;
+border: 1px solid #623039;
+background:
+radial-gradient(ellipse at top right, #351319 0%, transparent 65%),
+#0c0909;
+text-align: center;
+box-shadow: inset 0 0 28px #620b1518;
+}
+.cursed-bar .bar-intro {
+color: #b7a79c;
+font-size: 12px;
+line-height: 1.8;
+max-width: 620px;
+margin: 0 auto 20px;
+}
+.bar-buttons {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 10px;
+}
+.bar-button {
+border: 1px solid #623039;
+background: linear-gradient(145deg, #211114, #100b0c);
+color: #e6d6ca;
+padding: 16px 10px;
+min-height: 100px;
+transition: .2s;
+}
+.bar-button:hover, .bar-button.active {
+border-color: var(--green);
+box-shadow: 0 0 16px #8dff3617;
+transform: translateY(-2px);
+}
+.bar-button span {
+display: block;
+color: var(--green);
+font-size: 10px;
+letter-spacing: 1px;
+margin-bottom: 10px;
+}
+.bar-button strong {
+font-family: 'Creepster', Impact, fantasy;
+font-weight: normal;
+font-size: 22px;
+}
+.bar-result {
+display: none;
+margin-top: 15px;
+padding: 17px;
+border-left: 2px solid var(--green);
+background: #160d0e;
+color: #c9b8ac;
+text-align: left;
+font-size: 12px;
+line-height: 1.9;
+}
+.bar-result.show { display: block; }
+.bar-note {
+color: #85756e;
+font-size: 10px;
+line-height: 1.8;
+margin: 17px 0 0;
+}
 
 .footer {
 text-align: center;
@@ -670,7 +660,6 @@ border-radius: 48% 48% 8% 8%;
 filter: drop-shadow(0 0 12px #c6b9b9);
 animation: drift 11s ease-in-out infinite;
 }
-
 .ghost::before {
 content: "";
 position: absolute;
@@ -682,7 +671,6 @@ border-radius: 50%;
 background: #0a0506;
 box-shadow: 21px 0 #0a0506;
 }
-
 .ghost::after {
 content: "";
 position: absolute;
@@ -694,7 +682,6 @@ background: #0a0506;
 border-radius: 50%;
 box-shadow: 0 0 4px #0a0506;
 }
-
 .ghost.one { top: 24%; left: 3%; transform: rotate(-8deg); }
 .ghost.two { top: 58%; right: 4%; animation-delay: -5s; transform: scale(.85) rotate(9deg); }
 .ghost.three { top: 82%; left: 7%; animation-delay: -3s; transform: scale(.65) rotate(-10deg); }
@@ -714,9 +701,7 @@ justify-content: center;
 padding: 20px;
 background: #050303ef;
 }
-
 #popup.show { display: flex; }
-
 .popup-card {
 max-width: 470px;
 width: 100%;
@@ -727,17 +712,11 @@ box-shadow: 0 0 50px #8c0c1a33;
 text-align: center;
 animation: appear .22s ease-out;
 }
-
 @keyframes appear {
 from { transform: scale(.92); opacity: 0; }
 to { transform: scale(1); opacity: 1; }
 }
-
-.popup-card h2 {
-font-size: 37px;
-color: #c7b5a8;
-}
-
+.popup-card h2 { font-size: 37px; color: #c7b5a8; }
 #popupText {
 color: #c2b2a7;
 font-size: 13px;
@@ -757,9 +736,7 @@ padding: 25px;
 background: #a90014;
 color: #080303;
 }
-
 #scare.show { display: flex; animation: flash .14s steps(2) 3; }
-
 #scare .face {
 font-family: Impact, sans-serif;
 font-size: clamp(42px, 12vw, 105px);
@@ -769,24 +746,17 @@ text-transform: uppercase;
 transform: rotate(-3deg);
 text-shadow: 3px 3px #f5c8c8;
 }
-
 #scare p {
 font-size: 12px;
 font-family: 'Special Elite', monospace;
 line-height: 1.8;
 }
-
 @keyframes flash {
 0%, 100% { background: #a90014; }
 50% { background: #f0d7c8; }
 }
-
 body.lights-out { filter: brightness(.63); }
-
-body.lights-out #popup,
-body.lights-out #scare {
-filter: brightness(1.6);
-}
+body.lights-out #popup, body.lights-out #scare { filter: brightness(1.6); }
 
 @media (max-width: 560px) {
 .page { width: 90%; padding-top: 20px; }
@@ -797,6 +767,7 @@ filter: brightness(1.6);
 .rsvp { padding: 19px; }
 .summons { padding: 28px 18px; }
 .rule-buttons { grid-template-columns: 1fr; }
+.bar-buttons { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -1028,6 +999,43 @@ Choose a rule. The house is waiting.
 </div>
 </section>
 
+<!-- NEW INTERACTIVE DRINKING SECTION -->
+<section class="cursed-bar">
+<div class="section-label">The spirits have stocked the bar</div>
+<h2>The Cursed Bar.</h2>
+<p class="bar-intro">
+Dare to open the cabinet? Tap a button to reveal the drink menu, draw a ridiculous
+Halloween prophecy, or escape the evening with your future self intact.
+The potions are for adults only. Nobody has to drink to join the fun.
+</p>
+
+<div class="bar-buttons">
+<button class="bar-button" data-bar="menu">
+<span>01 / THE INVENTORY</span>
+<strong>Reveal the Menu</strong>
+</button>
+
+<button class="bar-button" data-bar="curse">
+<span>02 / YOUR FATE</span>
+<strong>Draw a Curse</strong>
+</button>
+
+<button class="bar-button" data-bar="escape">
+<span>03 / SURVIVAL PLAN</span>
+<strong>Escape the Curse</strong>
+</button>
+</div>
+
+<div class="bar-result" id="barResult" aria-live="polite">
+The cabinet is locked. Choose your fate.
+</div>
+
+<p class="bar-note">
+Adults only for alcoholic drinks. No pressure, no drinking games that require alcohol,
+and no driving after drinking. Water, snacks, and a safe ride are powerful protective magic.
+</p>
+</section>
+
 <footer class="footer">
 A NIGHT AMONG SINNERS BASH · OCTOBER 31, 2026<br>
 DON'T BE LATE. THE GHOSTS HAVE NO PATIENCE.
@@ -1140,10 +1148,10 @@ document.body.classList.contains('lights-out')
 : 'Dim the Lights';
 });
 
-/* Interactive house rules */
+/* INTERACTIVE HOUSE RULES */
 const houseRules = {
 kids: "The little monsters are welcome, but their grown-ups are responsible for keeping an eye on them. Tiny humans are adorable; tiny humans running into traffic is not the Halloween vibe.",
-drinks: "Adult potions are for adults only. Drink responsibly, plan your ride, and leave the actual demon summoning to the professionals. There are none, by the way.",
+drinks: "Adult potions are for adults only. Drink responsibly, plan your ride, and leave the actual demon summoning to the professionals. There are none, by the way. Nobody has to drink alcohol to have fun, and water is a perfectly respectable potion.",
 respect: "Be respectful, be considerate, and keep the drama at home. We're here for spooky fun, not a live reunion episode of everybody's family problems.",
 cleanup: "Fake blood, cups, plates, wrappers, and other evidence go in the proper bins. The host is not accepting applications for unpaid crime-scene cleanup."
 };
@@ -1169,7 +1177,40 @@ detail.classList.add('show');
 });
 });
 
-/* RSVP message builder */
+/* NEW: CLICKABLE CURSED BAR */
+const barMessages = {
+menu: [
+"THE CURSED MENU HAS AWAKENED:<br><br>" +
+"🩸 <strong>Vampire's Kiss</strong> — a red fruit punch or cranberry mocktail.<br>" +
+"🕸️ <strong>Witching Hour</strong> — a dark berry drink, with an optional adult-only spirit.<br>" +
+"🧪 <strong>Monster's Lab</strong> — lime soda, citrus, and a suspicious amount of green color.<br><br>" +
+"Every potion can be nonalcoholic. If alcoholic drinks are offered, they're strictly for adults. The ghosts do not check IDs; the responsible humans do."
+],
+curse: [
+"YOUR CURSE HAS BEEN DRAWN:<br><br>" +
+"THE PHANTOM TOAST. Raise whatever you're drinking—water, soda, mocktail, or adult potion—and toast the living. Say: <em>“May our night be spooky, our snacks be plentiful, and our group chat never see the evidence.”</em><br><br>" +
+"No chugging. No pressure. The curse is purely theatrical."
+],
+escape: [
+"YOU HAVE CHOSEN SURVIVAL:<br><br>" +
+"The ancient spell requires three things: water, a snack, and a safe ride home. Pick a designated sober driver or arrange a rideshare before drinking. Never drive after drinking, and never let a friend who has been drinking drive.<br><br>" +
+"Congratulations. You have outsmarted the haunted consequences. The spirits are furious."
+]
+};
+
+document.querySelectorAll('[data-bar]').forEach(button => {
+button.addEventListener('click', () => {
+document.querySelectorAll('[data-bar]').forEach(item => item.classList.remove('active'));
+button.classList.add('active');
+
+const result = document.getElementById('barResult');
+const messages = barMessages[button.dataset.bar];
+result.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+result.classList.add('show');
+});
+});
+
+/* RSVP MESSAGE BUILDER */
 let rsvpMessage = '';
 
 document.getElementById('rsvpForm').addEventListener('submit', event => {
@@ -1220,25 +1261,30 @@ document.getElementById('rsvpResult').textContent = copied
 });
 
 /*
-ORIGINAL HALLOWEEN MELODY
-Musical notes and eerie chimes replace the continuous buzzy drone.
-Tap the button to start because browsers require a user gesture.
+ORIGINAL RETRO HORROR SYNTH SOUNDTRACK
+An original, paranoid 80s-style synth motif: pulsing bass,
+a steady electronic thump, eerie high notes, and a repeating melody.
+It is inspired by the broad retro-horror mood, not the actual song.
 */
 let audioContext = null;
 let masterGain = null;
 let soundOn = false;
-let soundTimer = null;
+let melodyTimer = null;
+let beatTimer = null;
 let melodyStep = 0;
+let beatStep = 0;
 
 function playTone(frequency, options = {}) {
-if (!audioContext || !soundOn) return;
+if (!audioContext || !soundOn || !masterGain) return;
 
 const {
-duration = 1.8,
+duration = 0.35,
 volume = 0.12,
-type = 'sine',
-attack = 0.06,
-release = 0.3
+type = 'triangle',
+attack = 0.015,
+release = 0.12,
+filterFrequency = 1800,
+detune = 0
 } = options;
 
 const now = audioContext.currentTime;
@@ -1248,18 +1294,18 @@ const filter = audioContext.createBiquadFilter();
 
 oscillator.type = type;
 oscillator.frequency.setValueAtTime(frequency, now);
+oscillator.detune.setValueAtTime(detune, now);
 
-// Rounded, softer tone instead of a harsh buzzy sound
 filter.type = 'lowpass';
-filter.frequency.value = type === 'triangle' ? 1400 : 2200;
-filter.Q.value = 0.5;
+filter.frequency.setValueAtTime(filterFrequency, now);
+filter.Q.value = 0.7;
 
 envelope.gain.setValueAtTime(0.0001, now);
 envelope.gain.exponentialRampToValueAtTime(
 Math.max(0.0002, volume), now + attack
 );
 envelope.gain.setValueAtTime(
-Math.max(0.0002, volume), now + Math.max(attack + 0.02, duration - release)
+Math.max(0.0002, volume), now + Math.max(attack + 0.01, duration - release)
 );
 envelope.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
@@ -1268,69 +1314,158 @@ filter.connect(envelope);
 envelope.connect(masterGain);
 
 oscillator.start(now);
-oscillator.stop(now + duration + 0.04);
+oscillator.stop(now + duration + 0.03);
 }
 
-function playChime(frequency) {
-playTone(frequency, {
-duration: 3.2,
-volume: 0.19,
-type: 'sine',
-attack: 0.025,
-release: 2.7
+function playSynthChord(notes) {
+notes.forEach((note, index) => {
+playTone(note, {
+duration: 1.15,
+volume: index === 0 ? 0.10 : 0.055,
+type: 'triangle',
+attack: 0.08,
+release: 0.55,
+filterFrequency: 1150,
+detune: index === 1 ? -5 : 0
+});
 });
 }
 
-function playHalloweenPhrase() {
+function playBeat() {
 if (!soundOn) return;
 
-/*
-A little spooky melody in a minor-key feel.
-Notes are separated so it sounds musical rather than like a constant hum.
-*/
-const melody = [
-{ note: 392.00, wait: 0 },
-{ note: 349.23, wait: 420 },
-{ note: 311.13, wait: 840 },
-{ note: 233.08, wait: 1450 },
-{ note: 261.63, wait: 2050 },
-{ note: 311.13, wait: 2600 },
-{ note: 277.18, wait: 3200 },
-{ note: 207.65, wait: 3900 }
+// A soft electronic kick on the first beat of each bar.
+if (beatStep % 4 === 0) {
+playTone(72, {
+duration: 0.19,
+volume: 0.28,
+type: 'sine',
+attack: 0.006,
+release: 0.15,
+filterFrequency: 180
+});
+}
+
+// A shorter, quieter synth pulse adds a retro rhythm.
+if (beatStep % 2 === 1) {
+playTone(146.83, {
+duration: 0.10,
+volume: 0.085,
+type: 'triangle',
+attack: 0.008,
+release: 0.065,
+filterFrequency: 500
+});
+}
+
+// Occasional higher tick, more musical than a constant noise.
+if (beatStep % 4 === 2) {
+playTone(587.33, {
+duration: 0.075,
+volume: 0.035,
+type: 'sine',
+attack: 0.005,
+release: 0.05,
+filterFrequency: 1400
+});
+}
+
+beatStep++;
+}
+
+function playRetroHorrorPhrase() {
+if (!soundOn) return;
+
+// Original minor-key melody with a nervous, repeating synth-pop feel.
+const notes = [
+{ note: 440.00, length: 0.28 },
+{ note: 523.25, length: 0.28 },
+{ note: 587.33, length: 0.40 },
+{ note: 523.25, length: 0.28 },
+{ note: 466.16, length: 0.40 },
+{ note: 392.00, length: 0.40 },
+{ note: 349.23, length: 0.55 },
+{ note: 392.00, length: 0.65 }
 ];
 
-melody.forEach(item => {
+const phrase = melodyStep % 2 === 0
+? notes
+: notes.slice().reverse();
+
+phrase.forEach((item, index) => {
 setTimeout(() => {
 if (!soundOn) return;
+
 playTone(item.note, {
-duration: 1.2,
-volume: 0.18,
-type: 'sine',
-attack: 0.035,
-release: 0.55
-});
-}, item.wait);
+duration: item.length,
+volume: 0.19,
+type: 'triangle',
+attack: 0.012,
+release: item.length * 0.42,
+filterFrequency: 2100
 });
 
-// Occasional ghostly chime above the melody
-setTimeout(() => {
-if (soundOn) playChime([783.99, 698.46, 622.25, 523.25][melodyStep % 4]);
-}, 1100);
-
-// Low musical note underneath, not a continuous buzzing tone
-setTimeout(() => {
-if (soundOn) {
-playTone([130.81, 116.54, 103.83, 123.47][melodyStep % 4], {
-duration: 1.7,
-volume: 0.14,
+// A faint octave echo gives the tune a haunted, retro feel.
+if (index === 2 || index === 6) {
+playTone(item.note * 2, {
+duration: 0.24,
+volume: 0.045,
 type: 'sine',
-attack: 0.18,
-release: 0.9
+attack: 0.015,
+release: 0.16,
+filterFrequency: 2500
 });
 }
-}, 1800);
+}, index * 300);
+});
+
+// Low, musical bass notes under the melody.
+const bassNotes = [110.00, 110.00, 130.81, 98.00];
+bassNotes.forEach((note, index) => {
+setTimeout(() => {
+if (!soundOn) return;
+playTone(note, {
+duration: 0.42,
+volume: 0.18,
+type: 'triangle',
+attack: 0.018,
+release: 0.22,
+filterFrequency: 380
+});
+}, index * 600);
+});
+
+// An eerie high chime appears at the end of the phrase.
+setTimeout(() => {
+if (!soundOn) return;
+playTone(melodyStep % 2 === 0 ? 880 : 783.99, {
+duration: 1.2,
+volume: 0.11,
+type: 'sine',
+attack: 0.025,
+release: 0.95,
+filterFrequency: 2400
+});
+}, 2300);
 
 melodyStep++;
+}
+
+function stopSoundtrack() {
+soundOn = false;
+clearInterval(melodyTimer);
+clearInterval(beatTimer);
+melodyTimer = null;
+beatTimer = null;
+
+if (masterGain && audioContext) {
+masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.08);
+}
+
+document.getElementById('soundButton').textContent = 'Start the Soundscape';
+document.getElementById('soundStatus').textContent =
+'Sound off. The house is listening.';
 }
 
 document.getElementById('soundButton').addEventListener('click', async () => {
@@ -1338,15 +1473,7 @@ const button = document.getElementById('soundButton');
 const status = document.getElementById('soundStatus');
 
 if (soundOn) {
-soundOn = false;
-clearInterval(soundTimer);
-
-if (masterGain && audioContext) {
-masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.15);
-}
-
-button.textContent = 'Start the Soundscape';
-status.textContent = 'Sound off. The house is listening.';
+stopSoundtrack();
 return;
 }
 
@@ -1363,29 +1490,23 @@ masterGain.connect(audioContext.destination);
 
 await audioContext.resume();
 soundOn = true;
+melodyStep = 0;
+beatStep = 0;
 
-// Louder overall output; still limited by device/browser volume
-masterGain.gain.setTargetAtTime(0.85, audioContext.currentTime, 0.25);
-
-// Start right away so the visitor can hear it immediately
-playTone(196, {
-duration: 1.4,
-volume: 0.2,
-type: 'sine',
-attack: 0.04,
-release: 0.7
-});
-
-playChime(783.99);
-playHalloweenPhrase();
-
-soundTimer = setInterval(() => {
-if (!soundOn) return;
-playHalloweenPhrase();
-}, 4800);
+// Stronger output, with no constant drone. Device volume still applies.
+masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+masterGain.gain.setTargetAtTime(0.95, audioContext.currentTime, 0.12);
 
 button.textContent = 'Turn Off the Soundscape';
-status.textContent = 'Spooky Halloween melody playing. Raise your device volume for the full effect.';
+status.textContent =
+'The haunted synth soundtrack is playing. Turn up your device volume for the full effect.';
+
+// Start the melody and rhythm immediately.
+playRetroHorrorPhrase();
+playBeat();
+
+beatTimer = setInterval(playBeat, 300);
+melodyTimer = setInterval(playRetroHorrorPhrase, 4800);
 } catch (error) {
 status.textContent =
 'Audio could not start here. Try opening the site in Safari or Chrome and tapping again.';
