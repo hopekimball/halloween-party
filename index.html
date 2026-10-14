@@ -17,7 +17,6 @@
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -42,14 +41,8 @@ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='ht
 }
 
 a { color: var(--green); }
-
-button, input, select, textarea {
-font: inherit;
-}
-
-button {
-cursor: pointer;
-}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
 
 .page {
 width: min(900px, 92%);
@@ -69,6 +62,24 @@ letter-spacing: 2px;
 text-transform: uppercase;
 border-bottom: 1px solid #493033;
 padding-bottom: 13px;
+}
+
+/* SOUND + LIGHTS ARE NOW AT THE TOP */
+.top-controls {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex-wrap: wrap;
+margin: 18px 0 0;
+}
+
+.sound-status {
+color: #8d817a;
+font-size: 10px;
+margin-top: 9px;
+min-height: 14px;
+text-align: center;
 }
 
 .hero {
@@ -134,7 +145,7 @@ filter: drop-shadow(0 3px 1px #240206);
 
 .subtitle {
 margin: 35px auto 0;
-max-width: 520px;
+max-width: 650px;
 color: #c7b8ae;
 font-size: clamp(13px, 2.8vw, 16px);
 line-height: 1.7;
@@ -142,6 +153,7 @@ line-height: 1.7;
 
 .subtitle em {
 color: #e6d5c6;
+font-style: normal;
 }
 
 .date-wrap {
@@ -165,42 +177,69 @@ color: var(--green);
 font-weight: normal;
 }
 
+/* CARTOON SLIME: GOOEY BLOBS, FAT DRIPS + SHINY HIGHLIGHTS */
 .slime {
 position: absolute;
-height: 22px;
-left: 8%;
-right: 8%;
-bottom: 0;
-background:
-radial-gradient(ellipse at 9% 0%, var(--green) 0 5px, transparent 6px),
-radial-gradient(ellipse at 24% 0%, var(--green) 0 4px, transparent 5px),
-radial-gradient(ellipse at 42% 0%, var(--green) 0 5px, transparent 6px),
-radial-gradient(ellipse at 69% 0%, var(--green) 0 4px, transparent 5px),
-radial-gradient(ellipse at 91% 0%, var(--green) 0 5px, transparent 6px);
+height: 29px;
+left: 2%;
+right: 2%;
+bottom: -2px;
+pointer-events: none;
+filter: drop-shadow(0 3px 1px #233b08);
 }
 
 .slime::before {
 content: "";
 position: absolute;
-left: 8%;
-right: 8%;
 top: 0;
+left: 3%;
+right: 3%;
+height: 11px;
+background: #8dff36;
+border-radius: 48% 40% 25% 30%;
+box-shadow:
+inset 0 3px 0 #c1ff82,
+0 1px 0 #5ebc1b;
+}
+
+.slime::after {
+content: "";
+position: absolute;
+top: 4px;
+left: 6%;
+width: 13%;
 height: 8px;
-background: var(--green);
-border-radius: 50% 50% 30% 30%;
+border-radius: 50%;
+background: #d4ff9e;
+opacity: .9;
+transform: rotate(-8deg);
 }
 
 .slime i {
 position: absolute;
-top: 3px;
-width: 5px;
-background: var(--green);
-border-radius: 0 0 6px 6px;
+top: 5px;
+display: block;
+background: linear-gradient(90deg, #71df20, #a5ff51 45%, #83f52c);
+border-radius: 0 0 10px 10px;
+box-shadow: inset 2px 0 0 #c1ff82;
 }
-.slime i:nth-child(1) { left: 18%; height: 14px; }
-.slime i:nth-child(2) { left: 41%; height: 22px; }
-.slime i:nth-child(3) { left: 67%; height: 12px; }
-.slime i:nth-child(4) { left: 84%; height: 17px; }
+
+.slime i:nth-child(1) {
+left: 15%; width: 11px; height: 18px;
+}
+.slime i:nth-child(2) {
+left: 37%; width: 13px; height: 28px;
+border-radius: 0 0 12px 12px;
+}
+.slime i:nth-child(3) {
+left: 61%; width: 9px; height: 15px;
+}
+.slime i:nth-child(4) {
+left: 81%; width: 12px; height: 23px;
+}
+.slime i:nth-child(5) {
+left: 93%; width: 7px; height: 12px;
+}
 
 .location {
 margin-top: 22px;
@@ -257,8 +296,7 @@ text-align: left;
 min-height: 150px;
 border: 1px solid #4a282b;
 color: var(--paper);
-background:
-linear-gradient(145deg, #211415, #100d0d 72%);
+background: linear-gradient(145deg, #211415, #100d0d 72%);
 padding: 20px;
 position: relative;
 overflow: hidden;
@@ -338,6 +376,12 @@ margin: 0;
 color: #8e8178;
 font-size: 11px;
 margin-top: 10px;
+}
+
+.summons .summons-details {
+color: var(--green);
+margin: 12px 0;
+letter-spacing: .5px;
 }
 
 .fate-box {
@@ -440,21 +484,72 @@ font-size: 12px;
 overflow-wrap: anywhere;
 }
 
-.warning {
-margin-top: 24px;
+/* INTERACTIVE HOUSE RULES AT THE BOTTOM */
+.house-rules {
+margin-top: 30px;
+padding: 25px 20px;
+border: 1px solid #4b292d;
+background:
+radial-gradient(ellipse at top, #241012, transparent 75%),
+#0c0909;
 text-align: center;
-color: #a99b91;
-font-size: 11px;
-line-height: 1.9;
-padding: 18px;
-border-top: 1px solid #392326;
-border-bottom: 1px solid #392326;
 }
 
-.warning strong {
-color: #d6c6b9;
+.house-rules > p {
+color: #a99a91;
+font-size: 12px;
+line-height: 1.8;
+}
+
+.rule-buttons {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 10px;
+margin-top: 20px;
+}
+
+.rule-button {
+border: 1px solid #573037;
+background: #140d0e;
+color: #d5c3b6;
+padding: 14px 10px;
+text-align: left;
+transition: .2s;
+}
+
+.rule-button:hover,
+.rule-button.open {
+border-color: #9b3540;
+background: #281014;
+}
+
+.rule-button span {
+display: block;
+color: var(--green);
+font-size: 10px;
+letter-spacing: 1px;
+margin-bottom: 8px;
+}
+
+.rule-button strong {
+font-family: 'Creepster', Impact, fantasy;
+font-size: 21px;
 font-weight: normal;
 }
+
+.rule-detail {
+display: none;
+text-align: left;
+padding: 15px;
+margin-top: 12px;
+border-left: 2px solid #8d3039;
+background: #170d0f;
+color: #c7b6aa;
+font-size: 12px;
+line-height: 1.8;
+}
+
+.rule-detail.show { display: block; }
 
 .footer {
 text-align: center;
@@ -465,48 +560,51 @@ margin-top: 36px;
 line-height: 2;
 }
 
+/* SPOOKIER GHOST SILHOUETTES */
 .ghost {
 position: fixed;
-width: 38px;
-height: 47px;
+width: 55px;
+height: 76px;
 z-index: 1;
-opacity: .10;
+opacity: .13;
 pointer-events: none;
-background: #e5ddd2;
-border-radius: 50% 50% 12% 12%;
-animation: drift 13s ease-in-out infinite;
+background: linear-gradient(110deg, #aaa4a2, #f0e9dd 55%, #8e8586);
+border-radius: 48% 48% 8% 8%;
+filter: drop-shadow(0 0 12px #c6b9b9);
+animation: drift 11s ease-in-out infinite;
 }
 
 .ghost::before {
 content: "";
 position: absolute;
-top: 18px;
-left: 9px;
-width: 4px;
-height: 6px;
+top: 23px;
+left: 12px;
+width: 8px;
+height: 13px;
 border-radius: 50%;
-background: #151010;
-box-shadow: 14px 0 #151010;
+background: #0a0506;
+box-shadow: 21px 0 #0a0506;
 }
 
 .ghost::after {
 content: "";
 position: absolute;
-bottom: -1px;
-left: 0;
-width: 100%;
-height: 10px;
-background: #e5ddd2;
-clip-path: polygon(0 0, 25% 100%, 50% 0, 75% 100%, 100% 0);
+left: 18px;
+top: 43px;
+width: 20px;
+height: 15px;
+background: #0a0506;
+border-radius: 50%;
+box-shadow: 0 0 4px #0a0506;
 }
 
-.ghost.one { top: 24%; left: 3%; }
-.ghost.two { top: 58%; right: 4%; animation-delay: -6s; transform: scale(.8); }
-.ghost.three { top: 82%; left: 7%; animation-delay: -3s; transform: scale(.6); }
+.ghost.one { top: 24%; left: 3%; transform: rotate(-8deg); }
+.ghost.two { top: 58%; right: 4%; animation-delay: -5s; transform: scale(.85) rotate(9deg); }
+.ghost.three { top: 82%; left: 7%; animation-delay: -3s; transform: scale(.65) rotate(-10deg); }
 
 @keyframes drift {
 0%, 100% { translate: 0 0; rotate: -6deg; }
-50% { translate: 8px -17px; rotate: 7deg; }
+50% { translate: 9px -22px; rotate: 8deg; }
 }
 
 #popup {
@@ -517,7 +615,7 @@ display: none;
 align-items: center;
 justify-content: center;
 padding: 20px;
-background: #050303eF;
+background: #050303ef;
 }
 
 #popup.show { display: flex; }
@@ -527,8 +625,7 @@ max-width: 470px;
 width: 100%;
 padding: 30px 24px;
 border: 1px solid #8d303a;
-background:
-radial-gradient(ellipse at top, #3a1419, #100909 70%);
+background: radial-gradient(ellipse at top, #3a1419, #100909 70%);
 box-shadow: 0 0 50px #8c0c1a33;
 text-align: center;
 animation: appear .22s ease-out;
@@ -587,16 +684,8 @@ line-height: 1.8;
 50% { background: #f0d7c8; }
 }
 
-.sound-status {
-color: #8d817a;
-font-size: 10px;
-margin-top: 10px;
-min-height: 14px;
-}
+body.lights-out { filter: brightness(.63); }
 
-body.lights-out {
-filter: brightness(.63);
-}
 body.lights-out #popup,
 body.lights-out #scare {
 filter: brightness(1.6);
@@ -610,6 +699,7 @@ filter: brightness(1.6);
 .topline { font-size: 9px; }
 .rsvp { padding: 19px; }
 .summons { padding: 19px 16px; }
+.rule-buttons { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -625,6 +715,12 @@ filter: brightness(1.6);
 <span>Enter at your own risk-ish</span>
 </div>
 
+<div class="top-controls">
+<button class="action secondary" id="lightsButton">Dim the Lights</button>
+<button class="action secondary" id="soundButton">Start the Soundscape</button>
+</div>
+<div class="sound-status" id="soundStatus">Sound is off. The house is listening.</div>
+
 <header class="hero">
 <div class="eyebrow">You were warned. You came anyway.</div>
 
@@ -636,10 +732,7 @@ Bash
 </h1>
 
 <p class="subtitle">
-One night. Questionable decisions.
-A suspicious number of monsters.
-<br>
-<em>Come for the party. Stay because the front door is acting weird.</em>
+Come for the chaos. Stay because something just moved in the hallway.
 </p>
 
 <div class="date-wrap">
@@ -647,7 +740,7 @@ A suspicious number of monsters.
 <strong>OCTOBER 31</strong> · 2026 · 5:00 PM
 </div>
 <div class="slime">
-<i></i><i></i><i></i><i></i>
+<i></i><i></i><i></i><i></i><i></i>
 </div>
 </div>
 
@@ -717,7 +810,12 @@ Click one if you're feeling brave. Or bored. Same thing, honestly.
 <p>
 Costumes encouraged. Bad decisions optional. Dramatic entrances appreciated.
 Bring your people, your appetite, and whatever questionable energy you've been saving up.
-Kids are welcome, adults can have their drinks, and everybody is expected to act right.
+Kids are welcome, adults can have their drinks, and everybody is expected to keep it cute,
+be respectful, and not give the host a reason to regret this whole operation.
+</p>
+<p class="summons-details">
+OCTOBER 31, 2026 · 5:00 PM<br>
+THE FLERB HOME
 </p>
 <p class="fine-print">
 The management is not responsible for fake blood on furniture, suspicious noises,
@@ -796,18 +894,41 @@ your RSVP to the host.
 </div>
 </section>
 
-<div class="warning">
-<strong>THE HOUSE RULES</strong><br>
-Family-friendly chaos. Alcohol for adults only. Drink responsibly.<br>
-Keep an eye on the little monsters. Be respectful. Act right.<br>
-<span style="color:#82736d">If you summon anything, please make sure it helps clean up.</span>
+<!-- HOUSE RULES STAY AT THE BOTTOM AND ARE INTERACTIVE -->
+<section class="house-rules">
+<div class="section-label">Read the fine print... if you dare</div>
+<h2>The House Rules.</h2>
+<p>
+Every haunted house has rules. Tap one to reveal your fate.
+Ignoring them may result in the host giving you The Look.
+</p>
+
+<div class="rule-buttons">
+<button class="rule-button" data-rule="kids">
+<span>RULE 01</span>
+<strong>Little Monsters</strong>
+</button>
+
+<button class="rule-button" data-rule="drinks">
+<span>RULE 02</span>
+<strong>Adult Potions</strong>
+</button>
+
+<button class="rule-button" data-rule="respect">
+<span>RULE 03</span>
+<strong>Keep It Cute</strong>
+</button>
+
+<button class="rule-button" data-rule="cleanup">
+<span>RULE 04</span>
+<strong>Evidence Removal</strong>
+</button>
 </div>
 
-<div style="text-align:center;margin-top:25px">
-<button class="action secondary" id="lightsButton">Dim the Lights</button>
-<button class="action secondary" id="soundButton">Start the Soundscape</button>
-<div class="sound-status" id="soundStatus">Sound is off. The house is listening.</div>
+<div class="rule-detail" id="ruleDetail" aria-live="polite">
+Choose a rule. The house is waiting.
 </div>
+</section>
 
 <footer class="footer">
 A NIGHT AMONG SINNERS BASH · OCTOBER 31, 2026<br>
@@ -842,27 +963,27 @@ const popupText = document.getElementById('popupText');
 const doorMessages = {
 red: {
 title: "WELCOME TO THE RED ROOM",
-text: "The good news: you made it inside. The bad news: the room has read your search history and would like a word. Don't worry, it's very judgmental but mostly harmless."
+text: "Congratulations, you've entered the room with the worst lighting and the most suspicious vibes. Please keep your hands inside the room at all times. We are not insured for whatever that was."
 },
 guest: {
 title: "THE LAST GUEST",
-text: "A mysterious figure is still here. They say they're waiting for one more person. We asked who. They pointed at you. Anyway, there's probably cake."
+text: "A mysterious figure is still here. They say they're waiting for one more person. They pointed at you. Honestly, that's a little rude. Grab a snack and pretend you didn't hear that."
 },
 mirror: {
 title: "THE MIRROR KNOWS",
-text: "It sees your outfit. It sees your choices. It sees the 47 minutes you spent saying you had nothing to wear. The mirror has requested that you stop asking it for advice."
+text: "It sees your outfit. It sees your choices. It remembers every costume you almost bought and every time you said, 'I'll figure it out later.' The mirror has one question: ARE WE WEARING THAT?"
 },
 basement: {
 title: "THE BASEMENT",
-text: "You hear footsteps. You live in a one-story house. Interesting. Anyway, if you find the missing serving spoon down there, please return it to the kitchen."
+text: "Something just moved downstairs. Could be a ghost. Could be the house settling. Could be the person who said they'd help set up and then disappeared. Either way, you're not getting a refund."
 },
 potluck: {
 title: "THE SACRED POTLUCK",
-text: "Bring a dish, a snack, or a dessert. Store-bought is not a crime. Showing up with an empty container and leaving with leftovers? Now THAT is a crime."
+text: "Bring a dish, a snack, or a dessert. Store-bought is welcome; we are not running a cooking competition. But showing up empty-handed, eating three plates, and leaving with leftovers? Bold. The ghosts are taking notes."
 },
 secret: {
 title: "YOU FOUND THE DOOR",
-text: "Congratulations. You have unlocked absolutely nothing of value. Your reward is this message and the growing suspicion that you should have stayed on the main page."
+text: "Look at you, opening mysterious doors like you pay the mortgage here. Your prize is absolutely nothing. No treasure, no secret passage, no free food. Just this message and a new reason to question your decisions."
 }
 };
 
@@ -904,6 +1025,7 @@ document.getElementById('fateResult').textContent = result;
 });
 
 const scare = document.getElementById('scare');
+
 document.getElementById('scareButton').addEventListener('click', () => {
 scare.classList.add('show');
 });
@@ -915,9 +1037,41 @@ scare.classList.remove('show');
 document.getElementById('lightsButton').addEventListener('click', event => {
 document.body.classList.toggle('lights-out');
 event.currentTarget.textContent =
-document.body.classList.contains('lights-out') ? 'Turn the Lights Back Up' : 'Dim the Lights';
+document.body.classList.contains('lights-out')
+? 'Turn the Lights Back Up'
+: 'Dim the Lights';
 });
 
+/* Interactive house rules */
+const houseRules = {
+kids: "The little monsters are welcome, but their grown-ups are responsible for keeping an eye on them. Tiny humans are adorable; tiny humans running into traffic is not the Halloween vibe.",
+drinks: "Adult potions are for adults only. Drink responsibly, plan your ride, and leave the actual demon summoning to the professionals. There are none, by the way.",
+respect: "Be respectful, be considerate, and keep the drama at home. We're here for spooky fun, not a live reunion episode of everybody's family problems.",
+cleanup: "Fake blood, cups, plates, wrappers, and other evidence go in the proper bins. The host is not accepting applications for unpaid crime-scene cleanup."
+};
+
+document.querySelectorAll('[data-rule]').forEach(button => {
+button.addEventListener('click', () => {
+const detail = document.getElementById('ruleDetail');
+const wasOpen = button.classList.contains('open');
+
+document.querySelectorAll('.rule-button').forEach(item => {
+item.classList.remove('open');
+});
+
+if (wasOpen) {
+detail.classList.remove('show');
+detail.textContent = 'Choose a rule. The house is waiting.';
+return;
+}
+
+button.classList.add('open');
+detail.textContent = houseRules[button.dataset.rule];
+detail.classList.add('show');
+});
+});
+
+/* RSVP message builder */
 let rsvpMessage = '';
 
 document.getElementById('rsvpForm').addEventListener('submit', event => {
@@ -965,11 +1119,16 @@ document.getElementById('rsvpResult').textContent = copied
 }
 });
 
-/* Original synthesized spooky ambience — no copyrighted recording. */
+/*
+Original spooky Halloween soundscape.
+Low haunted drones, dissonant minor-key notes, and eerie high chimes.
+Start with a tap because browsers require user interaction for audio.
+*/
 let audioContext = null;
 let masterGain = null;
 let soundOn = false;
 let soundTimer = null;
+let bassTimer = null;
 let noteIndex = 0;
 
 function makeDrone(frequency, type, volume, detune = 0) {
@@ -988,23 +1147,58 @@ oscillator.start();
 return { oscillator, gain };
 }
 
-function playBell(frequency) {
+function playNote(frequency, duration = 2.8, volume = 0.16, type = 'sine') {
 if (!audioContext || !soundOn) return;
 
+const now = audioContext.currentTime;
+const oscillator = audioContext.createOscillator();
+const gain = audioContext.createGain();
+const filter = audioContext.createBiquadFilter();
+
+oscillator.type = type;
+oscillator.frequency.setValueAtTime(frequency, now);
+filter.type = 'lowpass';
+filter.frequency.value = 1800;
+
+gain.gain.setValueAtTime(0.0001, now);
+gain.gain.exponentialRampToValueAtTime(volume, now + 0.08);
+gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+oscillator.connect(filter);
+filter.connect(gain);
+gain.connect(masterGain);
+
+oscillator.start(now);
+oscillator.stop(now + duration + 0.05);
+}
+
+function playThump() {
+if (!audioContext || !soundOn) return;
+
+const now = audioContext.currentTime;
 const oscillator = audioContext.createOscillator();
 const gain = audioContext.createGain();
 
 oscillator.type = 'sine';
-oscillator.frequency.value = frequency;
-gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
-gain.gain.exponentialRampToValueAtTime(0.035, audioContext.currentTime + 0.04);
-gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 2.5);
+oscillator.frequency.setValueAtTime(90, now);
+oscillator.frequency.exponentialRampToValueAtTime(38, now + 0.35);
+
+gain.gain.setValueAtTime(0.0001, now);
+gain.gain.exponentialRampToValueAtTime(0.28, now + 0.025);
+gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.48);
 
 oscillator.connect(gain);
 gain.connect(masterGain);
-oscillator.start();
-oscillator.stop(audioContext.currentTime + 2.6);
+oscillator.start(now);
+oscillator.stop(now + 0.5);
 }
+
+const halloweenNotes = [
+130.81, 155.56, 174.61, 130.81,
+116.54, 146.83, 174.61, 207.65,
+155.56, 130.81, 103.83, 155.56,
+174.61, 146.83, 116.54, 130.81
+];
 
 document.getElementById('soundButton').addEventListener('click', async () => {
 const button = document.getElementById('soundButton');
@@ -1013,9 +1207,12 @@ const status = document.getElementById('soundStatus');
 if (soundOn) {
 soundOn = false;
 clearInterval(soundTimer);
+clearInterval(bassTimer);
+
 if (masterGain && audioContext) {
-masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.15);
+masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.2);
 }
+
 button.textContent = 'Start the Soundscape';
 status.textContent = 'Sound off. The house is listening.';
 return;
@@ -1027,32 +1224,58 @@ if (!AudioCtx) throw new Error('Audio is not supported by this browser.');
 
 if (!audioContext) {
 audioContext = new AudioCtx();
+
 masterGain = audioContext.createGain();
 masterGain.gain.value = 0.0001;
 masterGain.connect(audioContext.destination);
 
-makeDrone(55, 'triangle', 0.23);
-makeDrone(55.6, 'sine', 0.18);
-makeDrone(82.4, 'sine', 0.09);
-makeDrone(110, 'triangle', 0.035);
+// Deep, layered haunted-house drones
+makeDrone(43.65, 'sine', 0.34);
+makeDrone(55, 'triangle', 0.19, -7);
+makeDrone(55.8, 'sawtooth', 0.045, 9);
+makeDrone(82.41, 'sine', 0.12);
+makeDrone(110, 'triangle', 0.045, -4);
 }
 
 await audioContext.resume();
 soundOn = true;
-masterGain.gain.setTargetAtTime(0.19, audioContext.currentTime, 0.6);
 
-const notes = [220, 261.63, 196, 293.66, 246.94, 174.61, 261.63, 207.65];
-playBell(notes[noteIndex++ % notes.length]);
+// Louder master level than the previous version
+masterGain.gain.setTargetAtTime(0.48, audioContext.currentTime, 0.45);
+
+// Start immediately with a low ominous note and a high, eerie chime
+playNote(65.41, 3.8, 0.22, 'triangle');
+playNote(783.99, 2.3, 0.12, 'sine');
+playThump();
 
 soundTimer = setInterval(() => {
 if (!soundOn) return;
-if (Math.random() > 0.28) {
-playBell(notes[noteIndex++ % notes.length]);
+
+const note = halloweenNotes[noteIndex % halloweenNotes.length];
+noteIndex++;
+
+playNote(note, 2.5 + Math.random() * 1.8, 0.20, 'triangle');
+
+// Occasionally layer a dissonant high note
+if (Math.random() > 0.42) {
+playNote(note * 2.98, 2.2, 0.09, 'sine');
 }
-}, 1800);
+
+// Sparse, deep heartbeat-like thumps
+if (Math.random() > 0.58) {
+playThump();
+}
+}, 1150);
+
+bassTimer = setInterval(() => {
+if (!soundOn) return;
+
+const lowNotes = [41.2, 43.65, 49, 36.71];
+playNote(lowNotes[Math.floor(Math.random() * lowNotes.length)], 3.5, 0.18, 'sine');
+}, 3300);
 
 button.textContent = 'Turn Off the Soundscape';
-status.textContent = 'Original eerie ambience playing. Best experienced with headphones.';
+status.textContent = 'Haunted Halloween ambience playing. Raise your device volume for the full effect.';
 } catch (error) {
 status.textContent = 'Audio could not start here. Try opening the site in Safari or Chrome and tapping again.';
 }
